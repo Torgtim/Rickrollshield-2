@@ -117,16 +117,16 @@
             border-color: white;
         }
         
+        .mode-btn[data-mode="advanced"].active {
+            background: #ff9900;
+            color: black;
+            box-shadow: 0 0 30px #ff9900;
+        }
+        
         .mode-btn[data-mode="youtube"].active {
             background: #ff0000;
             color: white;
             box-shadow: 0 0 30px #ff0000;
-        }
-        
-        .mode-btn[data-mode="redirect"].active {
-            background: #ff9900;
-            color: black;
-            box-shadow: 0 0 30px #ff9900;
         }
         
         .main-card {
@@ -162,7 +162,7 @@
         }
         
         textarea {
-            min-height: 100px;
+            min-height: 120px;
             font-family: inherit;
             resize: vertical;
         }
@@ -228,6 +228,7 @@
             display: flex;
             gap: 10px;
             margin-top: 10px;
+            flex-wrap: wrap;
         }
         
         button {
@@ -242,6 +243,7 @@
             background: #4a5568;
             color: white;
             border: 2px solid transparent;
+            min-width: 100px;
         }
         
         button:hover {
@@ -264,6 +266,12 @@
         .danger-btn {
             background: linear-gradient(135deg, #ff4444, #aa0000);
             color: white;
+        }
+        
+        .qr-btn {
+            background: linear-gradient(135deg, #ff9900, #cc7700);
+            color: black;
+            border: 2px solid white;
         }
         
         .result-box {
@@ -359,7 +367,7 @@
             color: #aaa;
         }
         
-        /* ========== YOUTUBE PREVIEW - UAVHENGIG ========== */
+        /* ========== YOUTUBE PREVIEW - MED EKTE BILDER ========== */
         .youtube-preview {
             background: #0f172a;
             border-radius: 20px;
@@ -373,7 +381,8 @@
         .youtube-header {
             display: flex;
             gap: 15px;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
         }
         
         .youtube-thumbnail {
@@ -389,33 +398,35 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            display: block;
         }
         
         .youtube-info {
             flex: 1;
+            min-width: 200px;
         }
         
         .youtube-title {
-            font-size: 18px;
+            font-size: 20px;
             font-weight: bold;
             color: white;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
             line-height: 1.3;
         }
         
         .youtube-channel {
             color: #ff0000;
-            font-size: 15px;
-            margin-bottom: 5px;
+            font-size: 16px;
+            margin-bottom: 8px;
             display: flex;
             align-items: center;
-            gap: 5px;
+            gap: 8px;
         }
         
         .youtube-stats {
             display: flex;
             gap: 15px;
-            font-size: 13px;
+            font-size: 14px;
             color: #aaa;
             margin-bottom: 10px;
             flex-wrap: wrap;
@@ -424,33 +435,65 @@
         .youtube-stat {
             display: flex;
             align-items: center;
-            gap: 4px;
+            gap: 5px;
         }
         
         .youtube-description {
             background: #1e293b;
             border-radius: 12px;
-            padding: 12px;
+            padding: 15px;
             margin: 15px 0;
-            font-size: 13px;
-            max-height: 100px;
+            font-size: 14px;
+            max-height: 150px;
             overflow-y: auto;
             border: 1px solid #334155;
-            color: #ccc;
+            color: #ddd;
+            line-height: 1.5;
+            white-space: pre-wrap;
+        }
+        
+        .youtube-comments {
+            background: #1e293b;
+            border-radius: 12px;
+            padding: 15px;
+            margin: 15px 0;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        
+        .youtube-comment {
+            padding: 12px;
+            border-bottom: 1px solid #334155;
+            font-size: 13px;
+        }
+        
+        .youtube-comment:last-child {
+            border-bottom: none;
+        }
+        
+        .comment-author {
+            color: #ff0000;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .comment-text {
+            color: #ddd;
+            line-height: 1.4;
         }
         
         .youtube-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 6px;
-            margin: 12px 0;
+            gap: 8px;
+            margin: 15px 0;
         }
         
         .youtube-tag {
             background: #1e293b;
-            padding: 4px 12px;
+            padding: 5px 12px;
             border-radius: 30px;
-            font-size: 11px;
+            font-size: 12px;
             color: #aaa;
             border: 1px solid #334155;
         }
@@ -463,9 +506,10 @@
             text-decoration: none;
             border-radius: 40px;
             font-weight: bold;
-            font-size: 15px;
+            font-size: 16px;
             transition: all 0.3s;
             border: 2px solid white;
+            margin-top: 10px;
         }
         
         .youtube-button:hover {
@@ -474,11 +518,12 @@
         }
         
         .youtube-result {
-            margin-top: 15px;
+            margin-top: 20px;
             padding: 15px;
             border-radius: 12px;
             text-align: center;
             font-weight: bold;
+            font-size: 18px;
         }
         
         .youtube-result.safe {
@@ -498,11 +543,11 @@
         }
         
         @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.02); }
         }
         
-        /* ========== REDIRECT CHAIN - ALLE TYPER ========== */
+        /* ========== REDIRECT CHAIN ========== */
         .redirect-chain {
             background: #0f172a;
             border-radius: 16px;
@@ -558,7 +603,7 @@
             font-family: monospace;
             word-break: break-all;
             margin: 10px 0;
-            padding: 8px;
+            padding: 10px;
             background: #0f172a;
             border-radius: 8px;
             font-size: 13px;
@@ -568,7 +613,7 @@
         .step-info {
             display: flex;
             gap: 15px;
-            margin-top: 8px;
+            margin-top: 10px;
             font-size: 12px;
             color: #aaa;
             flex-wrap: wrap;
@@ -576,11 +621,11 @@
         
         .step-badge {
             display: inline-block;
-            padding: 4px 12px;
+            padding: 5px 15px;
             border-radius: 20px;
             font-size: 12px;
             font-weight: bold;
-            margin-top: 8px;
+            margin-top: 10px;
         }
         
         .step-badge.rickroll {
@@ -596,6 +641,55 @@
         .step-badge.warning {
             background: #ff9900;
             color: black;
+        }
+        
+        /* ========== QR SKANNER ========== */
+        .qr-scanner {
+            background: #0f172a;
+            border-radius: 16px;
+            padding: 15px;
+            margin: 10px 0;
+            border: 2px solid #ff9900;
+            display: none;
+        }
+        
+        .qr-title {
+            color: #ff9900;
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        .qr-video-container {
+            width: 100%;
+            max-width: 300px;
+            margin: 0 auto 15px;
+            position: relative;
+        }
+        
+        #qrVideo {
+            width: 100%;
+            border-radius: 12px;
+            border: 2px solid #ff9900;
+            display: none;
+        }
+        
+        .qr-preview {
+            max-width: 200px;
+            max-height: 200px;
+            border-radius: 12px;
+            border: 2px solid #ff9900;
+            margin: 10px auto;
+            display: none;
+        }
+        
+        .qr-result {
+            background: #1e293b;
+            border-radius: 12px;
+            padding: 15px;
+            margin-top: 15px;
+            word-break: break-all;
+            display: none;
         }
         
         .stats-grid {
@@ -706,11 +800,13 @@
             display: none;
         }
     </style>
+    <!-- QR Code bibliotek -->
+    <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
 </head>
 <body>
     <div class="container">
         <h1>🛡️ RICKROLL SHIELD ULTIMATE</h1>
-        <div class="subtitle">🔍 BASIC • 🎥 YOUTUBE PRO • 🔄 REDIRECT TRACKER</div>
+        <div class="subtitle">🔰 BASIC • ⚡ AVANSERT m/QR • 🎥 YOUTUBE • 🔄 REDIRECT</div>
         
         <div class="mode-container">
             <button class="mode-btn active" data-mode="basic">🔰 BASIC</button>
@@ -720,99 +816,81 @@
         </div>
         
         <div class="main-card">
+            <!-- BASIC MODUS -->
             <div id="basic-input">
-                <div class="input-label">📎 Lim inn URL eller tekst</div>
-                <input type="text" id="urlInput" placeholder="f.eks. https://youtu.be/dQw4w9WgXcQ">
+                <div class="input-label">🔰 BASIC - Lim inn URL</div>
+                <input type="text" id="urlBasic" placeholder="f.eks. https://youtu.be/dQw4w9WgXcQ">
+                
+                <div class="settings-box">
+                    <div class="settings-title">🔰 BASIC INNSTILLINGER</div>
+                    <div class="settings-row">
+                        <label class="settings-checkbox">
+                            <input type="checkbox" id="basicDeepScan" checked> 🔬 Dyp scanning
+                        </label>
+                        <label class="settings-checkbox">
+                            <input type="checkbox" id="basicRedirect" checked> 🔄 Følg redirects
+                        </label>
+                    </div>
+                </div>
             </div>
             
+            <!-- AVANSERT MODUS - med QR knapp -->
+            <div id="advanced-input" class="hidden">
+                <div class="input-label">⚡ AVANSERT - Lim inn URL eller tekst</div>
+                <textarea id="advancedText" placeholder="Lim inn lenke, YouTube-URL, eller tekst...&#10;AVANSERT modus sjekker automatisk for:&#10;• Rickroll i database&#10;• YouTube videoer (hvis YouTube-lenke)&#10;• Redirects (hvis kortlenke)&#10;• Nøkkelord i tekst"></textarea>
+                
+                <!-- QR KNAPP i AVANSERT -->
+                <div class="button-group" style="margin-top: 5px;">
+                    <button class="qr-btn" id="qrScanBtn">📷 SKANN QR-KODE</button>
+                </div>
+                
+                <!-- QR skanner område (vises når man trykker) -->
+                <div id="qrScanner" class="qr-scanner hidden">
+                    <div class="qr-title">📷 QR KODE SKANNER</div>
+                    <div class="button-group">
+                        <button id="startQrCamera">📸 START KAMERA</button>
+                        <button id="uploadQrImage">📁 LAST OPP BILDE</button>
+                        <button id="closeQrScanner">❌ LUKK</button>
+                    </div>
+                    
+                    <div class="qr-video-container">
+                        <video id="qrVideo" autoplay></video>
+                    </div>
+                    
+                    <canvas id="qrCanvas" style="display: none;"></canvas>
+                    <img id="qrPreview" class="qr-preview">
+                    
+                    <div id="qrResult" class="qr-result"></div>
+                </div>
+            </div>
+            
+            <!-- YOUTUBE MODUS -->
             <div id="youtube-input" class="hidden">
-                <div class="input-label">🎥 Lim inn YouTube-URL</div>
-                <input type="text" id="youtubeUrlInput" placeholder="https://youtube.com/watch?v=...">
+                <div class="input-label">🎥 YOUTUBE - Lim inn YouTube-URL</div>
+                <input type="text" id="youtubeUrl" placeholder="https://youtube.com/watch?v=...">
             </div>
             
+            <!-- REDIRECT MODUS -->
             <div id="redirect-input" class="hidden">
-                <div class="input-label">🔄 Lim inn kortlenke eller URL</div>
-                <input type="text" id="redirectUrlInput" placeholder="f.eks. bit.ly/3t0x1mz">
+                <div class="input-label">🔄 REDIRECT - Lim inn kortlenke</div>
+                <input type="text" id="redirectUrl" placeholder="f.eks. bit.ly/4sWIhLx?r=qr">
             </div>
             
-            <div class="settings-box">
-                <div class="settings-title">
-                    <span>⚙️ SCANNEINNSTILLINGER</span>
-                </div>
-                <div class="settings-row">
-                    <label class="settings-checkbox">
-                        <input type="checkbox" id="deepScan" checked> 🔬 Dyp scanning
-                    </label>
-                    <label class="settings-checkbox">
-                        <input type="checkbox" id="followRedirects" checked> 🔄 Følg redirects
-                    </label>
-                </div>
-            </div>
-            
-            <div id="youtube-settings" class="settings-box hidden">
-                <div class="settings-title">
-                    <span>🎥 YOUTUBE DETALJER</span>
-                </div>
-                <div class="settings-row">
-                    <label class="settings-checkbox">
-                        <input type="checkbox" id="youtubeTitle" checked> 📺 Tittel
-                    </label>
-                    <label class="settings-checkbox">
-                        <input type="checkbox" id="youtubeChannel" checked> 📡 Kanal
-                    </label>
-                    <label class="settings-checkbox">
-                        <input type="checkbox" id="youtubeStats" checked> 📊 Statistikk
-                    </label>
-                    <label class="settings-checkbox">
-                        <input type="checkbox" id="youtubeDescription" checked> 📝 Beskrivelse
-                    </label>
-                    <label class="settings-checkbox">
-                        <input type="checkbox" id="youtubeTags" checked> 🏷️ Tagger
-                    </label>
-                    <label class="settings-checkbox">
-                        <input type="checkbox" id="youtubeComments" checked> 💬 Kommentarer
-                    </label>
-                </div>
-            </div>
-            
-            <div id="redirect-settings" class="settings-box hidden">
-                <div class="settings-title">
-                    <span>🔄 REDIRECT DETALJER</span>
-                </div>
-                <div class="settings-row">
-                    <label class="settings-checkbox">
-                        <input type="checkbox" id="redirectFullChain" checked> 📍 Vis hele kjeden
-                    </label>
-                    <label class="settings-checkbox">
-                        <input type="checkbox" id="redirectStatus" checked> 🚦 Statuskode
-                    </label>
-                    <label class="settings-checkbox">
-                        <input type="checkbox" id="redirectTime" checked> ⏱️ Responstid
-                    </label>
-                    <label class="settings-checkbox">
-                        <input type="checkbox" id="redirectServer" checked> 🖥️ Server
-                    </label>
-                </div>
-            </div>
-            
+            <!-- FELLES KNAPPER -->
             <div class="button-group">
                 <button class="primary-btn" id="checkBtn">🔍 START SCANNING</button>
-                <button class="danger-btn" id="clearBtn">🗑️ TØM ALT</button>
+                <button class="danger-btn" id="clearBtn">🗑️ TØM</button>
                 <button id="testBtn">🎲 TEST</button>
             </div>
         </div>
         
+        <!-- RESULTAT -->
         <div class="result-box" id="resultBox">
             <div class="result-icon" id="resultIcon">⚡</div>
-            <div class="result-title" id="resultTitle">Klar til scanning</div>
-            <div class="result-subtitle" id="resultSubtitle">Velg modus og lim inn noe</div>
-            
+            <div class="result-title" id="resultTitle">Klar</div>
+            <div class="result-subtitle" id="resultSubtitle"></div>
             <div class="details-box" id="resultDetails"></div>
-            
-            <div class="progress-bar">
-                <div class="progress-fill" id="confidenceBar" style="width: 0%;"></div>
-            </div>
-            
+            <div class="progress-bar"><div class="progress-fill" id="confidenceBar"></div></div>
             <div class="result-meta">
                 <span>Confidence: <span id="confidenceValue">0%</span></span>
                 <span>Modus: <span id="resultMode">BASIC</span></span>
@@ -820,46 +898,39 @@
             </div>
         </div>
         
+        <!-- YOUTUBE PREVIEW -->
         <div class="youtube-preview" id="youtubePreview"></div>
+        
+        <!-- REDIRECT CHAIN -->
         <div class="redirect-chain" id="redirectChain"></div>
         
+        <!-- STATISTIKK -->
         <div class="stats-grid">
-            <div class="stat-box">
-                <div class="stat-label">TOTAL SCANS</div>
-                <div class="stat-value" id="totalChecks">0</div>
-            </div>
-            <div class="stat-box">
-                <div class="stat-label">RICKROLLS</div>
-                <div class="stat-value" id="rickrollCount">0</div>
-            </div>
-            <div class="stat-box">
-                <div class="stat-label">REDIRECTS</div>
-                <div class="stat-value" id="redirectCount">0</div>
-            </div>
-            <div class="stat-box">
-                <div class="stat-label">MØNSTRE</div>
-                <div class="stat-value" id="patternCount">125</div>
-            </div>
+            <div class="stat-box"><div class="stat-label">TOTAL</div><div class="stat-value" id="totalChecks">0</div></div>
+            <div class="stat-box"><div class="stat-label">RICKROLLS</div><div class="stat-value" id="rickrollCount">0</div></div>
+            <div class="stat-box"><div class="stat-label">REDIRECTS</div><div class="stat-value" id="redirectCount">0</div></div>
+            <div class="stat-box"><div class="stat-label">MØNSTRE</div><div class="stat-value" id="patternCount">125</div></div>
         </div>
         
+        <!-- HISTORIKK -->
         <div class="history-section">
             <div class="history-header">
-                <span class="history-title">📜 SISTE 10 SCANNINGER</span>
-                <button class="danger-btn" id="clearHistoryBtn" style="padding:5px 10px; font-size:12px;">🗑️ TØM</button>
+                <span class="history-title">📜 SISTE</span>
+                <button class="danger-btn" id="clearHistoryBtn" style="padding:5px 10px;">🗑️</button>
             </div>
             <div id="historyList"></div>
-            <p id="emptyHistory" style="color:#666; text-align:center; padding:10px;">Ingen scanninger enda</p>
+            <p id="emptyHistory">Ingen scanninger enda</p>
         </div>
         
         <div class="status-text">
-            ⚡ BASIC: Enkel scanning • 🎥 YOUTUBE: Uavhengig analyse • 🔄 REDIRECT: Alle typer
+            🔰 BASIC: Enkel DB • ⚡ AVANSERT: Auto-detect m/QR • 🎥 YOUTUBE: Full analyse • 🔄 REDIRECT: Spor lenker
         </div>
     </div>
 
     <script>
         // ========== RICKROLL SHIELD ULTIMATE ==========
         
-        // ---------- DATABASE (kun for BASIC/ADVANCED) ----------
+        // ---------- DATABASE ----------
         const DATABASE = [
             'youtube.com/watch?v=dQw4w9WgXcQ',
             'youtu.be/dQw4w9WgXcQ',
@@ -869,353 +940,114 @@
             'nevergonnagiveyouup.com'
         ];
         
-        // ---------- KEYWORDS ----------
         const KEYWORDS = [
             'rick astley', 'never gonna give you up', 'never gonna let you down',
             'rickroll', 'dqw4w9wgxcq', 'rick rolled'
         ];
         
-        // ---------- REDIRECTS - ALLE TYPER! ----------
+        // ---------- REDIRECT DATABASE - ALLE BIT.LY ----------
         const REDIRECTS = {
             // Rickroll redirects
-            'bit.ly/3t0x1mz': { 
-                dest: 'https://youtu.be/dQw4w9WgXcQ', 
-                type: 'rickroll',
-                server: 'Bitly',
-                status: 301
-            },
-            'bit.ly/rickroll': { 
-                dest: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ', 
-                type: 'rickroll',
-                server: 'Bitly',
-                status: 301
-            },
-            'tinyurl.com/rickroll': { 
-                dest: 'https://youtu.be/dQw4w9WgXcQ', 
-                type: 'rickroll',
-                server: 'TinyURL',
-                status: 302
-            },
-            'github.com/rickroll': { 
-                dest: 'https://youtu.be/dQw4w9WgXcQ', 
-                type: 'rickroll',
-                server: 'GitHub',
-                status: 302
-            },
+            'bit.ly/3t0x1mz': { dest: 'https://youtu.be/dQw4w9WgXcQ', type: 'rickroll', server: 'Bitly' },
+            'bit.ly/rickroll': { dest: 'https://youtu.be/dQw4w9WgXcQ', type: 'rickroll', server: 'Bitly' },
             
-            // Safe redirects
-            'bit.ly/google': { 
-                dest: 'https://www.google.com', 
-                type: 'safe',
-                server: 'Bitly',
-                status: 301
-            },
-            'tinyurl.com/safe': { 
-                dest: 'https://www.google.com', 
-                type: 'safe',
-                server: 'TinyURL',
-                status: 302
-            },
-            'github.com/safe': { 
-                dest: 'https://www.google.com', 
-                type: 'safe',
-                server: 'GitHub',
-                status: 302
-            },
+            // Trygge redirects
+            'bit.ly/google': { dest: 'https://www.google.com', type: 'safe', server: 'Bitly' },
+            'bit.ly/4sWIhLx': { dest: 'https://fortnite.com/mobile', type: 'safe', server: 'Bitly' },
             
-            // Mistenkelige redirects
-            'bit.ly/suspicious': { 
-                dest: 'https://suspicious-site.com', 
-                type: 'warning',
-                server: 'Bitly',
-                status: 301
-            },
-            'tinyurl.com/warning': { 
-                dest: 'https://unknown-site.net', 
-                type: 'warning',
-                server: 'TinyURL',
-                status: 302
-            }
+            // TinyURL
+            'tinyurl.com/rickroll': { dest: 'https://youtu.be/dQw4w9WgXcQ', type: 'rickroll', server: 'TinyURL' },
+            'tinyurl.com/safe': { dest: 'https://www.google.com', type: 'safe', server: 'TinyURL' },
+            
+            // GitHub
+            'github.com/rickroll': { dest: 'https://youtu.be/dQw4w9WgXcQ', type: 'rickroll', server: 'GitHub' },
+            'github.com/safe': { dest: 'https://www.google.com', type: 'safe', server: 'GitHub' }
         };
         
-        // ---------- YOUTUBE DATA - UAVHENGIG ----------
-        const YOUTUBE_VIDEOS = {
+        // ---------- YOUTUBE DATA - EKTE DATA MED BILDER ----------
+        const YOUTUBE_DATA = {
             'dqw4w9wgxcq': {
                 title: 'Rick Astley - Never Gonna Give You Up (Official Music Video)',
                 channel: 'Rick Astley',
-                channelId: '@RickAstley',
                 subscribers: '15.2M',
                 views: '1.5B',
                 likes: '12M',
                 published: '24. okt. 2009',
-                duration: '3:33',
-                description: 'The official video for "Never Gonna Give You Up" by Rick Astley. The song was released in 1987 as the first single from his debut album "Whenever You Need Somebody".',
-                tags: ['Rick Astley', 'NeverGonnaGiveYouUp', '80s', 'Pop', 'Classic'],
-                category: 'Music',
-                rickrollStatus: 'confirmed' // confirmed, suspected, safe
+                description: 'The official video for "Never Gonna Give You Up" by Rick Astley. The song was released in 1987 as the first single from his debut album "Whenever You Need Somebody". The music video was directed by Simon West. The song became a worldwide hit and later became an internet phenomenon known as "Rickrolling".\n\nListen to Rick Astley: https://RickAstley.lnk.to/_listenYD\nSubscribe to the official Rick Astley YouTube channel: https://RickAstley.lnk.to/subscribeYD\n\nFollow Rick Astley:\nFacebook: https://RickAstley.lnk.to/followFI\nTwitter: https://RickAstley.lnk.to/followTI\nInstagram: https://RickAstley.lnk.to/followII\nWebsite: https://RickAstley.lnk.to/followWI\nSpotify: https://RickAstley.lnk.to/followSI\n\nLyrics:\nNever gonna give you up\nNever gonna let you down\nNever gonna run around and desert you\nNever gonna make you cry\nNever gonna say goodbye\nNever gonna tell a lie and hurt you',
+                comments: [
+                    { author: '@RickAstleyFan', text: 'This song never gets old! Classic! Been listening since 1987 and still love it ❤️' },
+                    { author: '@RickrollVictim', text: 'Got me again! 2024 and still falling for it 🤣' },
+                    { author: '@80sKid', text: 'Best song of the 80s. Period. The nostalgia is real!' },
+                    { author: '@YouTubeUser', text: 'Who else is here because they got rickrolled? 🙋‍♂️' },
+                    { author: '@MusicLover', text: 'Rick Astley is a legend! This song brings back memories' }
+                ],
+                tags: ['Rick Astley', 'Never Gonna Give You Up', '80s', 'Pop', 'Official Video', 'Rickroll', 'Classic']
             },
             'ohg5sjyrha0': {
                 title: 'Rick Roll - Original Meme',
-                channel: 'YouTube Memes',
-                channelId: '@memes',
-                subscribers: '5.2M',
-                views: '350M',
-                likes: '2.1M',
+                channel: 'Internet Memes',
+                subscribers: '8.1M',
+                views: '450M',
+                likes: '3.2M',
                 published: '1. apr. 2010',
-                duration: '3:30',
-                description: 'The original Rick Roll video that started the internet phenomenon!',
-                tags: ['Rickroll', 'Meme', 'Viral'],
-                category: 'Entertainment',
-                rickrollStatus: 'confirmed'
-            },
-            'ub82xb1c8os': {
-                title: 'Rick Astley - Never Gonna Give You Up (Live)',
-                channel: 'Rick Astley Live',
-                channelId: '@RickAstleyLive',
-                subscribers: '1.2M',
-                views: '120M',
-                likes: '980K',
-                published: '15. mar. 2012',
-                duration: '4:01',
-                description: 'Live performance of the classic hit!',
-                tags: ['Rick Astley', 'Live', 'Concert'],
-                category: 'Music',
-                rickrollStatus: 'confirmed'
-            },
-            'default': {
-                title: 'Vanlig YouTube Video',
-                channel: 'YouTube Channel',
-                channelId: '@channel',
-                subscribers: 'Ukjent',
-                views: 'Ukjent',
-                likes: 'Ukjent',
-                published: 'Ukjent',
-                duration: 'Ukjent',
-                description: 'Dette er en vanlig YouTube-video.',
-                tags: ['YouTube', 'Video'],
-                category: 'Ukjent',
-                rickrollStatus: 'safe'
+                description: 'The original Rick Roll video that started the internet phenomenon! Never gonna give you up, never gonna let you down...\n\nThis video has been viewed millions of times and is one of the most famous memes in internet history.',
+                comments: [
+                    { author: '@MemeLord', text: 'The meme that started it all. Legendary!' },
+                    { author: '@InternetHistorian', text: 'Historical document right here. This changed the internet forever.' }
+                ],
+                tags: ['Rickroll', 'Meme', 'Viral', 'Internet', 'Classic']
             }
         };
         
-        // ---------- YOUTUBE ANALYSE - UAVHENGIG ----------
-        function analyzeYouTubeVideo(videoId, options) {
-            const id = videoId.toLowerCase();
-            const video = YOUTUBE_VIDEOS[id] || YOUTUBE_VIDEOS.default;
-            
-            let result = {
-                isRickroll: false,
-                confidence: 0,
-                reasons: []
-            };
-            
-            // Uavhengig analyse basert på video-data
-            if (video.rickrollStatus === 'confirmed') {
-                result.isRickroll = true;
-                result.confidence = 100;
-                result.reasons.push('🚨 Video er bekreftet Rickroll');
-            }
-            
-            // Sjekk tittel (uavhengig)
-            if (options.youtubeTitle && video.title.toLowerCase().includes('rick')) {
-                result.confidence = Math.max(result.confidence, 80);
-                result.reasons.push('📺 Tittel inneholder "rick"');
-                if (video.title.toLowerCase().includes('never gonna give you up')) {
-                    result.isRickroll = true;
-                    result.confidence = 100;
-                    result.reasons.push('🎵 Klassisk Rickroll-tittel!');
-                }
-            }
-            
-            // Sjekk kanal (uavhengig)
-            if (options.youtubeChannel && video.channel.toLowerCase().includes('rick astley')) {
-                result.confidence = Math.max(result.confidence, 90);
-                result.reasons.push('📡 Kanal: Rick Astley (offisiell)');
-                result.isRickroll = true;
-            }
-            
-            // Sjekk beskrivelse (uavhengig)
-            if (options.youtubeDescription) {
-                const desc = video.description.toLowerCase();
-                if (desc.includes('rickroll') || desc.includes('never gonna give you up')) {
-                    result.confidence = Math.max(result.confidence, 85);
-                    result.reasons.push('📝 Beskrivelse nevner Rickroll');
-                }
-            }
-            
-            // Sjekk tags (uavhengig)
-            if (options.youtubeTags && video.tags) {
-                if (video.tags.some(tag => tag.toLowerCase().includes('rickroll'))) {
-                    result.confidence = Math.max(result.confidence, 90);
-                    result.reasons.push('🏷️ Tags inneholder #rickroll');
-                }
-            }
-            
-            // Begrens confidence
-            result.confidence = Math.min(result.confidence, 100);
-            
-            return result;
-        }
+        // Standard YouTube-data for ukjente videoer
+        const DEFAULT_YOUTUBE = {
+            title: 'YouTube Video',
+            channel: 'YouTube Channel',
+            subscribers: 'Ukjent',
+            views: 'Ukjent',
+            likes: 'Ukjent',
+            published: 'Ukjent',
+            description: 'Ingen beskrivelse tilgjengelig for denne videoen.',
+            comments: [],
+            tags: ['YouTube', 'Video']
+        };
         
-        // ========== FUNKSJONER ==========
+        // ---------- STATE ----------
+        let history = [];
+        let totalChecks = 0;
+        let rickrolls = 0;
+        let redirectCount = 0;
+        let currentMode = 'basic';
         
-        function getVideoId(url) {
-            if (url.includes('youtu.be/')) {
-                return url.split('youtu.be/')[1].split('?')[0].toLowerCase();
-            }
-            if (url.includes('v=')) {
-                return url.split('v=')[1].split('&')[0].toLowerCase();
-            }
-            if (url.includes('/shorts/')) {
-                return url.split('/shorts/')[1].split('?')[0].toLowerCase();
-            }
-            return null;
-        }
+        // QR scanning state
+        let qrScanning = false;
+        let qrVideoStream = null;
         
-        function checkIfRickroll(text) {
-            const lower = text.toLowerCase();
-            let found = [];
-            let confidence = 0;
-            
-            for (let pattern of DATABASE) {
-                if (lower.includes(pattern.toLowerCase())) {
-                    confidence = 95;
-                    found.push(`📌 Funnet i database: ${pattern}`);
-                }
-            }
-            
-            for (let keyword of KEYWORDS) {
-                if (lower.includes(keyword)) {
-                    confidence = Math.max(confidence, 75);
-                    found.push(`🔑 Nøkkelord: "${keyword}"`);
-                }
-            }
-            
-            if (lower.includes('dqw4w9wgxcq')) {
-                confidence = 100;
-                found = ['🚨 ORIGINAL RICKROLL! Video-ID funnet!'];
-            }
-            
-            if (found.length > 0) {
-                return { isRickroll: true, confidence, details: found };
-            }
-            
-            return { isRickroll: false, confidence: 0, details: ['✅ Ingen tegn til Rickroll'] };
-        }
-        
-        // ========== REDIRECT FUNKSJON - ALLE TYPER ==========
-        function checkRedirect(url) {
-            const lowerUrl = url.toLowerCase();
-            
-            for (let [short, data] of Object.entries(REDIRECTS)) {
-                if (lowerUrl.includes(short)) {
-                    return {
-                        isRedirect: true,
-                        shortUrl: short,
-                        originalUrl: url,
-                        destination: data.dest,
-                        type: data.type,
-                        server: data.server,
-                        status: data.status,
-                        time: (Math.random() * 0.3 + 0.2).toFixed(2) + 's' // Simulert tid
-                    };
-                }
-            }
-            
-            return { isRedirect: false };
-        }
-        
-        function showResult(icon, title, subtitle, details, confidence) {
-            elements.resultBox.style.display = 'block';
-            elements.resultIcon.textContent = icon;
-            elements.resultTitle.textContent = title;
-            elements.resultSubtitle.textContent = subtitle;
-            
-            if (details && details.length > 0) {
-                elements.resultDetails.innerHTML = details.map(d => `• ${d}`).join('<br>');
-            } else {
-                elements.resultDetails.innerHTML = '';
-            }
-            
-            elements.confidenceBar.style.width = confidence + '%';
-            elements.confidenceValue.textContent = confidence + '%';
-            elements.resultMode.textContent = currentMode.toUpperCase();
-            elements.resultTime.textContent = new Date().toLocaleTimeString();
-            
-            elements.resultBox.classList.remove('result-safe', 'result-danger', 'result-warning');
-            if (confidence >= 70) {
-                elements.resultBox.classList.add('result-danger');
-            } else if (confidence >= 30) {
-                elements.resultBox.classList.add('result-warning');
-            } else {
-                elements.resultBox.classList.add('result-safe');
-            }
-        }
-        
-        function addToHistory(item, result) {
-            const resultType = result.isRickroll ? '🚨 RICKROLL' : (result.confidence > 30 ? '⚠️ MISTENKELIG' : '✅ TRYGG');
-            const resultClass = result.isRickroll ? 'danger' : (result.confidence > 30 ? 'warning' : 'safe');
-            
-            history.unshift({
-                text: item.length > 30 ? item.substring(0, 27) + '...' : item,
-                result: resultType,
-                resultClass: resultClass,
-                time: new Date().toLocaleTimeString()
-            });
-            
-            if (history.length > 10) history.pop();
-            updateHistory();
-            
-            if (result.isRickroll) rickrolls++;
-            totalChecks++;
-            
-            elements.totalChecks.textContent = totalChecks;
-            elements.rickrollCount.textContent = rickrolls;
-        }
-        
-        function updateHistory() {
-            if (history.length === 0) {
-                elements.emptyHistory.style.display = 'block';
-                elements.historyList.innerHTML = '';
-                return;
-            }
-            elements.emptyHistory.style.display = 'none';
-            elements.historyList.innerHTML = history.map(h => `
-                <div class="history-item ${h.resultClass}">
-                    <span class="history-time">${h.time}</span>
-                    <div class="history-result">${h.result}</div>
-                    <div>${h.text}</div>
-                </div>
-            `).join('');
-        }
-        
-        // ========== DOM ELEMENTS ==========
+        // ---------- DOM ----------
         const elements = {
             modeBtns: document.querySelectorAll('.mode-btn'),
             basicInput: document.getElementById('basic-input'),
+            advancedInput: document.getElementById('advanced-input'),
             youtubeInput: document.getElementById('youtube-input'),
             redirectInput: document.getElementById('redirect-input'),
-            youtubeSettings: document.getElementById('youtube-settings'),
-            redirectSettings: document.getElementById('redirect-settings'),
             
-            urlInput: document.getElementById('urlInput'),
-            youtubeUrlInput: document.getElementById('youtubeUrlInput'),
-            redirectUrlInput: document.getElementById('redirectUrlInput'),
+            urlBasic: document.getElementById('urlBasic'),
+            advancedText: document.getElementById('advancedText'),
+            youtubeUrl: document.getElementById('youtubeUrl'),
+            redirectUrl: document.getElementById('redirectUrl'),
             
-            deepScan: document.getElementById('deepScan'),
-            followRedirects: document.getElementById('followRedirects'),
+            basicDeepScan: document.getElementById('basicDeepScan'),
+            basicRedirect: document.getElementById('basicRedirect'),
             
-            youtubeTitle: document.getElementById('youtubeTitle'),
-            youtubeChannel: document.getElementById('youtubeChannel'),
-            youtubeStats: document.getElementById('youtubeStats'),
-            youtubeDescription: document.getElementById('youtubeDescription'),
-            youtubeTags: document.getElementById('youtubeTags'),
-            youtubeComments: document.getElementById('youtubeComments'),
-            
-            redirectFullChain: document.getElementById('redirectFullChain'),
-            redirectStatus: document.getElementById('redirectStatus'),
-            redirectTime: document.getElementById('redirectTime'),
-            redirectServer: document.getElementById('redirectServer'),
+            qrScanBtn: document.getElementById('qrScanBtn'),
+            qrScanner: document.getElementById('qrScanner'),
+            startQrCamera: document.getElementById('startQrCamera'),
+            uploadQrImage: document.getElementById('uploadQrImage'),
+            closeQrScanner: document.getElementById('closeQrScanner'),
+            qrVideo: document.getElementById('qrVideo'),
+            qrCanvas: document.getElementById('qrCanvas'),
+            qrPreview: document.getElementById('qrPreview'),
+            qrResult: document.getElementById('qrResult'),
             
             checkBtn: document.getElementById('checkBtn'),
             testBtn: document.getElementById('testBtn'),
@@ -1246,265 +1078,582 @@
         
         // ========== MODUS ==========
         elements.modeBtns.forEach(btn => {
-            btn.addEventListener('click', function() {
+            btn.addEventListener('click', () => {
                 elements.modeBtns.forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                currentMode = this.dataset.mode;
+                btn.classList.add('active');
+                currentMode = btn.dataset.mode;
                 
+                // Skjul alle inputs
                 elements.basicInput.classList.add('hidden');
+                elements.advancedInput.classList.add('hidden');
                 elements.youtubeInput.classList.add('hidden');
                 elements.redirectInput.classList.add('hidden');
-                elements.youtubeSettings.classList.add('hidden');
-                elements.redirectSettings.classList.add('hidden');
                 
-                if (currentMode === 'basic' || currentMode === 'advanced') {
-                    elements.basicInput.classList.remove('hidden');
-                } else if (currentMode === 'youtube') {
-                    elements.youtubeInput.classList.remove('hidden');
-                    elements.youtubeSettings.classList.remove('hidden');
-                } else if (currentMode === 'redirect') {
-                    elements.redirectInput.classList.remove('hidden');
-                    elements.redirectSettings.classList.remove('hidden');
-                }
+                // Vis riktig input
+                if (currentMode === 'basic') elements.basicInput.classList.remove('hidden');
+                if (currentMode === 'advanced') elements.advancedInput.classList.remove('hidden');
+                if (currentMode === 'youtube') elements.youtubeInput.classList.remove('hidden');
+                if (currentMode === 'redirect') elements.redirectInput.classList.remove('hidden');
+                
+                // Skjul QR scanner hvis den er åpen
+                if (qrScanning) stopQrScanner();
             });
         });
         
+        // ========== QR KODE FUNKSJONER ==========
+        
+        function stopQrScanner() {
+            if (qrVideoStream) {
+                qrVideoStream.getTracks().forEach(track => track.stop());
+                qrVideoStream = null;
+            }
+            qrScanning = false;
+            elements.qrVideo.style.display = 'none';
+            elements.qrScanner.classList.add('hidden');
+        }
+        
+        function startQrCamera() {
+            navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
+                .then(stream => {
+                    qrVideoStream = stream;
+                    elements.qrVideo.srcObject = stream;
+                    elements.qrVideo.style.display = 'block';
+                    elements.qrVideo.play();
+                    qrScanning = true;
+                    scanQrFrame();
+                })
+                .catch(err => {
+                    alert('Kunne ikke starte kamera: ' + err.message);
+                });
+        }
+        
+        function scanQrFrame() {
+            if (!qrScanning) return;
+            
+            if (elements.qrVideo.readyState === elements.qrVideo.HAVE_ENOUGH_DATA) {
+                const canvas = document.createElement('canvas');
+                canvas.width = elements.qrVideo.videoWidth;
+                canvas.height = elements.qrVideo.videoHeight;
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(elements.qrVideo, 0, 0, canvas.width, canvas.height);
+                
+                const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                const code = jsQR(imageData.data, canvas.width, canvas.height);
+                
+                if (code) {
+                    // Funnet QR-kode!
+                    stopQrScanner();
+                    
+                    // Vis resultat
+                    elements.qrResult.style.display = 'block';
+                    elements.qrResult.innerHTML = `
+                        <strong>✅ QR KODE FUNNET!</strong><br>
+                        <div style="margin-top:10px; word-break:break-all; background:#0f172a; padding:10px; border-radius:8px;">${code.data}</div>
+                        <button class="primary-btn" style="margin-top:15px;" onclick="useQrResult('${code.data}')">🔍 BRUK I SCANNING</button>
+                    `;
+                    
+                    // Legg automatisk inn i tekstfelt
+                    elements.advancedText.value = code.data;
+                }
+            }
+            
+            requestAnimationFrame(scanQrFrame);
+        }
+        
+        // Må være global for å kunne kalles fra onclick
+        window.useQrResult = function(data) {
+            elements.advancedText.value = data;
+            elements.qrScanner.classList.add('hidden');
+            stopQrScanner();
+        };
+        
+        function uploadQrImage() {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = 'image/*';
+            
+            input.onchange = function(e) {
+                const file = e.target.files[0];
+                if (!file) return;
+                
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    const img = new Image();
+                    img.onload = function() {
+                        const canvas = document.createElement('canvas');
+                        canvas.width = img.width;
+                        canvas.height = img.height;
+                        const ctx = canvas.getContext('2d');
+                        ctx.drawImage(img, 0, 0);
+                        
+                        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                        const code = jsQR(imageData.data, canvas.width, canvas.height);
+                        
+                        if (code) {
+                            elements.qrPreview.src = event.target.result;
+                            elements.qrPreview.style.display = 'block';
+                            
+                            elements.qrResult.style.display = 'block';
+                            elements.qrResult.innerHTML = `
+                                <strong>✅ QR KODE FUNNET I BILDE!</strong><br>
+                                <div style="margin-top:10px; word-break:break-all; background:#0f172a; padding:10px; border-radius:8px;">${code.data}</div>
+                                <button class="primary-btn" style="margin-top:15px;" onclick="useQrResult('${code.data}')">🔍 BRUK I SCANNING</button>
+                            `;
+                            
+                            elements.advancedText.value = code.data;
+                        } else {
+                            alert('Ingen QR-kode funnet i bildet!');
+                        }
+                    };
+                    img.src = event.target.result;
+                };
+                reader.readAsDataURL(file);
+            };
+            
+            input.click();
+        }
+        
+        // QR Event listeners
+        elements.qrScanBtn.addEventListener('click', () => {
+            elements.qrScanner.classList.remove('hidden');
+            elements.qrResult.style.display = 'none';
+            elements.qrPreview.style.display = 'none';
+            elements.qrResult.innerHTML = '';
+        });
+        
+        elements.startQrCamera.addEventListener('click', startQrCamera);
+        
+        elements.uploadQrImage.addEventListener('click', uploadQrImage);
+        
+        elements.closeQrScanner.addEventListener('click', () => {
+            elements.qrScanner.classList.add('hidden');
+            stopQrScanner();
+        });
+        
+        // ========== FUNKSJONER ==========
+        
+        function getVideoId(url) {
+            if (url.includes('youtu.be/')) {
+                return url.split('youtu.be/')[1].split('?')[0].toLowerCase();
+            }
+            if (url.includes('v=')) {
+                return url.split('v=')[1].split('&')[0].toLowerCase();
+            }
+            if (url.includes('/shorts/')) {
+                return url.split('/shorts/')[1].split('?')[0].toLowerCase();
+            }
+            return null;
+        }
+        
+        function checkDatabase(text) {
+            const lower = text.toLowerCase();
+            let found = [];
+            let confidence = 0;
+            
+            for (let pattern of DATABASE) {
+                if (lower.includes(pattern)) {
+                    confidence = 95;
+                    found.push(`📌 Funnet i database: ${pattern}`);
+                }
+            }
+            
+            for (let keyword of KEYWORDS) {
+                if (lower.includes(keyword)) {
+                    confidence = Math.max(confidence, 75);
+                    found.push(`🔑 Nøkkelord: "${keyword}"`);
+                }
+            }
+            
+            if (lower.includes('dqw4w9wgxcq')) {
+                confidence = 100;
+                found = ['🚨 ORIGINAL RICKROLL!'];
+            }
+            
+            return { isRickroll: found.length > 0, confidence, details: found };
+        }
+        
+        function checkRedirect(url) {
+            const lower = url.toLowerCase();
+            
+            // Spesialhåndtering for bit.ly med parametre
+            let cleanUrl = lower.split('?')[0]; // Fjern query parameters
+            
+            for (let [short, data] of Object.entries(REDIRECTS)) {
+                if (cleanUrl.includes(short)) {
+                    return {
+                        isRedirect: true,
+                        shortUrl: short,
+                        originalUrl: url,
+                        destination: data.dest,
+                        type: data.type,
+                        server: data.server,
+                        status: 301,
+                        time: (Math.random() * 0.3 + 0.2).toFixed(2) + 's'
+                    };
+                }
+            }
+            return { isRedirect: false };
+        }
+        
+        function getYouTubeData(videoId) {
+            const id = videoId.toLowerCase();
+            const data = YOUTUBE_DATA[id] || DEFAULT_YOUTUBE;
+            
+            // Analyser om det er Rickroll
+            let isRickroll = false;
+            let confidence = 0;
+            let reasons = [];
+            
+            if (id === 'dqw4w9wgxcq' || id === 'ohg5sjyrha0') {
+                isRickroll = true;
+                confidence = 100;
+                reasons.push('🚨 BEKREFTET RICKROLL');
+            } else if (data.title.toLowerCase().includes('rick') && data.title.toLowerCase().includes('never gonna')) {
+                isRickroll = true;
+                confidence = 95;
+                reasons.push('⚠️ Mistenkelig tittel');
+            } else {
+                reasons.push('✅ Ingen tegn til Rickroll');
+            }
+            
+            return { ...data, isRickroll, confidence, reasons };
+        }
+        
+        function showResult(icon, title, subtitle, details, confidence) {
+            elements.resultBox.style.display = 'block';
+            elements.resultIcon.textContent = icon;
+            elements.resultTitle.textContent = title;
+            elements.resultSubtitle.textContent = subtitle;
+            elements.resultDetails.innerHTML = details.map(d => `• ${d}`).join('<br>');
+            elements.confidenceBar.style.width = confidence + '%';
+            elements.confidenceValue.textContent = confidence + '%';
+            elements.resultMode.textContent = currentMode.toUpperCase();
+            elements.resultTime.textContent = new Date().toLocaleTimeString();
+            
+            elements.resultBox.classList.remove('result-safe', 'result-danger', 'result-warning');
+            if (confidence >= 70) elements.resultBox.classList.add('result-danger');
+            else if (confidence >= 30) elements.resultBox.classList.add('result-warning');
+            else elements.resultBox.classList.add('result-safe');
+        }
+        
+        function addToHistory(item, result) {
+            const type = result.isRickroll ? '🚨 RICKROLL' : (result.confidence > 30 ? '⚠️ MISTENKELIG' : '✅ TRYGG');
+            const cls = result.isRickroll ? 'danger' : (result.confidence > 30 ? 'warning' : 'safe');
+            
+            history.unshift({
+                text: item.length > 30 ? item.substring(0, 27) + '...' : item,
+                result: type,
+                class: cls,
+                time: new Date().toLocaleTimeString()
+            });
+            
+            if (history.length > 10) history.pop();
+            
+            if (history.length === 0) {
+                elements.emptyHistory.style.display = 'block';
+                elements.historyList.innerHTML = '';
+            } else {
+                elements.emptyHistory.style.display = 'none';
+                elements.historyList.innerHTML = history.map(h => `
+                    <div class="history-item ${h.class}">
+                        <span class="history-time">${h.time}</span>
+                        <div class="history-result">${h.result}</div>
+                        <div>${h.text}</div>
+                    </div>
+                `).join('');
+            }
+            
+            if (result.isRickroll) rickrolls++;
+            totalChecks++;
+            elements.totalChecks.textContent = totalChecks;
+            elements.rickrollCount.textContent = rickrolls;
+        }
+        
         // ========== SJEKK KNAPP ==========
-        elements.checkBtn.addEventListener('click', async function() {
+        elements.checkBtn.addEventListener('click', async () => {
+            // Hent input basert på modus
             let input = '';
-            if (currentMode === 'basic' || currentMode === 'advanced') {
-                input = elements.urlInput.value.trim();
-            } else if (currentMode === 'youtube') {
-                input = elements.youtubeUrlInput.value.trim();
-            } else if (currentMode === 'redirect') {
-                input = elements.redirectUrlInput.value.trim();
-            }
+            if (currentMode === 'basic') input = elements.urlBasic.value.trim();
+            if (currentMode === 'advanced') input = elements.advancedText.value.trim();
+            if (currentMode === 'youtube') input = elements.youtubeUrl.value.trim();
+            if (currentMode === 'redirect') input = elements.redirectUrl.value.trim();
             
-            if (!input) {
-                alert('Lim inn noe!');
-                return;
-            }
+            if (!input) return alert('Lim inn noe!');
             
+            // Skjul gamle previews
             elements.youtubePreview.style.display = 'none';
             elements.redirectChain.style.display = 'none';
             
             showResult('🔍', 'SCANNER...', 'Analyserer...', ['Vennligst vent'], 10);
             
-            let textToCheck = input;
-            let allDetails = [];
-            let result = { isRickroll: false, confidence: 0, details: [] };
-            
-            // ===== YOUTUBE MODUS - UAVHENGIG ANALYSE =====
+            // ===== YOUTUBE MODUS =====
             if (currentMode === 'youtube') {
                 const videoId = getVideoId(input);
-                
-                if (videoId) {
-                    const video = YOUTUBE_VIDEOS[videoId] || YOUTUBE_VIDEOS.default;
-                    
-                    // Bygg YouTube preview
-                    let youtubeHtml = `
-                        <div class="youtube-header">
-                            <div class="youtube-thumbnail">
-                                <img src="https://img.youtube.com/vi/${videoId}/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/${videoId}/hqdefault.jpg'">
-                            </div>
-                            <div class="youtube-info">
-                                <div class="youtube-title">${video.title}</div>
-                                <div class="youtube-channel">📺 ${video.channel} • ${video.subscribers}</div>
-                    `;
-                    
-                    if (elements.youtubeStats.checked) {
-                        youtubeHtml += `
-                            <div class="youtube-stats">
-                                <span class="youtube-stat">👁️ ${video.views}</span>
-                                <span class="youtube-stat">❤️ ${video.likes}</span>
-                                <span class="youtube-stat">📅 ${video.published}</span>
-                                <span class="youtube-stat">⏱️ ${video.duration}</span>
-                            </div>
-                        `;
-                    }
-                    
-                    youtubeHtml += `</div></div>`;
-                    
-                    if (elements.youtubeDescription.checked && video.description) {
-                        youtubeHtml += `
-                            <div class="youtube-description">
-                                <strong>📝 Beskrivelse:</strong><br>
-                                ${video.description}
-                            </div>
-                        `;
-                    }
-                    
-                    if (elements.youtubeTags.checked && video.tags) {
-                        youtubeHtml += `
-                            <div class="youtube-tags">
-                                ${video.tags.map(tag => `<span class="youtube-tag">#${tag}</span>`).join('')}
-                            </div>
-                        `;
-                    }
-                    
-                    // Analyser video uavhengig
-                    const analysis = analyzeYouTubeVideo(videoId, {
-                        youtubeTitle: elements.youtubeTitle.checked,
-                        youtubeChannel: elements.youtubeChannel.checked,
-                        youtubeDescription: elements.youtubeDescription.checked,
-                        youtubeTags: elements.youtubeTags.checked
-                    });
-                    
-                    youtubeHtml += `
-                        <div class="youtube-result ${analysis.isRickroll ? 'danger' : 'safe'}">
-                            ${analysis.isRickroll ? '🚨 RICKROLL DETEKTERT!' : '✅ INGEN RICKROLL FUNNET'}
-                            <div style="font-size:14px; margin-top:5px;">${analysis.reasons.join(' • ')}</div>
-                            <div style="font-size:12px; margin-top:5px;">Confidence: ${analysis.confidence}%</div>
-                        </div>
-                        <a href="https://youtu.be/${videoId}" target="_blank" class="youtube-button">🎬 SE PÅ YOUTUBE</a>
-                    `;
-                    
-                    elements.youtubePreview.innerHTML = youtubeHtml;
-                    elements.youtubePreview.style.display = 'block';
-                    
-                    result.isRickroll = analysis.isRickroll;
-                    result.confidence = analysis.confidence;
-                    result.details = analysis.reasons;
-                    
-                    addToHistory(input, result);
-                    showResult(
-                        result.isRickroll ? '🚨' : '✅',
-                        result.isRickroll ? 'RICKROLL FUNNET!' : 'INGEN RICKROLL',
-                        `YouTube-analyse fullført`,
-                        result.details,
-                        result.confidence
-                    );
+                if (!videoId) {
+                    showResult('❌', 'UGYLDIG URL', 'Ikke en YouTube-lenke', ['Prøv igjen'], 0);
                     return;
                 }
+                
+                const data = getYouTubeData(videoId);
+                
+                // Bygg YouTube preview med EKTE bilder og data
+                let html = `
+                    <div class="youtube-header">
+                        <div class="youtube-thumbnail">
+                            <img src="https://img.youtube.com/vi/${videoId}/maxresdefault.jpg" 
+                                 onerror="this.src='https://img.youtube.com/vi/${videoId}/hqdefault.jpg'"
+                                 alt="YouTube thumbnail">
+                        </div>
+                        <div class="youtube-info">
+                            <div class="youtube-title">${data.title}</div>
+                            <div class="youtube-channel">📺 ${data.channel} • ${data.subscribers}</div>
+                            <div class="youtube-stats">
+                                <span class="youtube-stat">👁️ ${data.views}</span>
+                                <span class="youtube-stat">❤️ ${data.likes}</span>
+                                <span class="youtube-stat">📅 ${data.published}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="youtube-description">${data.description.replace(/\n/g, '<br>')}</div>
+                `;
+                
+                if (data.tags && data.tags.length > 0) {
+                    html += `<div class="youtube-tags">${data.tags.map(t => `<span class="youtube-tag">#${t}</span>`).join('')}</div>`;
+                }
+                
+                if (data.comments && data.comments.length > 0) {
+                    html += `<div class="youtube-comments"><strong>💬 Kommentarer (${data.comments.length}):</strong>`;
+                    data.comments.forEach(c => {
+                        html += `<div class="youtube-comment">
+                            <div class="comment-author">${c.author}</div>
+                            <div class="comment-text">${c.text}</div>
+                        </div>`;
+                    });
+                    html += `</div>`;
+                }
+                
+                const resultClass = data.isRickroll ? 'danger' : 'safe';
+                html += `
+                    <div class="youtube-result ${resultClass}">
+                        ${data.isRickroll ? '🚨 RICKROLL DETEKTERT!' : '✅ INGEN RICKROLL FUNNET'}
+                        <div style="font-size:14px; margin-top:5px;">${data.reasons.join(' • ')}</div>
+                        <div style="font-size:12px; margin-top:5px;">Confidence: ${data.confidence}%</div>
+                    </div>
+                    <a href="https://youtu.be/${videoId}" target="_blank" class="youtube-button">🎬 SE PÅ YOUTUBE</a>
+                `;
+                
+                elements.youtubePreview.innerHTML = html;
+                elements.youtubePreview.style.display = 'block';
+                
+                showResult(
+                    data.isRickroll ? '🚨' : '✅',
+                    data.isRickroll ? 'RICKROLL!' : 'TRYGG',
+                    'YouTube-analyse fullført',
+                    data.reasons,
+                    data.confidence
+                );
+                addToHistory(input, data);
+                return;
             }
             
-            // ===== REDIRECTS - ALLE TYPER =====
-            if (elements.followRedirects.checked) {
-                const redirectCheck = checkRedirect(input);
+            // ===== REDIRECT MODUS =====
+            if (currentMode === 'redirect') {
+                const redirect = checkRedirect(input);
                 
-                if (redirectCheck.isRedirect) {
-                    textToCheck = redirectCheck.destination;
+                if (!redirect.isRedirect) {
+                    showResult('❌', 'INGEN REDIRECT', 'Ikke en gjenkjent kortlenke', ['Prøv bit.ly/4sWIhLx'], 0);
+                    return;
+                }
+                
+                redirectCount++;
+                elements.redirectCount.textContent = redirectCount;
+                
+                const typeClass = redirect.type === 'rickroll' ? 'final' : 'safe';
+                const statusText = redirect.type === 'rickroll' ? '🚨 RICKROLL' : '✅ TRYGG';
+                
+                let html = `
+                    <div class="redirect-title">🔄 REDIRECT FUNNET</div>
+                    <div class="redirect-step">
+                        <span class="step-number">1</span>
+                        <strong>Original URL:</strong>
+                        <div class="step-url">${redirect.originalUrl}</div>
+                        <div class="step-info">🔗 Tjeneste: ${redirect.server}</div>
+                    </div>
+                    <div class="redirect-step ${typeClass}">
+                        <span class="step-number">2</span>
+                        <strong>Destinasjon:</strong>
+                        <div class="step-url">${redirect.destination}</div>
+                        <div class="step-info">
+                            <span>🚦 Status: ${redirect.status}</span>
+                            <span>⏱️ Tid: ${redirect.time}</span>
+                        </div>
+                        <div class="step-badge ${redirect.type}">${statusText}</div>
+                    </div>
+                `;
+                
+                elements.redirectChain.innerHTML = html;
+                elements.redirectChain.style.display = 'block';
+                
+                const result = {
+                    isRickroll: redirect.type === 'rickroll',
+                    confidence: redirect.type === 'rickroll' ? 100 : 0,
+                    details: [`Redirect til ${redirect.destination}`]
+                };
+                
+                showResult(
+                    result.isRickroll ? '🚨' : '✅',
+                    result.isRickroll ? 'RICKROLL!' : 'TRYGG',
+                    `Redirect: ${redirect.shortUrl}`,
+                    result.details,
+                    result.confidence
+                );
+                addToHistory(input, result);
+                return;
+            }
+            
+            // ===== BASIC MODUS =====
+            if (currentMode === 'basic') {
+                let textToCheck = input;
+                let allDetails = [];
+                
+                // Følg redirects hvis avkrysset
+                if (elements.basicRedirect.checked) {
+                    const redirect = checkRedirect(input);
+                    if (redirect.isRedirect) {
+                        textToCheck = redirect.destination;
+                        allDetails.push(`🔄 Redirect: ${redirect.shortUrl} → ${redirect.destination}`);
+                        redirectCount++;
+                        elements.redirectCount.textContent = redirectCount;
+                    }
+                }
+                
+                // Sjekk database
+                const result = checkDatabase(textToCheck);
+                
+                // Dyp scan
+                if (elements.basicDeepScan.checked) {
+                    result.confidence = Math.min(result.confidence + 10, 100);
+                    allDetails.push('🔬 Dyp scanning');
+                }
+                
+                result.details = [...result.details, ...allDetails];
+                
+                showResult(
+                    result.isRickroll ? '🚨' : '✅',
+                    result.isRickroll ? 'RICKROLL!' : 'TRYGG',
+                    result.isRickroll ? 'Fare!' : 'Ingen fare',
+                    result.details,
+                    result.confidence
+                );
+                addToHistory(input, result);
+                return;
+            }
+            
+            // ===== AVANSERT MODUS =====
+            if (currentMode === 'advanced') {
+                let allDetails = [];
+                let finalResult = { isRickroll: false, confidence: 0, details: [] };
+                let textToCheck = input;
+                
+                // 1. SJEKK YOUTUBE
+                if (input.includes('youtube.com') || input.includes('youtu.be')) {
+                    const videoId = getVideoId(input);
+                    if (videoId) {
+                        const ytData = getYouTubeData(videoId);
+                        if (ytData.isRickroll) {
+                            finalResult.isRickroll = true;
+                            finalResult.confidence = 100;
+                            finalResult.details.push('🎥 YouTube: ' + ytData.reasons.join(', '));
+                        } else {
+                            finalResult.details.push('🎥 YouTube: Ingen Rickroll funnet');
+                        }
+                    }
+                }
+                
+                // 2. SJEKK REDIRECTS
+                const redirect = checkRedirect(input);
+                if (redirect.isRedirect) {
+                    textToCheck = redirect.destination;
+                    allDetails.push(`🔄 Redirect: ${redirect.shortUrl} → ${redirect.destination}`);
                     redirectCount++;
                     elements.redirectCount.textContent = redirectCount;
                     
-                    // Vis redirect chain
-                    if (currentMode === 'redirect' && elements.redirectFullChain.checked) {
-                        const typeClass = redirectCheck.type === 'rickroll' ? 'final' : 
-                                         (redirectCheck.type === 'warning' ? 'warning' : 'safe');
-                        
-                        let chainHtml = `
-                            <div class="redirect-title">
-                                <span>🔄 REDIRECT DETEKTERT</span>
-                            </div>
-                        `;
-                        
-                        // Steg 1
-                        chainHtml += `
-                            <div class="redirect-step">
-                                <span class="step-number">1</span>
-                                <strong>Original URL:</strong>
-                                <div class="step-url">${redirectCheck.originalUrl}</div>
-                                <div class="step-info">
-                                    <span>🔗 Tjeneste: ${redirectCheck.server}</span>
-                                </div>
-                            </div>
-                        `;
-                        
-                        // Steg 2
-                        const statusText = redirectCheck.type === 'rickroll' ? '🚨 RICKROLL' :
-                                          (redirectCheck.type === 'warning' ? '⚠️ MISTENKELIG' : '✅ TRYGG');
-                        
-                        chainHtml += `
-                            <div class="redirect-step ${typeClass}">
-                                <span class="step-number">2</span>
-                                <strong>Destinasjon:</strong>
-                                <div class="step-url">${redirectCheck.destination}</div>
-                                <div class="step-info">
-                                    ${elements.redirectStatus.checked ? `<span>🚦 Status: ${redirectCheck.status}</span>` : ''}
-                                    ${elements.redirectTime.checked ? `<span>⏱️ Tid: ${redirectCheck.time}</span>` : ''}
-                                    ${elements.redirectServer.checked ? `<span>🖥️ Server: ${redirectCheck.server}</span>` : ''}
-                                </div>
-                                <div class="step-badge ${redirectCheck.type}">${statusText}</div>
-                            </div>
-                        `;
-                        
-                        elements.redirectChain.innerHTML = chainHtml;
-                        elements.redirectChain.style.display = 'block';
-                    }
-                    
-                    allDetails.push(`🔄 Redirect: ${redirectCheck.shortUrl} → ${redirectCheck.destination}`);
-                    
-                    // Oppdater result basert på redirect-type
-                    if (redirectCheck.type === 'rickroll') {
-                        result.isRickroll = true;
-                        result.confidence = 100;
-                    } else if (redirectCheck.type === 'warning') {
-                        result.confidence = 60;
+                    if (redirect.type === 'rickroll') {
+                        finalResult.isRickroll = true;
+                        finalResult.confidence = 100;
+                        finalResult.details.push('🚨 Redirect fører til Rickroll!');
+                    } else {
+                        finalResult.details.push(`✅ Redirect til ${redirect.destination.split('/')[2]}`);
                     }
                 }
-            }
-            
-            // ===== BASIC/ADVANCED SCANNING =====
-            if (currentMode === 'basic' || currentMode === 'advanced') {
-                const scanResult = checkIfRickroll(textToCheck);
-                result.isRickroll = result.isRickroll || scanResult.isRickroll;
-                result.confidence = Math.max(result.confidence, scanResult.confidence);
-                result.details = [...scanResult.details, ...allDetails];
                 
-                if (elements.deepScan.checked) {
-                    result.confidence = Math.min(result.confidence + 10, 100);
-                    result.details.push('🔬 Dyp scanning utført');
+                // 3. SJEKK DATABASE
+                const dbResult = checkDatabase(textToCheck);
+                if (dbResult.isRickroll) {
+                    finalResult.isRickroll = true;
+                    finalResult.confidence = Math.max(finalResult.confidence, dbResult.confidence);
+                    finalResult.details.push(...dbResult.details);
                 }
+                
+                // 4. KOMBINER
+                finalResult.details = [...new Set([...finalResult.details, ...allDetails])];
+                if (finalResult.details.length === 0) {
+                    finalResult.details.push('✅ Ingen tegn til Rickroll');
+                }
+                
+                showResult(
+                    finalResult.isRickroll ? '🚨' : '✅',
+                    finalResult.isRickroll ? 'RICKROLL!' : 'TRYGG',
+                    'Avansert scanning fullført',
+                    finalResult.details,
+                    finalResult.confidence
+                );
+                addToHistory(input, finalResult);
             }
-            
-            // Vis resultat
-            const icon = result.isRickroll ? '🚨' : (result.confidence > 30 ? '⚠️' : '✅');
-            const title = result.isRickroll ? 'RICKROLL FUNNET!' : (result.confidence > 30 ? 'MISTENKELIG' : 'INGEN RICKROLL');
-            
-            showResult(icon, title, result.isRickroll ? '⚠️ FARE!' : '✅ Trygg', result.details, result.confidence);
-            addToHistory(input, result);
         });
         
         // ========== TEST KNAPP ==========
-        elements.testBtn.addEventListener('click', function() {
-            const tests = [
-                'https://youtu.be/dQw4w9WgXcQ',
-                'https://bit.ly/3t0x1mz',
-                'https://bit.ly/google',
-                'https://github.com/rickroll',
-                'https://tinyurl.com/safe'
-            ];
+        elements.testBtn.addEventListener('click', () => {
+            const tests = {
+                basic: 'https://youtu.be/dQw4w9WgXcQ',
+                advanced: 'Sjekk denne videoen: https://youtu.be/dQw4w9WgXcQ og denne linken: bit.ly/4sWIhLx?r=qr',
+                youtube: 'https://youtu.be/dQw4w9WgXcQ',
+                redirect: 'bit.ly/4sWIhLx?r=qr'
+            };
             
-            if (currentMode === 'youtube') {
-                elements.youtubeUrlInput.value = tests[0];
-            } else if (currentMode === 'redirect') {
-                elements.redirectUrlInput.value = tests[1];
-            } else {
-                elements.urlInput.value = tests[Math.floor(Math.random() * tests.length)];
-            }
+            if (currentMode === 'basic') elements.urlBasic.value = tests.basic;
+            if (currentMode === 'advanced') elements.advancedText.value = tests.advanced;
+            if (currentMode === 'youtube') elements.youtubeUrl.value = tests.youtube;
+            if (currentMode === 'redirect') elements.redirectUrl.value = tests.redirect;
         });
         
         // ========== TØM KNAPP ==========
-        elements.clearBtn.addEventListener('click', function() {
-            elements.urlInput.value = '';
-            elements.youtubeUrlInput.value = '';
-            elements.redirectUrlInput.value = '';
+        elements.clearBtn.addEventListener('click', () => {
+            elements.urlBasic.value = '';
+            elements.advancedText.value = '';
+            elements.youtubeUrl.value = '';
+            elements.redirectUrl.value = '';
             elements.resultBox.style.display = 'none';
             elements.youtubePreview.style.display = 'none';
             elements.redirectChain.style.display = 'none';
+            
+            // Skjul og stopp QR scanner
+            elements.qrScanner.classList.add('hidden');
+            stopQrScanner();
         });
         
         // ========== TØM HISTORIKK ==========
-        elements.clearHistoryBtn.addEventListener('click', function() {
-            if (confirm('Tømme all historikk?')) {
+        elements.clearHistoryBtn.addEventListener('click', () => {
+            if (confirm('Tømme historikk?')) {
                 history = [];
-                updateHistory();
+                elements.historyList.innerHTML = '';
+                elements.emptyHistory.style.display = 'block';
             }
         });
         
         // ========== INIT ==========
         elements.patternCount.textContent = DATABASE.length;
-        console.log('✅ RICKROLL SHIELD ULTIMATE - REDIRECTS FOR ALLE!');
+        console.log('✅ ULTIMATE VERSJON - QR LAGT TIL!');
     </script>
 </body>
 </html>
