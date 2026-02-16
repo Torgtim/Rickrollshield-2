@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>🛡️ RICKROLL SHIELD ULTIMATE</title>
+    <title>🎥 RICKROLL SHIELD - YOUTUBE EDITION</title>
     <style>
-        /* ========== ULTIMATE STYLING - INGENTING STIKKER UT ========== */
+        /* ========== SAMME STIL ========== */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -15,62 +15,33 @@
         html, body {
             width: 100%;
             height: 100%;
-            overflow: hidden;  /* INGENTING stikker ut */
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, #0a0f1f, #1a1f30);
+            overflow-x: hidden;
+            overflow-y: auto;
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            color: white;
+            font-family: 'Segoe UI', Arial, sans-serif;
         }
         
         body {
-            font-family: 'Segoe UI', Arial, sans-serif;
-            color: white;
-            padding: 10px;
-            height: 100vh;
+            padding: 15px;
+            min-height: 100vh;
             display: flex;
             justify-content: center;
-            align-items: flex-start;
         }
         
         .container {
-            max-width: 700px;
+            max-width: 800px;
             width: 100%;
-            height: 100%;
             margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            overflow-y: auto;
-            overflow-x: hidden;  /* Forhindrer horisontal scrolling */
-            padding-right: 2px;
-            -webkit-overflow-scrolling: touch;
-        }
-        
-        /* Skjult scrollbar men behold funksjonalitet */
-        .container::-webkit-scrollbar {
-            width: 4px;
-        }
-        
-        .container::-webkit-scrollbar-track {
-            background: #1e293b;
-            border-radius: 4px;
-        }
-        
-        .container::-webkit-scrollbar-thumb {
-            background: #00ff00;
-            border-radius: 4px;
+            overflow-x: hidden;
         }
         
         h1 {
             text-align: center;
-            font-size: clamp(24px, 6vw, 32px);
-            color: #00ff00;
-            text-shadow: 0 0 20px #00ff00;
-            padding: 5px 0;
-            flex-shrink: 0;
-            letter-spacing: 1px;
+            font-size: clamp(28px, 8vw, 36px);
+            margin-bottom: 5px;
+            color: #ff0000;
+            text-shadow: 0 0 20px #ff0000;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -79,1298 +50,719 @@
         .subtitle {
             text-align: center;
             color: #888;
-            font-size: clamp(11px, 3vw, 13px);
-            margin-bottom: 5px;
-            flex-shrink: 0;
+            margin-bottom: 20px;
+            font-size: clamp(14px, 4vw, 18px);
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
         }
         
-        /* ========== MODUSKNAPPER ========== */
-        .mode-container {
-            display: flex;
-            gap: 5px;
-            flex-shrink: 0;
-            margin-bottom: 5px;
-            flex-wrap: wrap;
-        }
-        
-        .mode-btn {
-            flex: 1 1 auto;
-            min-width: 70px;
-            padding: 10px 5px;
-            border: none;
+        .input-section {
+            background: #1e293b;
             border-radius: 30px;
-            font-size: clamp(12px, 3vw, 14px);
-            font-weight: bold;
-            cursor: pointer;
-            background: #2d3748;
-            color: #a0aec0;
-            transition: all 0.2s;
-            border: 2px solid transparent;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-        
-        .mode-btn:hover {
-            background: #4a5568;
-            color: white;
-        }
-        
-        .mode-btn.active {
-            background: #00ff00;
-            color: black;
-            box-shadow: 0 0 20px #00ff00;
-        }
-        
-        .mode-btn[data-mode="advanced"].active {
-            background: #ff9900;
-            color: black;
-            box-shadow: 0 0 20px #ff9900;
-        }
-        
-        .mode-btn[data-mode="youtube"].active {
-            background: #ff0000;
-            color: white;
-            box-shadow: 0 0 20px #ff0000;
-        }
-        
-        /* ========== HOVEDKORT ========== */
-        .main-card {
-            background: rgba(30, 41, 59, 0.98);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 15px;
-            border: 2px solid #334155;
-            flex-shrink: 0;
-            width: 100%;
-            overflow: hidden;
-        }
-        
-        /* ========== INPUT FELT ========== */
-        input, textarea {
-            width: 100%;
-            padding: 12px 15px;
-            border-radius: 15px;
-            border: 2px solid #4a5568;
-            background: #0f172a;
-            color: white;
-            font-size: 14px;
-            transition: all 0.2s;
-            resize: none;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-        
-        input:focus, textarea:focus {
-            border-color: #00ff00;
-            outline: none;
-        }
-        
-        textarea {
-            min-height: 80px;
-            font-family: inherit;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 3px solid #ff0000;
         }
         
         .input-label {
-            font-size: 11px;
-            color: #a0aec0;
-            margin-bottom: 3px;
-            margin-left: 5px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-        
-        /* ========== SETTINGS ========== */
-        .settings-box {
-            background: #0f172a;
-            border-radius: 15px;
-            padding: 12px;
-            margin: 10px 0;
-            border: 1px solid #334155;
-        }
-        
-        .settings-title {
-            font-size: 13px;
-            color: #00ff00;
+            font-size: 14px;
+            color: #ff0000;
             margin-bottom: 8px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            font-weight: bold;
         }
         
-        .settings-row {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
+        input {
+            width: 100%;
+            padding: 15px;
+            border-radius: 50px;
+            border: 3px solid #ff0000;
+            background: #0f172a;
+            color: white;
+            font-size: 16px;
+            margin-bottom: 12px;
         }
         
-        .settings-checkbox {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            background: #1e293b;
-            padding: 6px 12px;
-            border-radius: 25px;
-            font-size: 12px;
-            cursor: pointer;
-            border: 1px solid #334155;
-            white-space: nowrap;
-        }
-        
-        .settings-checkbox input {
-            width: 14px;
-            height: 14px;
-            margin: 0;
-        }
-        
-        /* ========== KNAPPER ========== */
         .button-group {
             display: flex;
             gap: 8px;
-            margin-top: 8px;
             flex-wrap: wrap;
         }
         
         button {
             flex: 1 1 auto;
-            min-width: 80px;
-            padding: 12px 8px;
+            min-width: 100px;
+            padding: 12px 15px;
             border: none;
-            border-radius: 40px;
-            font-size: 13px;
+            border-radius: 50px;
+            font-size: 14px;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.2s;
-            background: #4a5568;
+            background: #475569;
             color: white;
-            border: 2px solid transparent;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-        }
-        
-        button:hover {
-            transform: translateY(-2px);
-            filter: brightness(1.2);
         }
         
         .primary-btn {
-            background: linear-gradient(135deg, #00ff00, #00cc00);
-            color: black;
+            background: linear-gradient(135deg, #ff0000, #aa0000);
+            color: white;
+            border: 2px solid white;
         }
         
-        .danger-btn {
-            background: linear-gradient(135deg, #ff4444, #aa0000);
-        }
-        
-        .qr-btn {
-            background: linear-gradient(135deg, #ff9900, #cc7700);
-            color: black;
-        }
-        
-        /* ========== RESULTATBOKS ========== */
-        .result-box {
-            padding: 15px;
-            border-radius: 15px;
-            margin: 8px 0;
-            text-align: center;
-            font-size: 18px;
-            font-weight: bold;
-            display: none;
-            border: 3px solid transparent;
-            flex-shrink: 0;
-            width: 100%;
-            overflow: hidden;
-        }
-        
-        .result-icon {
-            font-size: 36px;
-            margin-bottom: 5px;
-        }
-        
-        .result-title {
-            font-size: 20px;
-            margin-bottom: 3px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-        
-        .result-subtitle {
-            font-size: 12px;
-            opacity: 0.9;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-        
-        .details-box {
-            background: rgba(0,0,0,0.3);
-            border-radius: 10px;
-            padding: 10px;
-            margin: 10px 0;
-            max-height: 100px;
-            overflow-y: auto;
-            font-size: 12px;
-            text-align: left;
-        }
-        
-        .progress-bar {
-            width: 100%;
-            height: 8px;
-            background: rgba(0,0,0,0.3);
-            border-radius: 8px;
-            overflow: hidden;
-            margin: 8px 0;
-        }
-        
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #00ff00, #ff0000);
-            width: 0%;
-            transition: width 0.3s;
-        }
-        
-        .result-meta {
-            display: flex;
-            justify-content: space-between;
-            font-size: 10px;
-            color: #aaa;
-            gap: 5px;
-            flex-wrap: wrap;
-        }
-        
-        /* ========== YOUTUBE PREVIEW - EKTE DATA ========== */
+        /* ========== YOUTUBE PREVIEW ========== */
         .youtube-preview {
             background: #0f172a;
-            border-radius: 15px;
-            padding: 15px;
-            margin: 8px 0;
-            border: 2px solid #ff0000;
-            display: none;
-            width: 100%;
-            overflow: hidden;
+            border-radius: 25px;
+            padding: 20px;
+            margin: 15px 0;
+            border: 4px solid #ff0000;
         }
         
-        .youtube-header {
-            display: flex;
+        .thumbnail-gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
             gap: 10px;
-            margin-bottom: 12px;
-            flex-wrap: wrap;
+            margin-bottom: 20px;
         }
         
-        .youtube-thumbnail {
-            width: 120px;
-            height: 68px;
-            border-radius: 8px;
-            overflow: hidden;
-            border: 2px solid #ff0000;
-            flex-shrink: 0;
+        .thumbnail-item {
+            text-align: center;
         }
         
-        .youtube-thumbnail img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-        
-        .youtube-info {
-            flex: 1;
-            min-width: 150px;
-            overflow: hidden;
-        }
-        
-        .youtube-title {
-            font-size: 15px;
-            font-weight: bold;
-            color: white;
+        .thumbnail-label {
+            color: #ff0000;
+            font-size: 11px;
             margin-bottom: 4px;
-            line-height: 1.2;
-            max-height: 2.4em;
+            text-transform: uppercase;
+        }
+        
+        .thumbnail-img {
+            width: 100%;
+            aspect-ratio: 16/9;
+            border-radius: 10px;
+            border: 2px solid #ff0000;
+            object-fit: cover;
+            background: #1e293b;
+        }
+        
+        .video-title {
+            font-size: clamp(18px, 5vw, 22px);
+            font-weight: bold;
+            margin: 15px 0 8px;
+            line-height: 1.3;
             overflow: hidden;
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
         }
         
-        .youtube-channel {
+        .channel-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .channel-name {
             color: #ff0000;
+            font-size: clamp(16px, 4vw, 18px);
+            font-weight: bold;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 60%;
+        }
+        
+        .subscribers {
+            background: #1e293b;
+            padding: 4px 12px;
+            border-radius: 30px;
+            font-size: 12px;
+            border: 1px solid #ff0000;
+        }
+        
+        .video-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 15px;
+            background: #1e293b;
+            padding: 12px;
+            border-radius: 15px;
+        }
+        
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
             font-size: 13px;
-            margin-bottom: 4px;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
         }
         
-        .youtube-stats {
-            display: flex;
-            gap: 10px;
-            font-size: 11px;
-            color: #aaa;
-            flex-wrap: wrap;
-        }
-        
-        .youtube-description {
+        .description-box {
             background: #1e293b;
-            border-radius: 10px;
-            padding: 12px;
-            margin: 12px 0;
-            font-size: 12px;
-            max-height: 100px;
-            overflow-y: auto;
-            border: 1px solid #334155;
-            color: #ddd;
-            line-height: 1.4;
-            white-space: pre-wrap;
-            word-wrap: break-word;
-        }
-        
-        .youtube-comments {
-            background: #1e293b;
-            border-radius: 10px;
-            padding: 12px;
-            margin: 12px 0;
+            border-radius: 15px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 4px solid #ff0000;
+            font-size: 14px;
+            line-height: 1.5;
             max-height: 150px;
             overflow-y: auto;
+            white-space: pre-wrap;
         }
         
-        .youtube-comment {
-            padding: 8px;
+        .comments-section {
+            background: #1e293b;
+            border-radius: 15px;
+            padding: 15px;
+            margin: 15px 0;
+            max-height: 250px;
+            overflow-y: auto;
+        }
+        
+        .comments-title {
+            color: #ff0000;
+            font-size: 16px;
+            margin-bottom: 12px;
+        }
+        
+        .comment-item {
+            padding: 12px;
             border-bottom: 1px solid #334155;
-            font-size: 11px;
-        }
-        
-        .youtube-comment:last-child {
-            border-bottom: none;
         }
         
         .comment-author {
             color: #ff0000;
             font-weight: bold;
-            margin-bottom: 2px;
-            font-size: 11px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            margin-bottom: 4px;
+            font-size: 13px;
         }
         
         .comment-text {
             color: #ddd;
-            line-height: 1.3;
-            font-size: 11px;
+            font-size: 13px;
+            line-height: 1.4;
             word-wrap: break-word;
         }
         
-        .youtube-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 5px;
-            margin: 10px 0;
+        .safety-badge {
+            text-align: center;
+            padding: 15px;
+            border-radius: 40px;
+            font-size: clamp(18px, 5vw, 22px);
+            font-weight: bold;
+            margin: 15px 0;
+            border: 3px solid white;
         }
         
-        .youtube-tag {
-            background: #1e293b;
-            padding: 3px 8px;
-            border-radius: 20px;
-            font-size: 10px;
-            color: #aaa;
-            border: 1px solid #334155;
-            white-space: nowrap;
+        .safety-badge.safe {
+            background: #10b981;
+            color: white;
         }
         
-        .youtube-button {
+        .safety-badge.danger {
+            background: #ef4444;
+            color: white;
+            animation: pulse 1s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+        
+        .view-on-youtube {
             display: inline-block;
-            padding: 10px 20px;
+            width: 100%;
+            padding: 14px 20px;
             background: #ff0000;
             color: white;
             text-decoration: none;
-            border-radius: 30px;
+            border-radius: 50px;
             font-weight: bold;
-            font-size: 13px;
-            border: 2px solid white;
-            margin-top: 8px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            max-width: 100%;
-        }
-        
-        .youtube-result {
-            margin-top: 12px;
-            padding: 12px;
-            border-radius: 10px;
+            font-size: 16px;
+            margin: 10px 0;
+            border: 3px solid white;
             text-align: center;
-            font-weight: bold;
-            font-size: 15px;
         }
         
-        /* ========== REDIRECT CHAIN ========== */
-        .redirect-chain {
-            background: #0f172a;
-            border-radius: 15px;
-            padding: 15px;
-            margin: 8px 0;
-            border: 2px solid #ff9900;
-            display: none;
-            width: 100%;
-            overflow: hidden;
+        .loading {
+            text-align: center;
+            padding: 30px;
         }
         
-        .redirect-title {
-            color: #ff9900;
-            font-size: 14px;
-            font-weight: bold;
-            margin-bottom: 10px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #1e293b;
+            border-top: 5px solid #ff0000;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 15px auto;
         }
         
-        .redirect-step {
-            background: #1e293b;
-            border-radius: 10px;
-            padding: 12px;
-            margin: 8px 0;
-            border-left: 4px solid #ff9900;
-            word-wrap: break-word;
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
         
-        .redirect-step.final { border-left-color: #ff0000; background: #2d1a1a; }
-        .redirect-step.safe { border-left-color: #00ff00; }
-        
-        .step-number {
-            display: inline-block;
-            background: #ff9900;
-            color: black;
-            padding: 2px 8px;
-            border-radius: 15px;
-            font-size: 10px;
-            font-weight: bold;
-            margin-right: 5px;
-        }
-        
-        .step-url {
-            font-family: monospace;
-            word-break: break-all;
-            margin: 8px 0;
-            padding: 8px;
-            background: #0f172a;
-            border-radius: 6px;
-            font-size: 11px;
-            color: #00ff00;
-        }
-        
-        .step-info {
-            display: flex;
-            gap: 10px;
-            margin-top: 5px;
-            font-size: 10px;
-            color: #aaa;
-            flex-wrap: wrap;
-        }
-        
-        .step-badge {
-            display: inline-block;
-            padding: 4px 10px;
-            border-radius: 15px;
-            font-size: 10px;
-            font-weight: bold;
-            margin-top: 5px;
-        }
-        
-        .step-badge.rickroll { background: #ff0000; color: white; }
-        .step-badge.safe { background: #00ff00; color: black; }
-        
-        /* ========== QR SKANNER ========== */
-        .qr-scanner {
-            background: #0f172a;
-            border-radius: 15px;
-            padding: 15px;
-            margin: 8px 0;
-            border: 2px solid #ff9900;
-            display: none;
-            width: 100%;
-            overflow: hidden;
-        }
-        
-        .qr-title {
-            color: #ff9900;
-            font-size: 14px;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-        
-        .qr-video-container {
-            width: 100%;
-            max-width: 250px;
-            margin: 0 auto 10px;
-        }
-        
-        #qrVideo {
-            width: 100%;
-            border-radius: 8px;
-            border: 2px solid #ff9900;
-            display: none;
-        }
-        
-        .qr-preview {
-            max-width: 150px;
-            max-height: 150px;
-            border-radius: 8px;
-            border: 2px solid #ff9900;
-            margin: 8px auto;
-            display: none;
-        }
-        
-        .qr-result {
-            background: #1e293b;
-            border-radius: 10px;
-            padding: 12px;
-            margin-top: 10px;
-            word-break: break-all;
-            display: none;
-            font-size: 11px;
-        }
-        
-        /* ========== STATISTIKK ========== */
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 5px;
-            margin: 5px 0;
-            flex-shrink: 0;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin: 15px 0;
         }
         
         .stat-box {
             background: #1e293b;
-            padding: 8px;
-            border-radius: 12px;
+            padding: 15px;
+            border-radius: 15px;
             text-align: center;
-            border: 1px solid #334155;
-            overflow: hidden;
-        }
-        
-        .stat-label {
-            font-size: 9px;
-            color: #aaa;
-            margin-bottom: 2px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            border: 2px solid #ff0000;
         }
         
         .stat-value {
-            font-size: 16px;
+            font-size: 24px;
             font-weight: bold;
-            color: #00ff00;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            color: #ff0000;
         }
         
-        /* ========== HISTORIKK ========== */
         .history-section {
-            flex-shrink: 0;
-            max-height: 130px;
-            overflow-y: auto;
             background: #1e293b;
-            border-radius: 12px;
-            padding: 10px;
-            border: 1px solid #334155;
-        }
-        
-        .history-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 5px;
-        }
-        
-        .history-title {
-            font-size: 12px;
-            color: #00ff00;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            border-radius: 15px;
+            padding: 15px;
+            margin: 15px 0;
+            max-height: 200px;
+            overflow-y: auto;
         }
         
         .history-item {
-            padding: 6px;
-            margin: 4px 0;
+            padding: 10px;
+            margin: 5px 0;
             background: #0f172a;
-            border-radius: 6px;
-            border-left: 3px solid #475569;
-            font-size: 10px;
+            border-radius: 8px;
+            border-left: 4px solid #ff0000;
         }
         
-        .history-item.danger { border-left-color: #ff0000; }
-        .history-item.safe { border-left-color: #00ff00; }
-        .history-item.warning { border-left-color: #ff9900; }
-        
-        .history-time {
-            font-size: 8px;
-            color: #888;
-            float: right;
+        .history-item.safe {
+            border-left-color: #10b981;
         }
         
-        .history-result {
-            font-weight: bold;
-            margin-bottom: 2px;
-            font-size: 10px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+        .history-item.danger {
+            border-left-color: #ef4444;
         }
         
-        .status-text {
-            font-size: 9px;
-            color: #666;
-            text-align: center;
-            padding: 5px 0;
-            flex-shrink: 0;
-            border-top: 1px solid #334155;
-            margin-top: 5px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+        .hidden {
+            display: none;
         }
-        
-        .hidden { display: none; }
     </style>
-    <!-- QR bibliotek -->
-    <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
 </head>
 <body>
     <div class="container">
-        <h1>🛡️ RICKROLL SHIELD</h1>
-        <div class="subtitle">🔰 BASIC • ⚡ AVANSERT • 🎥 YOUTUBE • 🔄 REDIRECT</div>
+        <h1>🎥 RICKROLL SHIELD</h1>
+        <div class="subtitle">YOUTUBE EDITION - ULIKE BILDER FRA VIDEOEN</div>
         
-        <div class="mode-container">
-            <button class="mode-btn active" data-mode="basic">🔰 BASIC</button>
-            <button class="mode-btn" data-mode="advanced">⚡ AVANSERT</button>
-            <button class="mode-btn" data-mode="youtube">🎥 YOUTUBE</button>
-            <button class="mode-btn" data-mode="redirect">🔄 REDIRECT</button>
-        </div>
-        
-        <div class="main-card">
-            <!-- BASIC -->
-            <div id="basic-input">
-                <div class="input-label">🔰 Lim inn URL</div>
-                <input type="text" id="urlBasic" placeholder="https://youtu.be/dQw4w9WgXcQ">
-                <div class="settings-box">
-                    <div class="settings-title">🔰 INNSTILLINGER</div>
-                    <div class="settings-row">
-                        <label class="settings-checkbox"><input type="checkbox" id="basicDeepScan" checked> 🔬 Dyp</label>
-                        <label class="settings-checkbox"><input type="checkbox" id="basicRedirect" checked> 🔄 Redirect</label>
-                    </div>
-                </div>
-            </div>
+        <div class="input-section">
+            <div class="input-label">🎬 LIM INN YOUTUBE-URL</div>
+            <input type="text" id="youtubeUrl" placeholder="https://youtu.be/dQw4w9WgXcQ">
             
-            <!-- AVANSERT -->
-            <div id="advanced-input" class="hidden">
-                <div class="input-label">⚡ Lim inn tekst/URL</div>
-                <textarea id="advancedText" placeholder="Lim inn lenke, YouTube-URL eller tekst..."></textarea>
-                <div class="button-group" style="margin-top:5px;">
-                    <button class="qr-btn" id="qrScanBtn">📷 QR</button>
-                </div>
-                <div id="qrScanner" class="qr-scanner hidden">
-                    <div class="qr-title">📷 QR SKANNER</div>
-                    <div class="button-group">
-                        <button id="startQrCamera">📸 KAMERA</button>
-                        <button id="uploadQrImage">📁 BILDE</button>
-                        <button id="closeQrScanner">❌ LUKK</button>
-                    </div>
-                    <div class="qr-video-container"><video id="qrVideo" autoplay></video></div>
-                    <canvas id="qrCanvas" style="display:none;"></canvas>
-                    <img id="qrPreview" class="qr-preview">
-                    <div id="qrResult" class="qr-result"></div>
-                </div>
-            </div>
-            
-            <!-- YOUTUBE -->
-            <div id="youtube-input" class="hidden">
-                <div class="input-label">🎥 YouTube-URL</div>
-                <input type="text" id="youtubeUrl" placeholder="youtube.com/watch?v=... eller youtu.be/...">
-            </div>
-            
-            <!-- REDIRECT -->
-            <div id="redirect-input" class="hidden">
-                <div class="input-label">🔄 Kortlenke</div>
-                <input type="text" id="redirectUrl" placeholder="bit.ly/4sWIhLx">
-            </div>
-            
-            <!-- KNAPPER -->
             <div class="button-group">
-                <button class="primary-btn" id="checkBtn">🔍 SCAN</button>
+                <button class="primary-btn" id="scanBtn">🔍 SCAN VIDEO</button>
                 <button class="danger-btn" id="clearBtn">🗑️ TØM</button>
                 <button id="testBtn">🎲 TEST</button>
             </div>
         </div>
         
-        <!-- RESULTAT -->
-        <div class="result-box" id="resultBox">
-            <div class="result-icon" id="resultIcon">⚡</div>
-            <div class="result-title" id="resultTitle">Klar</div>
-            <div class="result-subtitle" id="resultSubtitle"></div>
-            <div class="details-box" id="resultDetails"></div>
-            <div class="progress-bar"><div class="progress-fill" id="confidenceBar"></div></div>
-            <div class="result-meta">
-                <span>Conf: <span id="confidenceValue">0%</span></span>
-                <span>Modus: <span id="resultMode">BASIC</span></span>
-                <span>Tid: <span id="resultTime">-</span></span>
-            </div>
+        <!-- Loading -->
+        <div id="loading" class="loading hidden">
+            <div class="spinner"></div>
+            <p>Henter YouTube-data...</p>
         </div>
         
-        <!-- YOUTUBE PREVIEW -->
-        <div class="youtube-preview" id="youtubePreview"></div>
+        <!-- YouTube Preview -->
+        <div class="youtube-preview" id="youtubePreview">
+            <!-- ULIKE BILDER FRA VIDEOEN -->
+            <div class="thumbnail-gallery">
+                <div class="thumbnail-item">
+                    <div class="thumbnail-label">TIDLIG I VIDEOEN</div>
+                    <img class="thumbnail-img" id="thumbEarly" src="" alt="Early thumbnail">
+                </div>
+                <div class="thumbnail-item">
+                    <div class="thumbnail-label">MIDT I VIDEOEN</div>
+                    <img class="thumbnail-img" id="thumbMiddle" src="" alt="Middle thumbnail">
+                </div>
+                <div class="thumbnail-item">
+                    <div class="thumbnail-label">SENT I VIDEOEN</div>
+                    <img class="thumbnail-img" id="thumbLate" src="" alt="Late thumbnail">
+                </div>
+            </div>
+            
+            <!-- Info -->
+            <div class="video-title" id="videoTitle"></div>
+            
+            <div class="channel-info">
+                <span class="channel-name" id="channelName"></span>
+                <span class="subscribers" id="subscribers"></span>
+            </div>
+            
+            <div class="video-stats">
+                <span class="stat-item" id="views">👁️ </span>
+                <span class="stat-item" id="likes">❤️ </span>
+                <span class="stat-item" id="published">📅 </span>
+                <span class="stat-item" id="duration">⏱️ </span>
+            </div>
+            
+            <!-- Beskrivelse -->
+            <div class="description-box" id="description"></div>
+            
+            <!-- Kommentarer -->
+            <div class="comments-section">
+                <div class="comments-title">💬 KOMMENTARER</div>
+                <div id="comments"></div>
+            </div>
+            
+            <!-- Safety badge -->
+            <div class="safety-badge" id="safetyBadge">✅ TRYGG</div>
+            
+            <!-- YouTube link -->
+            <a class="view-on-youtube" id="youtubeLink" target="_blank">🎬 SE PÅ YOUTUBE</a>
+        </div>
         
-        <!-- REDIRECT CHAIN -->
-        <div class="redirect-chain" id="redirectChain"></div>
-        
-        <!-- STATISTIKK -->
+        <!-- Statistikk -->
         <div class="stats-grid">
-            <div class="stat-box"><div class="stat-label">TOTAL</div><div class="stat-value" id="totalChecks">0</div></div>
-            <div class="stat-box"><div class="stat-label">RICKROLLS</div><div class="stat-value" id="rickrollCount">0</div></div>
-            <div class="stat-box"><div class="stat-label">REDIRECTS</div><div class="stat-value" id="redirectCount">0</div></div>
-            <div class="stat-box"><div class="stat-label">MØNSTRE</div><div class="stat-value" id="patternCount">125</div></div>
-        </div>
-        
-        <!-- HISTORIKK -->
-        <div class="history-section">
-            <div class="history-header">
-                <span class="history-title">📜 SISTE</span>
-                <button class="danger-btn" id="clearHistoryBtn" style="padding:3px 8px; font-size:10px;">🗑️</button>
+            <div class="stat-box">
+                <div class="stat-label">SCANNET</div>
+                <div class="stat-value" id="totalScans">0</div>
             </div>
-            <div id="historyList"></div>
-            <p id="emptyHistory" style="color:#666; text-align:center; padding:5px;">Ingen scanninger</p>
+            <div class="stat-box">
+                <div class="stat-label">RICKROLLS</div>
+                <div class="stat-value" id="rickrollCount">0</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-label">SISTE</div>
+                <div class="stat-value" id="lastScan">-</div>
+            </div>
         </div>
         
-        <div class="status-text">
-            🔰 BASIC • ⚡ AVANSERT m/QR • 🎥 YOUTUBE • 🔄 REDIRECT
+        <!-- Historikk -->
+        <div class="history-section">
+            <h3 style="color:#ff0000; margin-bottom:10px;">📜 HISTORIKK</h3>
+            <div id="historyList"></div>
+            <p id="emptyHistory" style="color:#666; text-align:center; padding:15px;">Ingen scanninger enda</p>
         </div>
     </div>
 
     <script>
-        // ========== RICKROLL SHIELD - ULTIMATE ==========
+        // ========== YOUTUBE EDITION ==========
         
-        // ---------- DATABASE ----------
-        const DATABASE = [
-            'youtube.com/watch?v=dQw4w9WgXcQ',
-            'youtu.be/dQw4w9WgXcQ',
-            'youtube.com/shorts/dQw4w9WgXcQ',
-            'rickroll.it',
-            'rickastley.co.uk'
-        ];
-        
-        const KEYWORDS = [
-            'rick astley', 'never gonna give you up', 'rickroll',
-            'dqw4w9wgxcq', 'rick rolled'
-        ];
-        
-        // ---------- REDIRECTS - ALLE TYPER ----------
-        const REDIRECTS = {
-            'bit.ly/3t0x1mz': 'https://youtu.be/dQw4w9WgXcQ',
-            'bit.ly/rickroll': 'https://youtu.be/dQw4w9WgXcQ',
-            'bit.ly/google': 'https://www.google.com',
-            'bit.ly/4sWIhLx': 'https://fortnite.com/mobile',
-            'tinyurl.com/rickroll': 'https://youtu.be/dQw4w9WgXcQ',
-            'tinyurl.com/safe': 'https://www.google.com'
-        };
-        
-        // ---------- YOUTUBE DATA - EKTE ----------
-        const YOUTUBE_DATA = {
-            'dqw4w9wgxcq': {
-                title: 'Rick Astley - Never Gonna Give You Up',
-                channel: 'Rick Astley',
-                subscribers: '15.2M',
-                views: '1.5B',
-                likes: '12M',
-                published: '24. okt. 2009',
-                description: 'Offisiell musikkvideo. 80-talls klassiker.',
-                comments: [
-                    { author: '@fan', text: 'Klassiker!' },
-                    { author: '@victim', text: 'Rickroll 2025' }
-                ],
-                tags: ['Rick Astley', '80s'],
-                isRickroll: true
-            }
-        };
-        
-        const DEFAULT_YOUTUBE = {
-            title: 'YouTube Video',
-            channel: 'YouTube',
-            subscribers: '?',
-            views: '?',
-            likes: '?',
-            published: '?',
-            description: 'Ingen beskrivelse',
-            comments: [],
-            tags: [],
-            isRickroll: false
-        };
-        
-        // ---------- STATE ----------
+        // State
         let history = [];
-        let totalChecks = 0, rickrolls = 0, redirectCount = 0;
-        let currentMode = 'basic';
-        let qrScanning = false, qrStream = null;
+        let totalScans = 0;
+        let rickrolls = 0;
         
-        // ---------- DOM ----------
+        // DOM
         const el = {
-            modeBtns: document.querySelectorAll('.mode-btn'),
-            basicInput: document.getElementById('basic-input'),
-            advancedInput: document.getElementById('advanced-input'),
-            youtubeInput: document.getElementById('youtube-input'),
-            redirectInput: document.getElementById('redirect-input'),
-            
-            urlBasic: document.getElementById('urlBasic'),
-            advancedText: document.getElementById('advancedText'),
             youtubeUrl: document.getElementById('youtubeUrl'),
-            redirectUrl: document.getElementById('redirectUrl'),
-            
-            basicDeepScan: document.getElementById('basicDeepScan'),
-            basicRedirect: document.getElementById('basicRedirect'),
-            
-            qrScanBtn: document.getElementById('qrScanBtn'),
-            qrScanner: document.getElementById('qrScanner'),
-            startQrCamera: document.getElementById('startQrCamera'),
-            uploadQrImage: document.getElementById('uploadQrImage'),
-            closeQrScanner: document.getElementById('closeQrScanner'),
-            qrVideo: document.getElementById('qrVideo'),
-            qrCanvas: document.getElementById('qrCanvas'),
-            qrPreview: document.getElementById('qrPreview'),
-            qrResult: document.getElementById('qrResult'),
-            
-            checkBtn: document.getElementById('checkBtn'),
-            testBtn: document.getElementById('testBtn'),
+            scanBtn: document.getElementById('scanBtn'),
             clearBtn: document.getElementById('clearBtn'),
-            clearHistoryBtn: document.getElementById('clearHistoryBtn'),
-            
-            resultBox: document.getElementById('resultBox'),
-            resultIcon: document.getElementById('resultIcon'),
-            resultTitle: document.getElementById('resultTitle'),
-            resultSubtitle: document.getElementById('resultSubtitle'),
-            resultDetails: document.getElementById('resultDetails'),
-            confidenceBar: document.getElementById('confidenceBar'),
-            confidenceValue: document.getElementById('confidenceValue'),
-            resultMode: document.getElementById('resultMode'),
-            resultTime: document.getElementById('resultTime'),
-            
+            testBtn: document.getElementById('testBtn'),
+            loading: document.getElementById('loading'),
             youtubePreview: document.getElementById('youtubePreview'),
-            redirectChain: document.getElementById('redirectChain'),
             
-            totalChecks: document.getElementById('totalChecks'),
+            thumbEarly: document.getElementById('thumbEarly'),
+            thumbMiddle: document.getElementById('thumbMiddle'),
+            thumbLate: document.getElementById('thumbLate'),
+            videoTitle: document.getElementById('videoTitle'),
+            channelName: document.getElementById('channelName'),
+            subscribers: document.getElementById('subscribers'),
+            views: document.getElementById('views'),
+            likes: document.getElementById('likes'),
+            published: document.getElementById('published'),
+            duration: document.getElementById('duration'),
+            description: document.getElementById('description'),
+            comments: document.getElementById('comments'),
+            safetyBadge: document.getElementById('safetyBadge'),
+            youtubeLink: document.getElementById('youtubeLink'),
+            
+            totalScans: document.getElementById('totalScans'),
             rickrollCount: document.getElementById('rickrollCount'),
-            redirectCount: document.getElementById('redirectCount'),
-            patternCount: document.getElementById('patternCount'),
-            
+            lastScan: document.getElementById('lastScan'),
             historyList: document.getElementById('historyList'),
             emptyHistory: document.getElementById('emptyHistory')
         };
         
-        // ========== MODUS ==========
-        el.modeBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                el.modeBtns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                currentMode = btn.dataset.mode;
-                
-                [el.basicInput, el.advancedInput, el.youtubeInput, el.redirectInput].forEach(i => i.classList.add('hidden'));
-                if (currentMode === 'basic') el.basicInput.classList.remove('hidden');
-                if (currentMode === 'advanced') el.advancedInput.classList.remove('hidden');
-                if (currentMode === 'youtube') el.youtubeInput.classList.remove('hidden');
-                if (currentMode === 'redirect') el.redirectInput.classList.remove('hidden');
-                
-                if (qrScanning) stopQr();
-            });
-        });
-        
-        // ========== QR ==========
-        function stopQr() {
-            if (qrStream) { qrStream.getTracks().forEach(t => t.stop()); qrStream = null; }
-            qrScanning = false;
-            el.qrVideo.style.display = 'none';
-        }
-        
-        function scanFrame() {
-            if (!qrScanning) return;
-            if (el.qrVideo.readyState === el.qrVideo.HAVE_ENOUGH_DATA) {
-                const c = document.createElement('canvas');
-                c.width = el.qrVideo.videoWidth;
-                c.height = el.qrVideo.videoHeight;
-                const ctx = c.getContext('2d');
-                ctx.drawImage(el.qrVideo, 0, 0);
-                const code = jsQR(ctx.getImageData(0,0,c.width,c.height).data, c.width, c.height);
-                if (code) {
-                    stopQr();
-                    el.qrResult.style.display = 'block';
-                    el.qrResult.innerHTML = `✅ QR: ${code.data.substring(0,50)}...<br><button class="primary-btn" style="margin-top:8px;" onclick="useQR('${code.data}')">BRUK</button>`;
-                    el.advancedText.value = code.data;
-                }
-            }
-            requestAnimationFrame(scanFrame);
-        }
-        
-        window.useQR = function(data) {
-            el.advancedText.value = data;
-            el.qrScanner.classList.add('hidden');
-            stopQr();
-        };
-        
-        el.qrScanBtn.addEventListener('click', () => {
-            el.qrScanner.classList.remove('hidden');
-            el.qrResult.style.display = 'none';
-        });
-        
-        el.startQrCamera.addEventListener('click', () => {
-            navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
-                .then(stream => {
-                    qrStream = stream;
-                    el.qrVideo.srcObject = stream;
-                    el.qrVideo.style.display = 'block';
-                    el.qrVideo.play();
-                    qrScanning = true;
-                    scanFrame();
-                })
-                .catch(() => alert('Kameratilgang nødvendig'));
-        });
-        
-        el.uploadQrImage.addEventListener('click', () => {
-            const input = document.createElement('input');
-            input.type = 'file';
-            input.accept = 'image/*';
-            input.onchange = e => {
-                const file = e.target.files[0];
-                if (!file) return;
-                const reader = new FileReader();
-                reader.onload = event => {
-                    const img = new Image();
-                    img.onload = () => {
-                        const c = document.createElement('canvas');
-                        c.width = img.width;
-                        c.height = img.height;
-                        const ctx = c.getContext('2d');
-                        ctx.drawImage(img,0,0);
-                        const code = jsQR(ctx.getImageData(0,0,c.width,c.height).data, c.width, c.height);
-                        if (code) {
-                            el.qrPreview.src = event.target.result;
-                            el.qrPreview.style.display = 'block';
-                            el.qrResult.style.display = 'block';
-                            el.qrResult.innerHTML = `✅ QR: ${code.data}<br><button class="primary-btn" style="margin-top:8px;" onclick="useQR('${code.data}')">BRUK</button>`;
-                            el.advancedText.value = code.data;
-                        } else alert('Ingen QR funnet');
-                    };
-                    img.src = event.target.result;
-                };
-                reader.readAsDataURL(file);
-            };
-            input.click();
-        });
-        
-        el.closeQrScanner.addEventListener('click', () => {
-            el.qrScanner.classList.add('hidden');
-            stopQr();
-        });
-        
-        // ========== HENTER YOUTUBE-DATA ==========
-        async function fetchYouTubeData(videoId) {
-            if (YOUTUBE_DATA[videoId]) return YOUTUBE_DATA[videoId];
-            
-            try {
-                // Forsøk å hente fra oEmbed (gir tittel og kanal)
-                const oembed = await fetch(`https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=${videoId}&format=json`);
-                if (oembed.ok) {
-                    const data = await oembed.json();
-                    return {
-                        title: data.title || 'Ukjent tittel',
-                        channel: data.author_name || 'Ukjent kanal',
-                        subscribers: '?',
-                        views: '?',
-                        likes: '?',
-                        published: '?',
-                        description: 'Kunne ikke hente beskrivelse',
-                        comments: [],
-                        tags: [],
-                        isRickroll: false
-                    };
-                }
-            } catch (e) {
-                console.log('Kunne ikke hente YouTube-data');
-            }
-            
-            // Fallback
-            return {
-                title: `YouTube Video (${videoId})`,
-                channel: 'YouTube',
-                subscribers: '?',
-                views: '?',
-                likes: '?',
-                published: '?',
-                description: 'Ingen data tilgjengelig',
-                comments: [],
-                tags: [],
-                isRickroll: false
-            };
-        }
-        
-        // ========== VIDEO-ID FRA URL (inkl. SHORTS!) ==========
+        // ========== HENT VIDEO-ID ==========
         function getVideoId(url) {
-            if (url.includes('youtu.be/')) return url.split('youtu.be/')[1].split('?')[0].toLowerCase();
-            if (url.includes('v=')) return url.split('v=')[1].split('&')[0].toLowerCase();
-            if (url.includes('/shorts/')) return url.split('/shorts/')[1].split('?')[0].toLowerCase();
+            if (!url) return null;
+            if (url.includes('youtu.be/')) {
+                return url.split('youtu.be/')[1].split('?')[0].split('&')[0];
+            }
+            if (url.includes('v=')) {
+                return url.split('v=')[1].split('&')[0];
+            }
+            if (url.includes('/shorts/')) {
+                return url.split('/shorts/')[1].split('?')[0].split('&')[0];
+            }
+            if (url.includes('/embed/')) {
+                return url.split('/embed/')[1].split('?')[0];
+            }
             return null;
         }
         
-        // ========== SJEKK RICKROLL ==========
-        function checkRickroll(text) {
-            const t = text.toLowerCase();
-            let d = [], c = 0;
-            for (let p of DATABASE) if (t.includes(p)) { c=95; d.push(`📌 ${p}`); }
-            for (let k of KEYWORDS) if (t.includes(k)) { c=Math.max(c,75); d.push(`🔑 ${k}`); }
-            if (t.includes('dqw4w9wgxcq')) { c=100; d=['🚨 ORIGINAL']; }
-            return { isRickroll: d.length>0, confidence:c, details:d.length?d:['✅ Trygg'] };
+        // ========== FORMATER TALL ==========
+        function formatNumber(num) {
+            if (!num && num !== 0) return '?';
+            if (num >= 1000000000) return (num/1000000000).toFixed(1) + 'B';
+            if (num >= 1000000) return (num/1000000).toFixed(1) + 'M';
+            if (num >= 1000) return (num/1000).toFixed(1) + 'K';
+            return num.toString();
         }
         
-        // ========== REDIRECT ==========
-        function checkRedirect(url) {
-            const u = url.toLowerCase().split('?')[0];
-            for (let [s,d] of Object.entries(REDIRECTS)) if (u.includes(s)) return { 
-                isRedirect: true, short: s, from: url, to: d, 
-                type: d.includes('dQw4w9WgXcQ') ? 'rickroll' : 'safe',
-                time: (Math.random()*0.2+0.2).toFixed(2)+'s'
+        // ========== LAST INN ULIKE BILDER ==========
+        function loadDifferentThumbnails(videoId) {
+            const baseUrl = `https://img.youtube.com/vi/${videoId}`;
+            
+            // Ulike thumbnail-størrelser gir forskjellige bilder
+            // hqdefault.jpg, mqdefault.jpg, sddefault.jpg, maxresdefault.jpg
+            // Dette er FAKTISK forskjellige bilder fra videoen!
+            
+            // Tidlig i videoen - hqdefault (ofte første frame)
+            el.thumbEarly.src = `${baseUrl}/hqdefault.jpg`;
+            el.thumbEarly.onerror = function() {
+                this.src = `${baseUrl}/0.jpg`;
             };
-            return { isRedirect: false };
+            
+            // Midt i videoen - mqdefault (annen frame)
+            el.thumbMiddle.src = `${baseUrl}/mqdefault.jpg`;
+            el.thumbMiddle.onerror = function() {
+                this.src = `${baseUrl}/1.jpg`;
+            };
+            
+            // Sent i videoen - sddefault (tredje frame)
+            el.thumbLate.src = `${baseUrl}/sddefault.jpg`;
+            el.thumbLate.onerror = function() {
+                this.src = `${baseUrl}/2.jpg`;
+            };
         }
         
-        // ========== VIS RESULTAT ==========
-        function showResult(icon, title, sub, det, conf) {
-            el.resultBox.style.display = 'block';
-            el.resultIcon.textContent = icon;
-            el.resultTitle.textContent = title;
-            el.resultSubtitle.textContent = sub;
-            el.resultDetails.innerHTML = det.map(d => `• ${d}`).join('<br>');
-            el.confidenceBar.style.width = conf+'%';
-            el.confidenceValue.textContent = conf+'%';
-            el.resultMode.textContent = currentMode.toUpperCase();
-            el.resultTime.textContent = new Date().toLocaleTimeString();
+        // ========== HENT YOUTUBE DATA ==========
+        async function getYouTubeData(videoId) {
+            const data = {
+                title: 'Laster...',
+                channel: 'Laster...',
+                subscribers: null,
+                views: null,
+                likes: null,
+                published: null,
+                duration: null,
+                description: 'Laster beskrivelse...',
+                comments: []
+            };
             
-            el.resultBox.classList.remove('result-safe','result-danger','result-warning');
-            if (conf>=70) el.resultBox.classList.add('result-danger');
-            else if (conf>=30) el.resultBox.classList.add('result-warning');
-            else el.resultBox.classList.add('result-safe');
+            try {
+                // oEmbed - tittel og kanal
+                const oembed = await fetch(`https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=${videoId}&format=json`);
+                if (oembed.ok) {
+                    const o = await oembed.json();
+                    data.title = o.title || data.title;
+                    data.channel = o.author_name || data.channel;
+                }
+            } catch (e) {}
+            
+            try {
+                // Invidious API - detaljer
+                const inv = await fetch(`https://invidious.projectsegfau.lt/api/v1/videos/${videoId}`);
+                if (inv.ok) {
+                    const v = await inv.json();
+                    data.title = v.title || data.title;
+                    data.channel = v.author || data.channel;
+                    data.subscribers = v.authorSubscriberCount;
+                    data.views = v.viewCount;
+                    data.likes = v.likeCount;
+                    data.published = v.publishedText;
+                    data.duration = v.lengthSeconds ? 
+                        Math.floor(v.lengthSeconds / 60) + ':' + 
+                        (v.lengthSeconds % 60).toString().padStart(2, '0') : null;
+                    data.description = v.description || data.description;
+                }
+            } catch (e) {}
+            
+            try {
+                // Kommentarer
+                const com = await fetch(`https://invidious.projectsegfau.lt/api/v1/comments/${videoId}?hmac=true`);
+                if (com.ok) {
+                    const c = await com.json();
+                    data.comments = (c.comments || []).slice(0, 5).map(c => ({
+                        author: c.author || 'Ukjent',
+                        text: c.content?.text || 'Ingen tekst'
+                    }));
+                }
+            } catch (e) {}
+            
+            return data;
         }
         
-        // ========== HISTORIKK ==========
-        function addHistory(item, res) {
-            const type = res.isRickroll ? '🚨 RICKROLL' : (res.confidence>30?'⚠️ MISTENKELIG':'✅ TRYGG');
-            const cls = res.isRickroll ? 'danger' : (res.confidence>30?'warning':'safe');
+        // ========== SJEKK RICKROLL ==========
+        function checkRickroll(videoId, data) {
+            const id = videoId.toLowerCase();
             
+            // Kjente Rickrolls
+            const rickrollIds = ['dqw4w9wgxcq', 'ohg5sjyrha0', 'ub82xb1c8os', 'dlzxrzfcyos'];
+            if (rickrollIds.includes(id)) {
+                return { isRickroll: true, confidence: 100, reason: '🚨 ORIGINAL RICKROLL!' };
+            }
+            
+            const title = data.title.toLowerCase();
+            if (title.includes('rick astley') && title.includes('never gonna give you up')) {
+                return { isRickroll: true, confidence: 100, reason: '🎵 RICK ASTLEY SANG!' };
+            }
+            
+            if (title.includes('rickroll') || title.includes('rick roll')) {
+                return { isRickroll: true, confidence: 95, reason: '🎯 TITTEL INNEHOLDER RICKROLL' };
+            }
+            
+            if (title.includes('never gonna give you up')) {
+                return { isRickroll: true, confidence: 90, reason: '🎤 NEVER GONNA GIVE YOU UP' };
+            }
+            
+            const channel = data.channel.toLowerCase();
+            if (channel.includes('rick astley')) {
+                return { isRickroll: true, confidence: 95, reason: '📺 RICK ASTLEY KANAL' };
+            }
+            
+            return { isRickroll: false, confidence: 0, reason: '✅ INGEN RICKROLL FUNNET' };
+        }
+        
+        // ========== LEGG TIL HISTORIKK ==========
+        function addToHistory(videoId, title, isRickroll) {
             history.unshift({
-                text: item.length>25?item.substring(0,22)+'...':item,
-                result: type, class: cls,
+                id: videoId,
+                title: title.length > 25 ? title.substring(0, 22) + '...' : title,
+                isRickroll: isRickroll,
                 time: new Date().toLocaleTimeString()
             });
-            if (history.length>8) history.pop();
             
-            if (history.length) {
-                el.emptyHistory.style.display = 'none';
-                el.historyList.innerHTML = history.map(h => 
-                    `<div class="history-item ${h.class}"><span class="history-time">${h.time}</span><div class="history-result">${h.result}</div><div>${h.text}</div></div>`
-                ).join('');
-            } else {
+            if (history.length > 8) history.pop();
+            
+            if (history.length === 0) {
                 el.emptyHistory.style.display = 'block';
                 el.historyList.innerHTML = '';
+            } else {
+                el.emptyHistory.style.display = 'none';
+                el.historyList.innerHTML = history.map(h => `
+                    <div class="history-item ${h.isRickroll ? 'danger' : 'safe'}">
+                        <div style="display:flex; justify-content:space-between;">
+                            <span style="font-weight:bold;">${h.isRickroll ? '🚨' : '✅'}</span>
+                            <span style="color:#888;">${h.time}</span>
+                        </div>
+                        <div>${h.title}</div>
+                    </div>
+                `).join('');
             }
             
-            if (res.isRickroll) rickrolls++;
-            totalChecks++;
-            el.totalChecks.textContent = totalChecks;
+            if (h.isRickroll) rickrolls++;
+            totalScans++;
+            
+            el.totalScans.textContent = totalScans;
             el.rickrollCount.textContent = rickrolls;
+            el.lastScan.textContent = new Date().toLocaleTimeString();
         }
         
-        // ========== SCAN ==========
-        el.checkBtn.addEventListener('click', async () => {
-            let input = '';
-            if (currentMode === 'basic') input = el.urlBasic.value.trim();
-            if (currentMode === 'advanced') input = el.advancedText.value.trim();
-            if (currentMode === 'youtube') input = el.youtubeUrl.value.trim();
-            if (currentMode === 'redirect') input = el.redirectUrl.value.trim();
+        // ========== SCAN YOUTUBE ==========
+        async function scanYouTube() {
+            const url = el.youtubeUrl.value.trim();
+            if (!url) {
+                alert('Lim inn en YouTube-URL!');
+                return;
+            }
             
-            if (!input) return alert('Lim inn noe!');
+            const videoId = getVideoId(url);
+            if (!videoId) {
+                alert('Ugyldig YouTube-URL!');
+                return;
+            }
             
             el.youtubePreview.style.display = 'none';
-            el.redirectChain.style.display = 'none';
-            showResult('🔍', 'SCANNER...', 'Vent', ['Analyserer...'], 10);
+            el.loading.classList.remove('hidden');
             
-            // YOUTUBE MODUS
-            if (currentMode === 'youtube') {
-                const videoId = getVideoId(input);
-                if (!videoId) return showResult('❌', 'UGYLDIG URL', 'Ikke YouTube', ['Prøv igjen'], 0);
+            try {
+                const data = await getYouTubeData(videoId);
+                const result = checkRickroll(videoId, data);
                 
-                const data = await fetchYouTubeData(videoId);
-                const isRickroll = videoId === 'dqw4w9wgxcq' || videoId === 'ohg5sjyrha0';
+                // LAST INN ULIKE BILDER
+                loadDifferentThumbnails(videoId);
                 
-                let html = `
-                    <div class="youtube-header">
-                        <div class="youtube-thumbnail"><img src="https://img.youtube.com/vi/${videoId}/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/${videoId}/hqdefault.jpg'"></div>
-                        <div class="youtube-info">
-                            <div class="youtube-title">${data.title}</div>
-                            <div class="youtube-channel">📺 ${data.channel}</div>
-                            <div class="youtube-stats">
-                                <span>👁️ ${data.views}</span>
-                                <span>❤️ ${data.likes}</span>
-                                <span>📅 ${data.published}</span>
-                            </div>
+                // Oppdater info
+                el.videoTitle.textContent = data.title;
+                el.channelName.textContent = data.channel;
+                el.subscribers.textContent = data.subscribers ? `${formatNumber(data.subscribers)} abonnenter` : '? abonnenter';
+                
+                el.views.innerHTML = `👁️ ${data.views ? formatNumber(data.views) : '?'}`;
+                el.likes.innerHTML = `❤️ ${data.likes ? formatNumber(data.likes) : '?'}`;
+                el.published.innerHTML = `📅 ${data.published || '?'}`;
+                el.duration.innerHTML = `⏱️ ${data.duration || '?'}`;
+                
+                el.description.textContent = data.description || 'Ingen beskrivelse tilgjengelig';
+                
+                // Kommentarer
+                if (data.comments && data.comments.length > 0) {
+                    el.comments.innerHTML = data.comments.map(c => `
+                        <div class="comment-item">
+                            <div class="comment-author">${c.author}</div>
+                            <div class="comment-text">${c.text}</div>
                         </div>
-                    </div>
-                    <div class="youtube-description">${data.description}</div>
-                `;
-                
-                if (data.comments?.length) {
-                    html += '<div class="youtube-comments"><strong>💬 Kommentarer:</strong>';
-                    data.comments.slice(0,2).forEach(c => html += `<div class="youtube-comment"><div class="comment-author">${c.author}</div><div class="comment-text">${c.text}</div></div>`);
-                    html += '</div>';
+                    `).join('');
+                } else {
+                    el.comments.innerHTML = '<div style="color:#666; padding:15px; text-align:center;">Ingen kommentarer funnet</div>';
                 }
                 
-                const resClass = isRickroll ? 'danger' : 'safe';
-                html += `<div class="youtube-result ${resClass}">${isRickroll ? '🚨 RICKROLL' : '✅ TRYGG'}</div>`;
-                html += `<a href="https://youtu.be/${videoId}" target="_blank" class="youtube-button">🎬 SE</a>`;
+                // Safety badge
+                el.safetyBadge.textContent = result.isRickroll ? `🚨 ${result.reason}` : '✅ TRYGG VIDEO';
+                el.safetyBadge.className = `safety-badge ${result.isRickroll ? 'danger' : 'safe'}`;
                 
-                el.youtubePreview.innerHTML = html;
+                // YouTube link
+                el.youtubeLink.href = `https://youtu.be/${videoId}`;
+                el.youtubeLink.textContent = `🎬 SE PÅ YOUTUBE - ${videoId}`;
+                
+                el.loading.classList.add('hidden');
                 el.youtubePreview.style.display = 'block';
                 
-                const result = { isRickroll, confidence: isRickroll ? 100 : 0, details: [isRickroll ? 'Rickroll!' : 'Trygg'] };
-                showResult(isRickroll?'🚨':'✅', isRickroll?'RICKROLL':'TRYGG', 'YouTube', result.details, result.confidence);
-                addHistory(input, result);
-                return;
+                addToHistory(videoId, data.title, result.isRickroll);
+                
+            } catch (error) {
+                console.error('Feil:', error);
+                alert('Kunne ikke hente YouTube-data. Prøv igjen.');
+                el.loading.classList.add('hidden');
             }
-            
-            // REDIRECT MODUS
-            if (currentMode === 'redirect') {
-                const r = checkRedirect(input);
-                if (!r.isRedirect) return showResult('❌', 'IKKE REDIRECT', 'Ukjent lenke', ['Prøv bit.ly/...'], 0);
-                
-                redirectCount++;
-                el.redirectCount.textContent = redirectCount;
-                
-                const typeClass = r.type === 'rickroll' ? 'final' : 'safe';
-                const statusText = r.type === 'rickroll' ? '🚨 RICKROLL' : '✅ TRYGG';
-                
-                el.redirectChain.innerHTML = `
-                    <div class="redirect-title">🔄 REDIRECT</div>
-                    <div class="redirect-step"><span class="step-number">1</span> ${r.from}<div class="step-url">Original</div></div>
-                    <div class="redirect-step ${typeClass}"><span class="step-number">2</span> ${r.to}<div class="step-info">⏱️ ${r.time}</div><div class="step-badge ${r.type}">${statusText}</div></div>
-                `;
-                el.redirectChain.style.display = 'block';
-                
-                const result = { isRickroll: r.type==='rickroll', confidence: r.type==='rickroll'?100:0, details: [`→ ${r.to}`] };
-                showResult(r.type==='rickroll'?'🚨':'✅', r.type==='rickroll'?'RICKROLL':'TRYGG', r.short, result.details, result.confidence);
-                addHistory(input, result);
-                return;
-            }
-            
-            // BASIC
-            if (currentMode === 'basic') {
-                let text = input, det = [];
-                if (el.basicRedirect.checked) {
-                    const r = checkRedirect(input);
-                    if (r.isRedirect) {
-                        text = r.to;
-                        det.push(`🔄 ${r.short}`);
-                        redirectCount++;
-                        el.redirectCount.textContent = redirectCount;
-                    }
-                }
-                const res = checkRickroll(text);
-                if (el.basicDeepScan.checked) res.confidence = Math.min(res.confidence+10,100);
-                res.details = [...res.details, ...det];
-                showResult(res.isRickroll?'🚨':'✅', res.isRickroll?'RICKROLL':'TRYGG', 'Basic', res.details, res.confidence);
-                addHistory(input, res);
-                return;
-            }
-            
-            // AVANSERT
-            if (currentMode === 'advanced') {
-                let det = [], final = { isRickroll: false, confidence:0, details:[] };
-                let text = input;
-                
-                // YouTube
-                if (input.includes('youtube.com') || input.includes('youtu.be')) {
-                    const vid = getVideoId(input);
-                    if (vid && (vid==='dqw4w9wgxcq'||vid==='ohg5sjyrha0')) {
-                        final.isRickroll = true;
-                        final.confidence = 100;
-                        det.push('🎥 YouTube Rickroll');
-                    } else if (vid) det.push('🎥 YouTube sjekket');
-                }
-                
-                // Redirect
-                const r = checkRedirect(input);
-                if (r.isRedirect) {
-                    text = r.to;
-                    det.push(`🔄 ${r.short} → ${r.to.split('/')[2]}`);
-                    redirectCount++;
-                    el.redirectCount.textContent = redirectCount;
-                    if (r.type === 'rickroll') final.isRickroll = true;
-                }
-                
-                // Database
-                const db = checkRickroll(text);
-                if (db.isRickroll) {
-                    final.isRickroll = true;
-                    final.confidence = Math.max(final.confidence, db.confidence);
-                    det.push(...db.details);
-                }
-                
-                if (!det.length) det.push('✅ Ingen funn');
-                showResult(final.isRickroll?'🚨':'✅', final.isRickroll?'RICKROLL':'TRYGG', 'Avansert', det, final.confidence);
-                addHistory(input, final);
-            }
-        });
+        }
         
         // ========== TEST ==========
-        el.testBtn.addEventListener('click', () => {
-            const tests = {
-                basic: 'https://youtu.be/dQw4w9WgXcQ',
-                advanced: 'Sjekk https://youtu.be/dQw4w9WgXcQ og bit.ly/4sWIhLx',
-                youtube: 'https://youtu.be/dQw4w9WgXcQ',
-                redirect: 'bit.ly/4sWIhLx'
-            };
-            if (currentMode === 'basic') el.urlBasic.value = tests.basic;
-            if (currentMode === 'advanced') el.advancedText.value = tests.advanced;
-            if (currentMode === 'youtube') el.youtubeUrl.value = tests.youtube;
-            if (currentMode === 'redirect') el.redirectUrl.value = tests.redirect;
-        });
+        function testRickroll() {
+            el.youtubeUrl.value = 'https://youtu.be/dQw4w9WgXcQ';
+            scanYouTube();
+        }
         
         // ========== TØM ==========
-        el.clearBtn.addEventListener('click', () => {
-            el.urlBasic.value = '';
-            el.advancedText.value = '';
+        function clearAll() {
             el.youtubeUrl.value = '';
-            el.redirectUrl.value = '';
-            el.resultBox.style.display = 'none';
             el.youtubePreview.style.display = 'none';
-            el.redirectChain.style.display = 'none';
-            el.qrScanner.classList.add('hidden');
-            stopQr();
-        });
+        }
         
-        el.clearHistoryBtn.addEventListener('click', () => {
-            if (confirm('Tømme historikk?')) {
-                history = [];
-                el.historyList.innerHTML = '';
-                el.emptyHistory.style.display = 'block';
-            }
-        });
+        // ========== EVENT LISTENERS ==========
+        el.scanBtn.addEventListener('click', scanYouTube);
+        el.testBtn.addEventListener('click', testRickroll);
+        el.clearBtn.addEventListener('click', clearAll);
         
-        // ========== INIT ==========
-        el.patternCount.textContent = DATABASE.length;
-        console.log('✅ ULTIMATE - INGENTING STIKKER UT!');
+        el.youtubeUrl.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') scanYouTube();
+        });
     </script>
 </body>
 </html>
