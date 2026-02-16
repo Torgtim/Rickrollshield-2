@@ -3,58 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>🎥 RICKROLL SHIELD - YOUTUBE EDITION</title>
+    <title>🎥 RICKROLL SHIELD - 5 STRATEGIER</title>
     <style>
-        /* ========== SAMME STIL ========== */
+        /* ========== STIL ========== */
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
         
-        html, body {
-            width: 100%;
-            height: 100%;
-            overflow-x: hidden;
-            overflow-y: auto;
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
             background: linear-gradient(135deg, #0f172a, #1e293b);
             color: white;
-            font-family: 'Segoe UI', Arial, sans-serif;
-        }
-        
-        body {
-            padding: 15px;
             min-height: 100vh;
-            display: flex;
-            justify-content: center;
+            padding: 15px;
         }
         
         .container {
             max-width: 800px;
-            width: 100%;
             margin: 0 auto;
-            overflow-x: hidden;
         }
         
         h1 {
             text-align: center;
-            font-size: clamp(28px, 8vw, 36px);
+            font-size: 32px;
             margin-bottom: 5px;
             color: #ff0000;
             text-shadow: 0 0 20px #ff0000;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
         }
         
         .subtitle {
             text-align: center;
             color: #888;
             margin-bottom: 20px;
-            font-size: clamp(14px, 4vw, 18px);
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
         }
         
         .input-section {
@@ -63,13 +45,6 @@
             padding: 20px;
             margin-bottom: 20px;
             border: 3px solid #ff0000;
-        }
-        
-        .input-label {
-            font-size: 14px;
-            color: #ff0000;
-            margin-bottom: 8px;
-            font-weight: bold;
         }
         
         input {
@@ -91,19 +66,20 @@
         
         button {
             flex: 1 1 auto;
-            min-width: 100px;
-            padding: 12px 15px;
+            padding: 12px 20px;
             border: none;
             border-radius: 50px;
             font-size: 14px;
             font-weight: bold;
             cursor: pointer;
-            transition: all 0.2s;
             background: #475569;
             color: white;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            transition: all 0.2s;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.2);
         }
         
         .primary-btn {
@@ -112,13 +88,24 @@
             border: 2px solid white;
         }
         
-        /* ========== YOUTUBE PREVIEW ========== */
+        .strategy-indicator {
+            background: #0f172a;
+            border-radius: 15px;
+            padding: 10px;
+            margin: 10px 0;
+            text-align: center;
+            font-size: 12px;
+            color: #ff0000;
+            border: 1px solid #ff0000;
+        }
+        
         .youtube-preview {
             background: #0f172a;
-            border-radius: 25px;
+            border-radius: 20px;
             padding: 20px;
             margin: 15px 0;
-            border: 4px solid #ff0000;
+            border: 3px solid #ff0000;
+            display: none;
         }
         
         .thumbnail-gallery {
@@ -136,63 +123,46 @@
             color: #ff0000;
             font-size: 11px;
             margin-bottom: 4px;
-            text-transform: uppercase;
         }
         
         .thumbnail-img {
             width: 100%;
             aspect-ratio: 16/9;
-            border-radius: 10px;
+            border-radius: 8px;
             border: 2px solid #ff0000;
             object-fit: cover;
             background: #1e293b;
         }
         
         .video-title {
-            font-size: clamp(18px, 5vw, 22px);
+            font-size: 20px;
             font-weight: bold;
-            margin: 15px 0 8px;
+            margin: 10px 0;
             line-height: 1.3;
-            overflow: hidden;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
         }
         
         .channel-info {
             display: flex;
             align-items: center;
             gap: 10px;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             flex-wrap: wrap;
         }
         
         .channel-name {
             color: #ff0000;
-            font-size: clamp(16px, 4vw, 18px);
+            font-size: 18px;
             font-weight: bold;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            max-width: 60%;
-        }
-        
-        .subscribers {
-            background: #1e293b;
-            padding: 4px 12px;
-            border-radius: 30px;
-            font-size: 12px;
-            border: 1px solid #ff0000;
         }
         
         .video-stats {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 10px;
-            margin-bottom: 15px;
+            margin: 15px 0;
             background: #1e293b;
             padding: 12px;
-            border-radius: 15px;
+            border-radius: 12px;
         }
         
         .stat-item {
@@ -200,14 +170,11 @@
             align-items: center;
             gap: 5px;
             font-size: 13px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
         }
         
         .description-box {
             background: #1e293b;
-            border-radius: 15px;
+            border-radius: 12px;
             padding: 15px;
             margin: 15px 0;
             border-left: 4px solid #ff0000;
@@ -220,7 +187,7 @@
         
         .comments-section {
             background: #1e293b;
-            border-radius: 15px;
+            border-radius: 12px;
             padding: 15px;
             margin: 15px 0;
             max-height: 250px;
@@ -230,11 +197,11 @@
         .comments-title {
             color: #ff0000;
             font-size: 16px;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
         }
         
         .comment-item {
-            padding: 12px;
+            padding: 10px;
             border-bottom: 1px solid #334155;
         }
         
@@ -249,48 +216,43 @@
             color: #ddd;
             font-size: 13px;
             line-height: 1.4;
-            word-wrap: break-word;
         }
         
         .safety-badge {
             text-align: center;
             padding: 15px;
             border-radius: 40px;
-            font-size: clamp(18px, 5vw, 22px);
+            font-size: 20px;
             font-weight: bold;
             margin: 15px 0;
-            border: 3px solid white;
+            border: 2px solid white;
         }
         
         .safety-badge.safe {
             background: #10b981;
-            color: white;
         }
         
         .safety-badge.danger {
             background: #ef4444;
-            color: white;
             animation: pulse 1s infinite;
         }
         
         @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.02); }
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
         }
         
         .view-on-youtube {
             display: inline-block;
             width: 100%;
-            padding: 14px 20px;
+            padding: 12px;
             background: #ff0000;
             color: white;
             text-decoration: none;
-            border-radius: 50px;
+            border-radius: 40px;
             font-weight: bold;
-            font-size: 16px;
-            margin: 10px 0;
-            border: 3px solid white;
             text-align: center;
+            border: 2px solid white;
         }
         
         .loading {
@@ -299,10 +261,10 @@
         }
         
         .spinner {
-            width: 50px;
-            height: 50px;
-            border: 5px solid #1e293b;
-            border-top: 5px solid #ff0000;
+            width: 40px;
+            height: 40px;
+            border: 4px solid #1e293b;
+            border-top: 4px solid #ff0000;
             border-radius: 50%;
             animation: spin 1s linear infinite;
             margin: 15px auto;
@@ -313,50 +275,10 @@
             100% { transform: rotate(360deg); }
         }
         
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            margin: 15px 0;
-        }
-        
-        .stat-box {
-            background: #1e293b;
-            padding: 15px;
-            border-radius: 15px;
-            text-align: center;
-            border: 2px solid #ff0000;
-        }
-        
-        .stat-value {
-            font-size: 24px;
-            font-weight: bold;
+        .loading-status {
             color: #ff0000;
-        }
-        
-        .history-section {
-            background: #1e293b;
-            border-radius: 15px;
-            padding: 15px;
-            margin: 15px 0;
-            max-height: 200px;
-            overflow-y: auto;
-        }
-        
-        .history-item {
-            padding: 10px;
-            margin: 5px 0;
-            background: #0f172a;
-            border-radius: 8px;
-            border-left: 4px solid #ff0000;
-        }
-        
-        .history-item.safe {
-            border-left-color: #10b981;
-        }
-        
-        .history-item.danger {
-            border-left-color: #ef4444;
+            margin-top: 10px;
+            font-size: 14px;
         }
         
         .hidden {
@@ -367,118 +289,83 @@
 <body>
     <div class="container">
         <h1>🎥 RICKROLL SHIELD</h1>
-        <div class="subtitle">YOUTUBE EDITION - ULIKE BILDER FRA VIDEOEN</div>
+        <div class="subtitle">5 FORSKJELLIGE STRATEGIER - KOMMENTARER INKLUDERT</div>
         
         <div class="input-section">
-            <div class="input-label">🎬 LIM INN YOUTUBE-URL</div>
-            <input type="text" id="youtubeUrl" placeholder="https://youtu.be/dQw4w9WgXcQ">
-            
+            <input type="text" id="youtubeUrl" placeholder="Lim inn YouTube-URL">
             <div class="button-group">
-                <button class="primary-btn" id="scanBtn">🔍 SCAN VIDEO</button>
-                <button class="danger-btn" id="clearBtn">🗑️ TØM</button>
+                <button class="primary-btn" id="scanBtn">🔍 SCAN MED 5 STRATEGIER</button>
                 <button id="testBtn">🎲 TEST</button>
+                <button id="clearBtn">🗑️ TØM</button>
             </div>
+            <div id="strategyDisplay" class="strategy-indicator hidden">Prøver strategi 1/5...</div>
         </div>
         
-        <!-- Loading -->
         <div id="loading" class="loading hidden">
             <div class="spinner"></div>
-            <p>Henter YouTube-data...</p>
+            <p id="loadingMessage">Forbereder...</p>
+            <div class="loading-status" id="loadingStatus"></div>
         </div>
         
-        <!-- YouTube Preview -->
         <div class="youtube-preview" id="youtubePreview">
-            <!-- ULIKE BILDER FRA VIDEOEN -->
             <div class="thumbnail-gallery">
                 <div class="thumbnail-item">
-                    <div class="thumbnail-label">TIDLIG I VIDEOEN</div>
-                    <img class="thumbnail-img" id="thumbEarly" src="" alt="Early thumbnail">
+                    <div class="thumbnail-label">START</div>
+                    <img class="thumbnail-img" id="thumb0" src="">
                 </div>
                 <div class="thumbnail-item">
-                    <div class="thumbnail-label">MIDT I VIDEOEN</div>
-                    <img class="thumbnail-img" id="thumbMiddle" src="" alt="Middle thumbnail">
+                    <div class="thumbnail-label">MIDTEN</div>
+                    <img class="thumbnail-img" id="thumb1" src="">
                 </div>
                 <div class="thumbnail-item">
-                    <div class="thumbnail-label">SENT I VIDEOEN</div>
-                    <img class="thumbnail-img" id="thumbLate" src="" alt="Late thumbnail">
+                    <div class="thumbnail-label">SLUTT</div>
+                    <img class="thumbnail-img" id="thumb2" src="">
                 </div>
             </div>
             
-            <!-- Info -->
             <div class="video-title" id="videoTitle"></div>
             
             <div class="channel-info">
                 <span class="channel-name" id="channelName"></span>
-                <span class="subscribers" id="subscribers"></span>
+                <span class="subscribers" id="subscribers">?</span>
             </div>
             
             <div class="video-stats">
-                <span class="stat-item" id="views">👁️ </span>
-                <span class="stat-item" id="likes">❤️ </span>
-                <span class="stat-item" id="published">📅 </span>
-                <span class="stat-item" id="duration">⏱️ </span>
+                <span class="stat-item" id="views">👁️ ?</span>
+                <span class="stat-item" id="likes">❤️ ?</span>
+                <span class="stat-item" id="published">📅 ?</span>
+                <span class="stat-item" id="duration">⏱️ ?</span>
             </div>
             
-            <!-- Beskrivelse -->
-            <div class="description-box" id="description"></div>
+            <div class="description-box" id="description">Laster beskrivelse...</div>
             
-            <!-- Kommentarer -->
             <div class="comments-section">
                 <div class="comments-title">💬 KOMMENTARER</div>
                 <div id="comments"></div>
             </div>
             
-            <!-- Safety badge -->
             <div class="safety-badge" id="safetyBadge">✅ TRYGG</div>
-            
-            <!-- YouTube link -->
             <a class="view-on-youtube" id="youtubeLink" target="_blank">🎬 SE PÅ YOUTUBE</a>
-        </div>
-        
-        <!-- Statistikk -->
-        <div class="stats-grid">
-            <div class="stat-box">
-                <div class="stat-label">SCANNET</div>
-                <div class="stat-value" id="totalScans">0</div>
-            </div>
-            <div class="stat-box">
-                <div class="stat-label">RICKROLLS</div>
-                <div class="stat-value" id="rickrollCount">0</div>
-            </div>
-            <div class="stat-box">
-                <div class="stat-label">SISTE</div>
-                <div class="stat-value" id="lastScan">-</div>
-            </div>
-        </div>
-        
-        <!-- Historikk -->
-        <div class="history-section">
-            <h3 style="color:#ff0000; margin-bottom:10px;">📜 HISTORIKK</h3>
-            <div id="historyList"></div>
-            <p id="emptyHistory" style="color:#666; text-align:center; padding:15px;">Ingen scanninger enda</p>
         </div>
     </div>
 
     <script>
-        // ========== YOUTUBE EDITION ==========
+        // ========== 5 FORSKJELLIGE STRATEGIER ==========
         
-        // State
-        let history = [];
-        let totalScans = 0;
-        let rickrolls = 0;
-        
-        // DOM
         const el = {
             youtubeUrl: document.getElementById('youtubeUrl'),
             scanBtn: document.getElementById('scanBtn'),
-            clearBtn: document.getElementById('clearBtn'),
             testBtn: document.getElementById('testBtn'),
+            clearBtn: document.getElementById('clearBtn'),
+            strategyDisplay: document.getElementById('strategyDisplay'),
             loading: document.getElementById('loading'),
+            loadingMessage: document.getElementById('loadingMessage'),
+            loadingStatus: document.getElementById('loadingStatus'),
             youtubePreview: document.getElementById('youtubePreview'),
             
-            thumbEarly: document.getElementById('thumbEarly'),
-            thumbMiddle: document.getElementById('thumbMiddle'),
-            thumbLate: document.getElementById('thumbLate'),
+            thumb0: document.getElementById('thumb0'),
+            thumb1: document.getElementById('thumb1'),
+            thumb2: document.getElementById('thumb2'),
             videoTitle: document.getElementById('videoTitle'),
             channelName: document.getElementById('channelName'),
             subscribers: document.getElementById('subscribers'),
@@ -489,13 +376,7 @@
             description: document.getElementById('description'),
             comments: document.getElementById('comments'),
             safetyBadge: document.getElementById('safetyBadge'),
-            youtubeLink: document.getElementById('youtubeLink'),
-            
-            totalScans: document.getElementById('totalScans'),
-            rickrollCount: document.getElementById('rickrollCount'),
-            lastScan: document.getElementById('lastScan'),
-            historyList: document.getElementById('historyList'),
-            emptyHistory: document.getElementById('emptyHistory')
+            youtubeLink: document.getElementById('youtubeLink')
         };
         
         // ========== HENT VIDEO-ID ==========
@@ -518,165 +399,291 @@
         
         // ========== FORMATER TALL ==========
         function formatNumber(num) {
-            if (!num && num !== 0) return '?';
-            if (num >= 1000000000) return (num/1000000000).toFixed(1) + 'B';
+            if (!num) return '?';
             if (num >= 1000000) return (num/1000000).toFixed(1) + 'M';
             if (num >= 1000) return (num/1000).toFixed(1) + 'K';
             return num.toString();
         }
         
-        // ========== LAST INN ULIKE BILDER ==========
-        function loadDifferentThumbnails(videoId) {
-            const baseUrl = `https://img.youtube.com/vi/${videoId}`;
+        // ========== FORMATER TID ==========
+        function formatDuration(seconds) {
+            if (!seconds) return '?';
+            const mins = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${mins}:${secs.toString().padStart(2, '0')}`;
+        }
+        
+        // ========== STRATEGI 1: oEmbed API ==========
+        async function strategy1(videoId) {
+            try {
+                const response = await fetch(`https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=${videoId}&format=json`);
+                if (response.ok) {
+                    const data = await response.json();
+                    return {
+                        success: true,
+                        title: data.title,
+                        channel: data.author_name,
+                        thumbnail: data.thumbnail_url
+                    };
+                }
+            } catch (e) {}
+            return { success: false };
+        }
+        
+        // ========== STRATEGI 2: Invidious API (flere instanser) ==========
+        async function strategy2(videoId) {
+            const instances = [
+                'https://invidious.projectsegfau.lt',
+                'https://yewtu.be',
+                'https://inv.riverside.rocks',
+                'https://invidious.snopyta.org',
+                'https://vid.puffyan.us'
+            ];
             
-            // Ulike thumbnail-størrelser gir forskjellige bilder
-            // hqdefault.jpg, mqdefault.jpg, sddefault.jpg, maxresdefault.jpg
-            // Dette er FAKTISK forskjellige bilder fra videoen!
+            for (let instance of instances) {
+                try {
+                    const response = await fetch(`${instance}/api/v1/videos/${videoId}`);
+                    if (response.ok) {
+                        const data = await response.json();
+                        return {
+                            success: true,
+                            title: data.title,
+                            channel: data.author,
+                            subscribers: data.authorSubscriberCount,
+                            views: data.viewCount,
+                            likes: data.likeCount,
+                            published: data.publishedText,
+                            duration: data.lengthSeconds,
+                            description: data.description
+                        };
+                    }
+                } catch (e) {}
+            }
+            return { success: false };
+        }
+        
+        // ========== STRATEGI 3: Piped API ==========
+        async function strategy3(videoId) {
+            try {
+                const response = await fetch(`https://pipedapi.kavin.rocks/streams/${videoId}`);
+                if (response.ok) {
+                    const data = await response.json();
+                    return {
+                        success: true,
+                        title: data.title,
+                        channel: data.uploader,
+                        subscribers: data.uploaderSubscriberCount,
+                        views: data.views,
+                        likes: data.likes,
+                        duration: data.duration,
+                        description: data.description
+                    };
+                }
+            } catch (e) {}
+            return { success: false };
+        }
+        
+        // ========== STRATEGI 4: YouTube Proxy ==========
+        async function strategy4(videoId) {
+            // Bruker YouTube's egen oembed med CORS proxy
+            const proxies = [
+                'https://api.allorigins.win/raw?url=',
+                'https://cors-anywhere.herokuapp.com/',
+                'https://youtube-proxy.example.com/'
+            ];
             
-            // Tidlig i videoen - hqdefault (ofte første frame)
-            el.thumbEarly.src = `${baseUrl}/hqdefault.jpg`;
-            el.thumbEarly.onerror = function() {
-                this.src = `${baseUrl}/0.jpg`;
+            for (let proxy of proxies) {
+                try {
+                    const url = `${proxy}https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=${videoId}&format=json`;
+                    const response = await fetch(url);
+                    if (response.ok) {
+                        const data = await response.json();
+                        return {
+                            success: true,
+                            title: data.title,
+                            channel: data.author_name
+                        };
+                    }
+                } catch (e) {}
+            }
+            return { success: false };
+        }
+        
+        // ========== STRATEGI 5: Hent kommentarer ==========
+        async function strategy5(videoId) {
+            const instances = [
+                'https://invidious.projectsegfau.lt',
+                'https://yewtu.be'
+            ];
+            
+            for (let instance of instances) {
+                try {
+                    const response = await fetch(`${instance}/api/v1/comments/${videoId}?hmac=true`);
+                    if (response.ok) {
+                        const data = await response.json();
+                        const comments = (data.comments || []).slice(0, 7).map(c => ({
+                            author: c.author || 'Ukjent',
+                            text: c.content?.text || 'Ingen tekst'
+                        }));
+                        return {
+                            success: true,
+                            comments: comments
+                        };
+                    }
+                } catch (e) {}
+            }
+            return { success: false, comments: [] };
+        }
+        
+        // ========== LAST INN THUMBNAILS ==========
+        function loadThumbnails(videoId) {
+            // Ulike størrelser = ULIKE bilder!
+            el.thumb0.src = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+            el.thumb0.onerror = function() { 
+                this.src = `https://img.youtube.com/vi/${videoId}/0.jpg`;
             };
             
-            // Midt i videoen - mqdefault (annen frame)
-            el.thumbMiddle.src = `${baseUrl}/mqdefault.jpg`;
-            el.thumbMiddle.onerror = function() {
-                this.src = `${baseUrl}/1.jpg`;
+            el.thumb1.src = `https://img.youtube.com/vi/${videoId}/sddefault.jpg`;
+            el.thumb1.onerror = function() { 
+                this.src = `https://img.youtube.com/vi/${videoId}/1.jpg`;
             };
             
-            // Sent i videoen - sddefault (tredje frame)
-            el.thumbLate.src = `${baseUrl}/sddefault.jpg`;
-            el.thumbLate.onerror = function() {
-                this.src = `${baseUrl}/2.jpg`;
+            el.thumb2.src = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+            el.thumb2.onerror = function() { 
+                this.src = `https://img.youtube.com/vi/${videoId}/2.jpg`;
             };
         }
         
-        // ========== HENT YOUTUBE DATA ==========
-        async function getYouTubeData(videoId) {
-            const data = {
-                title: 'Laster...',
-                channel: 'Laster...',
+        // ========== SJEKK RICKROLL ==========
+        function checkRickroll(videoId, title, channel) {
+            const id = videoId.toLowerCase();
+            const titleLower = (title || '').toLowerCase();
+            const channelLower = (channel || '').toLowerCase();
+            
+            // Kjente Rickroll videoer
+            const rickrollIds = ['dqw4w9wgxcq', 'ohg5sjyrha0', 'ub82xb1c8os', 'dlzxrzfcyos'];
+            if (rickrollIds.includes(id)) {
+                return { isRickroll: true, reason: '🚨 ORIGINAL RICKROLL!' };
+            }
+            
+            // Sjekk tittel
+            if (titleLower.includes('rick astley') || 
+                titleLower.includes('never gonna give you up') ||
+                titleLower.includes('rickroll') ||
+                titleLower.includes('rick roll')) {
+                return { isRickroll: true, reason: '🎵 RICKROLL I TITTELEN!' };
+            }
+            
+            // Sjekk kanal
+            if (channelLower.includes('rick astley')) {
+                return { isRickroll: true, reason: '📺 RICK ASTLEY KANAL!' };
+            }
+            
+            return { isRickroll: false, reason: '✅ INGEN RICKROLL FUNNET' };
+        }
+        
+        // ========== HENT ALLE DATA ==========
+        async function fetchAllData(videoId) {
+            const result = {
+                title: 'YouTube Video',
+                channel: 'YouTube',
                 subscribers: null,
                 views: null,
                 likes: null,
                 published: null,
                 duration: null,
-                description: 'Laster beskrivelse...',
+                description: 'Ingen beskrivelse tilgjengelig',
                 comments: []
             };
             
-            try {
-                // oEmbed - tittel og kanal
-                const oembed = await fetch(`https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=${videoId}&format=json`);
-                if (oembed.ok) {
-                    const o = await oembed.json();
-                    data.title = o.title || data.title;
-                    data.channel = o.author_name || data.channel;
-                }
-            } catch (e) {}
+            // STRATEGI 1: oEmbed
+            el.loadingStatus.textContent = 'Strategi 1/5: oEmbed API...';
+            const s1 = await strategy1(videoId);
+            if (s1.success) {
+                result.title = s1.title;
+                result.channel = s1.channel;
+            }
             
-            try {
-                // Invidious API - detaljer
-                const inv = await fetch(`https://invidious.projectsegfau.lt/api/v1/videos/${videoId}`);
-                if (inv.ok) {
-                    const v = await inv.json();
-                    data.title = v.title || data.title;
-                    data.channel = v.author || data.channel;
-                    data.subscribers = v.authorSubscriberCount;
-                    data.views = v.viewCount;
-                    data.likes = v.likeCount;
-                    data.published = v.publishedText;
-                    data.duration = v.lengthSeconds ? 
-                        Math.floor(v.lengthSeconds / 60) + ':' + 
-                        (v.lengthSeconds % 60).toString().padStart(2, '0') : null;
-                    data.description = v.description || data.description;
-                }
-            } catch (e) {}
+            // STRATEGI 2: Invidious
+            el.loadingStatus.textContent = 'Strategi 2/5: Invidious API...';
+            const s2 = await strategy2(videoId);
+            if (s2.success) {
+                result.title = s2.title || result.title;
+                result.channel = s2.channel || result.channel;
+                result.subscribers = s2.subscribers;
+                result.views = s2.views;
+                result.likes = s2.likes;
+                result.published = s2.published;
+                result.duration = s2.duration;
+                result.description = s2.description || result.description;
+            }
             
-            try {
-                // Kommentarer
-                const com = await fetch(`https://invidious.projectsegfau.lt/api/v1/comments/${videoId}?hmac=true`);
-                if (com.ok) {
-                    const c = await com.json();
-                    data.comments = (c.comments || []).slice(0, 5).map(c => ({
-                        author: c.author || 'Ukjent',
-                        text: c.content?.text || 'Ingen tekst'
-                    }));
-                }
-            } catch (e) {}
+            // STRATEGI 3: Piped
+            el.loadingStatus.textContent = 'Strategi 3/5: Piped API...';
+            const s3 = await strategy3(videoId);
+            if (s3.success && !s2.success) { // Bare bruk hvis strategi 2 feilet
+                result.title = s3.title || result.title;
+                result.channel = s3.channel || result.channel;
+                result.subscribers = s3.subscribers;
+                result.views = s3.views;
+                result.likes = s3.likes;
+                result.duration = s3.duration;
+                result.description = s3.description || result.description;
+            }
             
-            return data;
+            // STRATEGI 4: Proxy
+            el.loadingStatus.textContent = 'Strategi 4/5: Proxy API...';
+            const s4 = await strategy4(videoId);
+            if (s4.success && !s2.success && !s3.success) {
+                result.title = s4.title || result.title;
+                result.channel = s4.channel || result.channel;
+            }
+            
+            // STRATEGI 5: Kommentarer
+            el.loadingStatus.textContent = 'Strategi 5/5: Henter kommentarer...';
+            const s5 = await strategy5(videoId);
+            if (s5.success) {
+                result.comments = s5.comments;
+            }
+            
+            return result;
         }
         
-        // ========== SJEKK RICKROLL ==========
-        function checkRickroll(videoId, data) {
-            const id = videoId.toLowerCase();
+        // ========== OPPDATER UI ==========
+        function updateUI(data, videoId) {
+            el.videoTitle.textContent = data.title;
+            el.channelName.textContent = data.channel;
+            el.subscribers.textContent = data.subscribers ? `${formatNumber(data.subscribers)} abonnenter` : '?';
             
-            // Kjente Rickrolls
-            const rickrollIds = ['dqw4w9wgxcq', 'ohg5sjyrha0', 'ub82xb1c8os', 'dlzxrzfcyos'];
-            if (rickrollIds.includes(id)) {
-                return { isRickroll: true, confidence: 100, reason: '🚨 ORIGINAL RICKROLL!' };
-            }
+            el.views.innerHTML = `👁️ ${data.views ? formatNumber(data.views) : '?'}`;
+            el.likes.innerHTML = `❤️ ${data.likes ? formatNumber(data.likes) : '?'}`;
+            el.published.innerHTML = `📅 ${data.published || '?'}`;
+            el.duration.innerHTML = `⏱️ ${data.duration ? formatDuration(data.duration) : '?'}`;
             
-            const title = data.title.toLowerCase();
-            if (title.includes('rick astley') && title.includes('never gonna give you up')) {
-                return { isRickroll: true, confidence: 100, reason: '🎵 RICK ASTLEY SANG!' };
-            }
+            el.description.textContent = data.description || 'Ingen beskrivelse tilgjengelig';
             
-            if (title.includes('rickroll') || title.includes('rick roll')) {
-                return { isRickroll: true, confidence: 95, reason: '🎯 TITTEL INNEHOLDER RICKROLL' };
-            }
-            
-            if (title.includes('never gonna give you up')) {
-                return { isRickroll: true, confidence: 90, reason: '🎤 NEVER GONNA GIVE YOU UP' };
-            }
-            
-            const channel = data.channel.toLowerCase();
-            if (channel.includes('rick astley')) {
-                return { isRickroll: true, confidence: 95, reason: '📺 RICK ASTLEY KANAL' };
-            }
-            
-            return { isRickroll: false, confidence: 0, reason: '✅ INGEN RICKROLL FUNNET' };
-        }
-        
-        // ========== LEGG TIL HISTORIKK ==========
-        function addToHistory(videoId, title, isRickroll) {
-            history.unshift({
-                id: videoId,
-                title: title.length > 25 ? title.substring(0, 22) + '...' : title,
-                isRickroll: isRickroll,
-                time: new Date().toLocaleTimeString()
-            });
-            
-            if (history.length > 8) history.pop();
-            
-            if (history.length === 0) {
-                el.emptyHistory.style.display = 'block';
-                el.historyList.innerHTML = '';
-            } else {
-                el.emptyHistory.style.display = 'none';
-                el.historyList.innerHTML = history.map(h => `
-                    <div class="history-item ${h.isRickroll ? 'danger' : 'safe'}">
-                        <div style="display:flex; justify-content:space-between;">
-                            <span style="font-weight:bold;">${h.isRickroll ? '🚨' : '✅'}</span>
-                            <span style="color:#888;">${h.time}</span>
-                        </div>
-                        <div>${h.title}</div>
+            // Kommentarer
+            if (data.comments && data.comments.length > 0) {
+                el.comments.innerHTML = data.comments.map(c => `
+                    <div class="comment-item">
+                        <div class="comment-author">${c.author}</div>
+                        <div class="comment-text">${c.text}</div>
                     </div>
                 `).join('');
+            } else {
+                el.comments.innerHTML = '<div style="color:#666; padding:15px; text-align:center;">Ingen kommentarer funnet</div>';
             }
             
-            if (h.isRickroll) rickrolls++;
-            totalScans++;
+            // Rickroll-sjekk
+            const rickroll = checkRickroll(videoId, data.title, data.channel);
+            el.safetyBadge.textContent = rickroll.isRickroll ? `🚨 ${rickroll.reason}` : '✅ TRYGG VIDEO';
+            el.safetyBadge.className = `safety-badge ${rickroll.isRickroll ? 'danger' : 'safe'}`;
             
-            el.totalScans.textContent = totalScans;
-            el.rickrollCount.textContent = rickrolls;
-            el.lastScan.textContent = new Date().toLocaleTimeString();
+            el.youtubeLink.href = `https://youtu.be/${videoId}`;
         }
         
-        // ========== SCAN YOUTUBE ==========
-        async function scanYouTube() {
+        // ========== SCAN ==========
+        async function scanVideo() {
             const url = el.youtubeUrl.value.trim();
             if (!url) {
                 alert('Lim inn en YouTube-URL!');
@@ -689,64 +696,39 @@
                 return;
             }
             
-            el.youtubePreview.style.display = 'none';
+            // Vis loading
             el.loading.classList.remove('hidden');
+            el.strategyDisplay.classList.remove('hidden');
+            el.youtubePreview.style.display = 'none';
+            el.loadingMessage.textContent = 'Starter 5 strategier...';
             
             try {
-                const data = await getYouTubeData(videoId);
-                const result = checkRickroll(videoId, data);
+                // Last inn thumbnails (ALLTID!)
+                loadThumbnails(videoId);
                 
-                // LAST INN ULIKE BILDER
-                loadDifferentThumbnails(videoId);
+                // Hent alle data
+                const data = await fetchAllData(videoId);
                 
-                // Oppdater info
-                el.videoTitle.textContent = data.title;
-                el.channelName.textContent = data.channel;
-                el.subscribers.textContent = data.subscribers ? `${formatNumber(data.subscribers)} abonnenter` : '? abonnenter';
+                // Oppdater UI
+                updateUI(data, videoId);
                 
-                el.views.innerHTML = `👁️ ${data.views ? formatNumber(data.views) : '?'}`;
-                el.likes.innerHTML = `❤️ ${data.likes ? formatNumber(data.likes) : '?'}`;
-                el.published.innerHTML = `📅 ${data.published || '?'}`;
-                el.duration.innerHTML = `⏱️ ${data.duration || '?'}`;
-                
-                el.description.textContent = data.description || 'Ingen beskrivelse tilgjengelig';
-                
-                // Kommentarer
-                if (data.comments && data.comments.length > 0) {
-                    el.comments.innerHTML = data.comments.map(c => `
-                        <div class="comment-item">
-                            <div class="comment-author">${c.author}</div>
-                            <div class="comment-text">${c.text}</div>
-                        </div>
-                    `).join('');
-                } else {
-                    el.comments.innerHTML = '<div style="color:#666; padding:15px; text-align:center;">Ingen kommentarer funnet</div>';
-                }
-                
-                // Safety badge
-                el.safetyBadge.textContent = result.isRickroll ? `🚨 ${result.reason}` : '✅ TRYGG VIDEO';
-                el.safetyBadge.className = `safety-badge ${result.isRickroll ? 'danger' : 'safe'}`;
-                
-                // YouTube link
-                el.youtubeLink.href = `https://youtu.be/${videoId}`;
-                el.youtubeLink.textContent = `🎬 SE PÅ YOUTUBE - ${videoId}`;
-                
+                // Ferdig!
                 el.loading.classList.add('hidden');
+                el.strategyDisplay.classList.add('hidden');
                 el.youtubePreview.style.display = 'block';
-                
-                addToHistory(videoId, data.title, result.isRickroll);
                 
             } catch (error) {
                 console.error('Feil:', error);
-                alert('Kunne ikke hente YouTube-data. Prøv igjen.');
                 el.loading.classList.add('hidden');
+                el.strategyDisplay.classList.add('hidden');
+                alert('Kunne ikke hente video-data. Prøv igjen.');
             }
         }
         
         // ========== TEST ==========
-        function testRickroll() {
+        function testVideo() {
             el.youtubeUrl.value = 'https://youtu.be/dQw4w9WgXcQ';
-            scanYouTube();
+            scanVideo();
         }
         
         // ========== TØM ==========
@@ -756,12 +738,12 @@
         }
         
         // ========== EVENT LISTENERS ==========
-        el.scanBtn.addEventListener('click', scanYouTube);
-        el.testBtn.addEventListener('click', testRickroll);
+        el.scanBtn.addEventListener('click', scanVideo);
+        el.testBtn.addEventListener('click', testVideo);
         el.clearBtn.addEventListener('click', clearAll);
         
         el.youtubeUrl.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') scanYouTube();
+            if (e.key === 'Enter') scanVideo();
         });
     </script>
 </body>
