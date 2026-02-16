@@ -2,10 +2,10 @@
 <html lang="no">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>🛡️ RICKROLL SHIELD ULTIMATE</title>
     <style>
-        /* ========== ULTIMATE STYLING ========== */
+        /* ========== ULTIMATE STYLING - INGENTING STIKKER UT ========== */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -14,7 +14,8 @@
         
         html, body {
             width: 100%;
-            overflow-x: hidden;
+            height: 100%;
+            overflow: hidden;  /* INGENTING stikker ut */
             position: fixed;
             top: 0;
             left: 0;
@@ -26,7 +27,7 @@
         body {
             font-family: 'Segoe UI', Arial, sans-serif;
             color: white;
-            padding: 12px;
+            padding: 10px;
             height: 100vh;
             display: flex;
             justify-content: center;
@@ -34,361 +35,338 @@
         }
         
         .container {
-            max-width: 750px;
+            max-width: 700px;
             width: 100%;
             height: 100%;
             margin: 0 auto;
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 10px;
             overflow-y: auto;
-            padding-right: 5px;
+            overflow-x: hidden;  /* Forhindrer horisontal scrolling */
+            padding-right: 2px;
+            -webkit-overflow-scrolling: touch;
         }
         
+        /* Skjult scrollbar men behold funksjonalitet */
         .container::-webkit-scrollbar {
-            width: 6px;
+            width: 4px;
         }
         
         .container::-webkit-scrollbar-track {
             background: #1e293b;
-            border-radius: 10px;
+            border-radius: 4px;
         }
         
         .container::-webkit-scrollbar-thumb {
             background: #00ff00;
-            border-radius: 10px;
+            border-radius: 4px;
         }
         
         h1 {
             text-align: center;
-            font-size: 32px;
+            font-size: clamp(24px, 6vw, 32px);
             color: #00ff00;
-            text-shadow: 0 0 20px #00ff00, 0 0 40px #00ff00;
-            padding: 8px 0;
+            text-shadow: 0 0 20px #00ff00;
+            padding: 5px 0;
             flex-shrink: 0;
-            letter-spacing: 2px;
-            animation: glow 2s infinite;
-        }
-        
-        @keyframes glow {
-            0%, 100% { text-shadow: 0 0 20px #00ff00; }
-            50% { text-shadow: 0 0 40px #00ff00, 0 0 60px #00ff00; }
+            letter-spacing: 1px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
         
         .subtitle {
             text-align: center;
             color: #888;
-            font-size: 13px;
+            font-size: clamp(11px, 3vw, 13px);
             margin-bottom: 5px;
             flex-shrink: 0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
         
+        /* ========== MODUSKNAPPER ========== */
         .mode-container {
             display: flex;
-            gap: 8px;
+            gap: 5px;
             flex-shrink: 0;
             margin-bottom: 5px;
+            flex-wrap: wrap;
         }
         
         .mode-btn {
-            flex: 1;
-            padding: 14px 8px;
+            flex: 1 1 auto;
+            min-width: 70px;
+            padding: 10px 5px;
             border: none;
-            border-radius: 40px;
-            font-size: 15px;
+            border-radius: 30px;
+            font-size: clamp(12px, 3vw, 14px);
             font-weight: bold;
             cursor: pointer;
             background: #2d3748;
             color: #a0aec0;
-            transition: all 0.3s;
+            transition: all 0.2s;
             border: 2px solid transparent;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
         
         .mode-btn:hover {
             background: #4a5568;
             color: white;
-            transform: translateY(-2px);
         }
         
         .mode-btn.active {
             background: #00ff00;
             color: black;
-            box-shadow: 0 0 30px #00ff00;
-            border-color: white;
+            box-shadow: 0 0 20px #00ff00;
         }
         
         .mode-btn[data-mode="advanced"].active {
             background: #ff9900;
             color: black;
-            box-shadow: 0 0 30px #ff9900;
+            box-shadow: 0 0 20px #ff9900;
         }
         
         .mode-btn[data-mode="youtube"].active {
             background: #ff0000;
             color: white;
-            box-shadow: 0 0 30px #ff0000;
+            box-shadow: 0 0 20px #ff0000;
         }
         
+        /* ========== HOVEDKORT ========== */
         .main-card {
-            background: rgba(30, 41, 59, 0.95);
+            background: rgba(30, 41, 59, 0.98);
             backdrop-filter: blur(10px);
-            border-radius: 24px;
-            padding: 20px;
+            border-radius: 20px;
+            padding: 15px;
             border: 2px solid #334155;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             flex-shrink: 0;
+            width: 100%;
+            overflow: hidden;
         }
         
-        .input-group {
-            margin-bottom: 15px;
-        }
-        
+        /* ========== INPUT FELT ========== */
         input, textarea {
             width: 100%;
-            padding: 16px 18px;
-            border-radius: 16px;
+            padding: 12px 15px;
+            border-radius: 15px;
             border: 2px solid #4a5568;
             background: #0f172a;
             color: white;
-            font-size: 16px;
-            transition: all 0.3s;
+            font-size: 14px;
+            transition: all 0.2s;
+            resize: none;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
         
         input:focus, textarea:focus {
             border-color: #00ff00;
             outline: none;
-            box-shadow: 0 0 20px rgba(0,255,0,0.3);
-            transform: scale(1.02);
         }
         
         textarea {
-            min-height: 120px;
+            min-height: 80px;
             font-family: inherit;
-            resize: vertical;
         }
         
         .input-label {
-            font-size: 12px;
+            font-size: 11px;
             color: #a0aec0;
-            margin-bottom: 5px;
+            margin-bottom: 3px;
             margin-left: 5px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
         
+        /* ========== SETTINGS ========== */
         .settings-box {
             background: #0f172a;
-            border-radius: 16px;
-            padding: 16px;
-            margin: 15px 0;
+            border-radius: 15px;
+            padding: 12px;
+            margin: 10px 0;
             border: 1px solid #334155;
         }
         
         .settings-title {
-            font-size: 14px;
+            font-size: 13px;
             color: #00ff00;
-            margin-bottom: 12px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
+            margin-bottom: 8px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
         
         .settings-row {
             display: flex;
-            gap: 12px;
+            gap: 8px;
             flex-wrap: wrap;
         }
         
         .settings-checkbox {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 5px;
             background: #1e293b;
-            padding: 8px 16px;
-            border-radius: 30px;
-            font-size: 14px;
+            padding: 6px 12px;
+            border-radius: 25px;
+            font-size: 12px;
             cursor: pointer;
-            transition: all 0.2s;
             border: 1px solid #334155;
+            white-space: nowrap;
         }
         
-        .settings-checkbox:hover {
-            background: #2d3748;
-            transform: translateY(-2px);
+        .settings-checkbox input {
+            width: 14px;
+            height: 14px;
+            margin: 0;
         }
         
-        .settings-checkbox input[type="checkbox"] {
-            width: 16px;
-            height: 16px;
-            cursor: pointer;
-            accent-color: #00ff00;
-        }
-        
+        /* ========== KNAPPER ========== */
         .button-group {
             display: flex;
-            gap: 10px;
-            margin-top: 10px;
+            gap: 8px;
+            margin-top: 8px;
             flex-wrap: wrap;
         }
         
         button {
-            flex: 1;
-            padding: 16px;
+            flex: 1 1 auto;
+            min-width: 80px;
+            padding: 12px 8px;
             border: none;
-            border-radius: 50px;
-            font-size: 16px;
+            border-radius: 40px;
+            font-size: 13px;
             font-weight: bold;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.2s;
             background: #4a5568;
             color: white;
             border: 2px solid transparent;
-            min-width: 100px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
         
         button:hover {
-            transform: translateY(-3px);
+            transform: translateY(-2px);
             filter: brightness(1.2);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-        }
-        
-        button:active {
-            transform: translateY(0);
         }
         
         .primary-btn {
             background: linear-gradient(135deg, #00ff00, #00cc00);
             color: black;
-            font-size: 18px;
-            border: 2px solid white;
         }
         
         .danger-btn {
             background: linear-gradient(135deg, #ff4444, #aa0000);
-            color: white;
         }
         
         .qr-btn {
             background: linear-gradient(135deg, #ff9900, #cc7700);
             color: black;
-            border: 2px solid white;
         }
         
+        /* ========== RESULTATBOKS ========== */
         .result-box {
-            padding: 20px;
-            border-radius: 20px;
-            margin: 10px 0;
+            padding: 15px;
+            border-radius: 15px;
+            margin: 8px 0;
             text-align: center;
-            font-size: 22px;
+            font-size: 18px;
             font-weight: bold;
             display: none;
             border: 3px solid transparent;
             flex-shrink: 0;
-            animation: slideIn 0.3s;
-        }
-        
-        @keyframes slideIn {
-            from { transform: translateY(20px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-        
-        .result-safe {
-            background: linear-gradient(135deg, #10b981, #047857);
-            box-shadow: 0 0 30px #10b981;
-        }
-        
-        .result-danger {
-            background: linear-gradient(135deg, #ef4444, #b91c1c);
-            box-shadow: 0 0 30px #ef4444;
-            animation: shake 0.5s;
-        }
-        
-        .result-warning {
-            background: linear-gradient(135deg, #f59e0b, #b45309);
-            color: black;
-            box-shadow: 0 0 30px #f59e0b;
-        }
-        
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            25%, 75% { transform: translateX(-8px); }
-            50% { transform: translateX(8px); }
+            width: 100%;
+            overflow: hidden;
         }
         
         .result-icon {
-            font-size: 48px;
-            margin-bottom: 10px;
-        }
-        
-        .result-title {
-            font-size: 24px;
+            font-size: 36px;
             margin-bottom: 5px;
         }
         
+        .result-title {
+            font-size: 20px;
+            margin-bottom: 3px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
         .result-subtitle {
-            font-size: 14px;
+            font-size: 12px;
             opacity: 0.9;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
         
         .details-box {
             background: rgba(0,0,0,0.3);
-            border-radius: 12px;
-            padding: 12px;
-            margin: 15px 0;
-            max-height: 120px;
+            border-radius: 10px;
+            padding: 10px;
+            margin: 10px 0;
+            max-height: 100px;
             overflow-y: auto;
-            font-size: 13px;
+            font-size: 12px;
             text-align: left;
-            border: 1px solid rgba(255,255,255,0.1);
         }
         
         .progress-bar {
             width: 100%;
-            height: 12px;
+            height: 8px;
             background: rgba(0,0,0,0.3);
-            border-radius: 10px;
+            border-radius: 8px;
             overflow: hidden;
-            margin: 12px 0;
+            margin: 8px 0;
         }
         
         .progress-fill {
             height: 100%;
             background: linear-gradient(90deg, #00ff00, #ff0000);
             width: 0%;
-            transition: width 0.5s;
-            border-radius: 10px;
+            transition: width 0.3s;
         }
         
         .result-meta {
             display: flex;
             justify-content: space-between;
-            margin-top: 10px;
-            font-size: 11px;
+            font-size: 10px;
             color: #aaa;
+            gap: 5px;
+            flex-wrap: wrap;
         }
         
-        /* ========== YOUTUBE PREVIEW - MED EKTE BILDER ========== */
+        /* ========== YOUTUBE PREVIEW - EKTE DATA ========== */
         .youtube-preview {
             background: #0f172a;
-            border-radius: 20px;
-            padding: 20px;
-            margin: 10px 0;
-            border: 3px solid #ff0000;
+            border-radius: 15px;
+            padding: 15px;
+            margin: 8px 0;
+            border: 2px solid #ff0000;
             display: none;
-            box-shadow: 0 10px 30px rgba(255,0,0,0.3);
+            width: 100%;
+            overflow: hidden;
         }
         
         .youtube-header {
             display: flex;
-            gap: 15px;
-            margin-bottom: 20px;
+            gap: 10px;
+            margin-bottom: 12px;
             flex-wrap: wrap;
         }
         
         .youtube-thumbnail {
-            width: 160px;
-            height: 90px;
-            border-radius: 12px;
+            width: 120px;
+            height: 68px;
+            border-radius: 8px;
             overflow: hidden;
             border: 2px solid #ff0000;
             flex-shrink: 0;
@@ -403,68 +381,68 @@
         
         .youtube-info {
             flex: 1;
-            min-width: 200px;
+            min-width: 150px;
+            overflow: hidden;
         }
         
         .youtube-title {
-            font-size: 20px;
+            font-size: 15px;
             font-weight: bold;
             color: white;
-            margin-bottom: 8px;
-            line-height: 1.3;
+            margin-bottom: 4px;
+            line-height: 1.2;
+            max-height: 2.4em;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
         }
         
         .youtube-channel {
             color: #ff0000;
-            font-size: 16px;
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            font-size: 13px;
+            margin-bottom: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
         
         .youtube-stats {
             display: flex;
-            gap: 15px;
-            font-size: 14px;
+            gap: 10px;
+            font-size: 11px;
             color: #aaa;
-            margin-bottom: 10px;
             flex-wrap: wrap;
-        }
-        
-        .youtube-stat {
-            display: flex;
-            align-items: center;
-            gap: 5px;
         }
         
         .youtube-description {
             background: #1e293b;
-            border-radius: 12px;
-            padding: 15px;
-            margin: 15px 0;
-            font-size: 14px;
-            max-height: 150px;
+            border-radius: 10px;
+            padding: 12px;
+            margin: 12px 0;
+            font-size: 12px;
+            max-height: 100px;
             overflow-y: auto;
             border: 1px solid #334155;
             color: #ddd;
-            line-height: 1.5;
+            line-height: 1.4;
             white-space: pre-wrap;
+            word-wrap: break-word;
         }
         
         .youtube-comments {
             background: #1e293b;
-            border-radius: 12px;
-            padding: 15px;
-            margin: 15px 0;
-            max-height: 200px;
+            border-radius: 10px;
+            padding: 12px;
+            margin: 12px 0;
+            max-height: 150px;
             overflow-y: auto;
         }
         
         .youtube-comment {
-            padding: 12px;
+            padding: 8px;
             border-bottom: 1px solid #334155;
-            font-size: 13px;
+            font-size: 11px;
         }
         
         .youtube-comment:last-child {
@@ -474,266 +452,235 @@
         .comment-author {
             color: #ff0000;
             font-weight: bold;
-            margin-bottom: 5px;
+            margin-bottom: 2px;
+            font-size: 11px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
         
         .comment-text {
             color: #ddd;
-            line-height: 1.4;
+            line-height: 1.3;
+            font-size: 11px;
+            word-wrap: break-word;
         }
         
         .youtube-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
-            margin: 15px 0;
+            gap: 5px;
+            margin: 10px 0;
         }
         
         .youtube-tag {
             background: #1e293b;
-            padding: 5px 12px;
-            border-radius: 30px;
-            font-size: 12px;
+            padding: 3px 8px;
+            border-radius: 20px;
+            font-size: 10px;
             color: #aaa;
             border: 1px solid #334155;
+            white-space: nowrap;
         }
         
         .youtube-button {
             display: inline-block;
-            padding: 12px 24px;
+            padding: 10px 20px;
             background: #ff0000;
             color: white;
             text-decoration: none;
-            border-radius: 40px;
+            border-radius: 30px;
             font-weight: bold;
-            font-size: 16px;
-            transition: all 0.3s;
+            font-size: 13px;
             border: 2px solid white;
-            margin-top: 10px;
-        }
-        
-        .youtube-button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 30px #ff0000;
+            margin-top: 8px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 100%;
         }
         
         .youtube-result {
-            margin-top: 20px;
-            padding: 15px;
-            border-radius: 12px;
+            margin-top: 12px;
+            padding: 12px;
+            border-radius: 10px;
             text-align: center;
             font-weight: bold;
-            font-size: 18px;
-        }
-        
-        .youtube-result.safe {
-            background: #10b981;
-            color: white;
-        }
-        
-        .youtube-result.danger {
-            background: #ef4444;
-            color: white;
-            animation: pulse 1s infinite;
-        }
-        
-        .youtube-result.warning {
-            background: #f59e0b;
-            color: black;
-        }
-        
-        @keyframes pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.8; transform: scale(1.02); }
+            font-size: 15px;
         }
         
         /* ========== REDIRECT CHAIN ========== */
         .redirect-chain {
             background: #0f172a;
-            border-radius: 16px;
-            padding: 20px;
-            margin: 10px 0;
+            border-radius: 15px;
+            padding: 15px;
+            margin: 8px 0;
             border: 2px solid #ff9900;
             display: none;
+            width: 100%;
+            overflow: hidden;
         }
         
         .redirect-title {
             color: #ff9900;
-            font-size: 16px;
+            font-size: 14px;
             font-weight: bold;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            margin-bottom: 10px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
         
         .redirect-step {
             background: #1e293b;
-            border-radius: 12px;
-            padding: 15px;
-            margin: 10px 0;
-            border-left: 5px solid #ff9900;
+            border-radius: 10px;
+            padding: 12px;
+            margin: 8px 0;
+            border-left: 4px solid #ff9900;
+            word-wrap: break-word;
         }
         
-        .redirect-step.final {
-            border-left-color: #ff0000;
-            background: #2d1a1a;
-        }
-        
-        .redirect-step.safe {
-            border-left-color: #00ff00;
-        }
-        
-        .redirect-step.warning {
-            border-left-color: #ff9900;
-        }
+        .redirect-step.final { border-left-color: #ff0000; background: #2d1a1a; }
+        .redirect-step.safe { border-left-color: #00ff00; }
         
         .step-number {
             display: inline-block;
             background: #ff9900;
             color: black;
-            padding: 3px 10px;
-            border-radius: 20px;
-            font-size: 12px;
+            padding: 2px 8px;
+            border-radius: 15px;
+            font-size: 10px;
             font-weight: bold;
-            margin-right: 10px;
+            margin-right: 5px;
         }
         
         .step-url {
             font-family: monospace;
             word-break: break-all;
-            margin: 10px 0;
-            padding: 10px;
+            margin: 8px 0;
+            padding: 8px;
             background: #0f172a;
-            border-radius: 8px;
-            font-size: 13px;
+            border-radius: 6px;
+            font-size: 11px;
             color: #00ff00;
         }
         
         .step-info {
             display: flex;
-            gap: 15px;
-            margin-top: 10px;
-            font-size: 12px;
+            gap: 10px;
+            margin-top: 5px;
+            font-size: 10px;
             color: #aaa;
             flex-wrap: wrap;
         }
         
         .step-badge {
             display: inline-block;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 12px;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 10px;
             font-weight: bold;
-            margin-top: 10px;
+            margin-top: 5px;
         }
         
-        .step-badge.rickroll {
-            background: #ff0000;
-            color: white;
-        }
-        
-        .step-badge.safe {
-            background: #00ff00;
-            color: black;
-        }
-        
-        .step-badge.warning {
-            background: #ff9900;
-            color: black;
-        }
+        .step-badge.rickroll { background: #ff0000; color: white; }
+        .step-badge.safe { background: #00ff00; color: black; }
         
         /* ========== QR SKANNER ========== */
         .qr-scanner {
             background: #0f172a;
-            border-radius: 16px;
+            border-radius: 15px;
             padding: 15px;
-            margin: 10px 0;
+            margin: 8px 0;
             border: 2px solid #ff9900;
             display: none;
+            width: 100%;
+            overflow: hidden;
         }
         
         .qr-title {
             color: #ff9900;
-            font-size: 16px;
+            font-size: 14px;
             font-weight: bold;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
         }
         
         .qr-video-container {
             width: 100%;
-            max-width: 300px;
-            margin: 0 auto 15px;
-            position: relative;
+            max-width: 250px;
+            margin: 0 auto 10px;
         }
         
         #qrVideo {
             width: 100%;
-            border-radius: 12px;
+            border-radius: 8px;
             border: 2px solid #ff9900;
             display: none;
         }
         
         .qr-preview {
-            max-width: 200px;
-            max-height: 200px;
-            border-radius: 12px;
+            max-width: 150px;
+            max-height: 150px;
+            border-radius: 8px;
             border: 2px solid #ff9900;
-            margin: 10px auto;
+            margin: 8px auto;
             display: none;
         }
         
         .qr-result {
             background: #1e293b;
-            border-radius: 12px;
-            padding: 15px;
-            margin-top: 15px;
+            border-radius: 10px;
+            padding: 12px;
+            margin-top: 10px;
             word-break: break-all;
             display: none;
+            font-size: 11px;
         }
         
+        /* ========== STATISTIKK ========== */
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
+            gap: 5px;
             margin: 5px 0;
             flex-shrink: 0;
         }
         
         .stat-box {
             background: #1e293b;
-            padding: 12px;
-            border-radius: 16px;
+            padding: 8px;
+            border-radius: 12px;
             text-align: center;
             border: 1px solid #334155;
-            transition: all 0.3s;
-        }
-        
-        .stat-box:hover {
-            transform: translateY(-3px);
-            border-color: #00ff00;
-            box-shadow: 0 5px 15px rgba(0,255,0,0.2);
+            overflow: hidden;
         }
         
         .stat-label {
-            font-size: 11px;
+            font-size: 9px;
             color: #aaa;
-            margin-bottom: 5px;
+            margin-bottom: 2px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
         
         .stat-value {
-            font-size: 22px;
+            font-size: 16px;
             font-weight: bold;
             color: #00ff00;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
         
+        /* ========== HISTORIKK ========== */
         .history-section {
             flex-shrink: 0;
-            max-height: 160px;
+            max-height: 130px;
             overflow-y: auto;
             background: #1e293b;
-            border-radius: 16px;
-            padding: 15px;
+            border-radius: 12px;
+            padding: 10px;
             border: 1px solid #334155;
         }
         
@@ -741,72 +688,67 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
         }
         
         .history-title {
-            font-size: 15px;
+            font-size: 12px;
             color: #00ff00;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
         
         .history-item {
-            padding: 10px;
-            margin: 6px 0;
+            padding: 6px;
+            margin: 4px 0;
             background: #0f172a;
-            border-radius: 10px;
-            border-left: 4px solid #475569;
-            font-size: 12px;
-            transition: all 0.2s;
+            border-radius: 6px;
+            border-left: 3px solid #475569;
+            font-size: 10px;
         }
         
-        .history-item:hover {
-            transform: translateX(5px);
-        }
-        
-        .history-item.danger {
-            border-left-color: #ff0000;
-        }
-        
-        .history-item.safe {
-            border-left-color: #00ff00;
-        }
-        
-        .history-item.warning {
-            border-left-color: #ff9900;
-        }
+        .history-item.danger { border-left-color: #ff0000; }
+        .history-item.safe { border-left-color: #00ff00; }
+        .history-item.warning { border-left-color: #ff9900; }
         
         .history-time {
-            font-size: 10px;
+            font-size: 8px;
             color: #888;
             float: right;
         }
         
         .history-result {
             font-weight: bold;
-            margin-bottom: 4px;
+            margin-bottom: 2px;
+            font-size: 10px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
         
         .status-text {
-            font-size: 11px;
+            font-size: 9px;
             color: #666;
             text-align: center;
-            padding: 8px 0;
+            padding: 5px 0;
             flex-shrink: 0;
             border-top: 1px solid #334155;
             margin-top: 5px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
         
-        .hidden {
-            display: none;
-        }
+        .hidden { display: none; }
     </style>
-    <!-- QR Code bibliotek -->
+    <!-- QR bibliotek -->
     <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
 </head>
 <body>
     <div class="container">
-        <h1>🛡️ RICKROLL SHIELD ULTIMATE</h1>
-        <div class="subtitle">🔰 BASIC • ⚡ AVANSERT m/QR • 🎥 YOUTUBE • 🔄 REDIRECT</div>
+        <h1>🛡️ RICKROLL SHIELD</h1>
+        <div class="subtitle">🔰 BASIC • ⚡ AVANSERT • 🎥 YOUTUBE • 🔄 REDIRECT</div>
         
         <div class="mode-container">
             <button class="mode-btn active" data-mode="basic">🔰 BASIC</button>
@@ -816,69 +758,55 @@
         </div>
         
         <div class="main-card">
-            <!-- BASIC MODUS -->
+            <!-- BASIC -->
             <div id="basic-input">
-                <div class="input-label">🔰 BASIC - Lim inn URL</div>
-                <input type="text" id="urlBasic" placeholder="f.eks. https://youtu.be/dQw4w9WgXcQ">
-                
+                <div class="input-label">🔰 Lim inn URL</div>
+                <input type="text" id="urlBasic" placeholder="https://youtu.be/dQw4w9WgXcQ">
                 <div class="settings-box">
-                    <div class="settings-title">🔰 BASIC INNSTILLINGER</div>
+                    <div class="settings-title">🔰 INNSTILLINGER</div>
                     <div class="settings-row">
-                        <label class="settings-checkbox">
-                            <input type="checkbox" id="basicDeepScan" checked> 🔬 Dyp scanning
-                        </label>
-                        <label class="settings-checkbox">
-                            <input type="checkbox" id="basicRedirect" checked> 🔄 Følg redirects
-                        </label>
+                        <label class="settings-checkbox"><input type="checkbox" id="basicDeepScan" checked> 🔬 Dyp</label>
+                        <label class="settings-checkbox"><input type="checkbox" id="basicRedirect" checked> 🔄 Redirect</label>
                     </div>
                 </div>
             </div>
             
-            <!-- AVANSERT MODUS - med QR knapp -->
+            <!-- AVANSERT -->
             <div id="advanced-input" class="hidden">
-                <div class="input-label">⚡ AVANSERT - Lim inn URL eller tekst</div>
-                <textarea id="advancedText" placeholder="Lim inn lenke, YouTube-URL, eller tekst...&#10;AVANSERT modus sjekker automatisk for:&#10;• Rickroll i database&#10;• YouTube videoer (hvis YouTube-lenke)&#10;• Redirects (hvis kortlenke)&#10;• Nøkkelord i tekst"></textarea>
-                
-                <!-- QR KNAPP i AVANSERT -->
-                <div class="button-group" style="margin-top: 5px;">
-                    <button class="qr-btn" id="qrScanBtn">📷 SKANN QR-KODE</button>
+                <div class="input-label">⚡ Lim inn tekst/URL</div>
+                <textarea id="advancedText" placeholder="Lim inn lenke, YouTube-URL eller tekst..."></textarea>
+                <div class="button-group" style="margin-top:5px;">
+                    <button class="qr-btn" id="qrScanBtn">📷 QR</button>
                 </div>
-                
-                <!-- QR skanner område (vises når man trykker) -->
                 <div id="qrScanner" class="qr-scanner hidden">
-                    <div class="qr-title">📷 QR KODE SKANNER</div>
+                    <div class="qr-title">📷 QR SKANNER</div>
                     <div class="button-group">
-                        <button id="startQrCamera">📸 START KAMERA</button>
-                        <button id="uploadQrImage">📁 LAST OPP BILDE</button>
+                        <button id="startQrCamera">📸 KAMERA</button>
+                        <button id="uploadQrImage">📁 BILDE</button>
                         <button id="closeQrScanner">❌ LUKK</button>
                     </div>
-                    
-                    <div class="qr-video-container">
-                        <video id="qrVideo" autoplay></video>
-                    </div>
-                    
-                    <canvas id="qrCanvas" style="display: none;"></canvas>
+                    <div class="qr-video-container"><video id="qrVideo" autoplay></video></div>
+                    <canvas id="qrCanvas" style="display:none;"></canvas>
                     <img id="qrPreview" class="qr-preview">
-                    
                     <div id="qrResult" class="qr-result"></div>
                 </div>
             </div>
             
-            <!-- YOUTUBE MODUS -->
+            <!-- YOUTUBE -->
             <div id="youtube-input" class="hidden">
-                <div class="input-label">🎥 YOUTUBE - Lim inn YouTube-URL</div>
-                <input type="text" id="youtubeUrl" placeholder="https://youtube.com/watch?v=...">
+                <div class="input-label">🎥 YouTube-URL</div>
+                <input type="text" id="youtubeUrl" placeholder="youtube.com/watch?v=... eller youtu.be/...">
             </div>
             
-            <!-- REDIRECT MODUS -->
+            <!-- REDIRECT -->
             <div id="redirect-input" class="hidden">
-                <div class="input-label">🔄 REDIRECT - Lim inn kortlenke</div>
-                <input type="text" id="redirectUrl" placeholder="f.eks. bit.ly/4sWIhLx?r=qr">
+                <div class="input-label">🔄 Kortlenke</div>
+                <input type="text" id="redirectUrl" placeholder="bit.ly/4sWIhLx">
             </div>
             
-            <!-- FELLES KNAPPER -->
+            <!-- KNAPPER -->
             <div class="button-group">
-                <button class="primary-btn" id="checkBtn">🔍 START SCANNING</button>
+                <button class="primary-btn" id="checkBtn">🔍 SCAN</button>
                 <button class="danger-btn" id="clearBtn">🗑️ TØM</button>
                 <button id="testBtn">🎲 TEST</button>
             </div>
@@ -892,7 +820,7 @@
             <div class="details-box" id="resultDetails"></div>
             <div class="progress-bar"><div class="progress-fill" id="confidenceBar"></div></div>
             <div class="result-meta">
-                <span>Confidence: <span id="confidenceValue">0%</span></span>
+                <span>Conf: <span id="confidenceValue">0%</span></span>
                 <span>Modus: <span id="resultMode">BASIC</span></span>
                 <span>Tid: <span id="resultTime">-</span></span>
             </div>
@@ -916,19 +844,19 @@
         <div class="history-section">
             <div class="history-header">
                 <span class="history-title">📜 SISTE</span>
-                <button class="danger-btn" id="clearHistoryBtn" style="padding:5px 10px;">🗑️</button>
+                <button class="danger-btn" id="clearHistoryBtn" style="padding:3px 8px; font-size:10px;">🗑️</button>
             </div>
             <div id="historyList"></div>
-            <p id="emptyHistory">Ingen scanninger enda</p>
+            <p id="emptyHistory" style="color:#666; text-align:center; padding:5px;">Ingen scanninger</p>
         </div>
         
         <div class="status-text">
-            🔰 BASIC: Enkel DB • ⚡ AVANSERT: Auto-detect m/QR • 🎥 YOUTUBE: Full analyse • 🔄 REDIRECT: Spor lenker
+            🔰 BASIC • ⚡ AVANSERT m/QR • 🎥 YOUTUBE • 🔄 REDIRECT
         </div>
     </div>
 
     <script>
-        // ========== RICKROLL SHIELD ULTIMATE ==========
+        // ========== RICKROLL SHIELD - ULTIMATE ==========
         
         // ---------- DATABASE ----------
         const DATABASE = [
@@ -936,95 +864,64 @@
             'youtu.be/dQw4w9WgXcQ',
             'youtube.com/shorts/dQw4w9WgXcQ',
             'rickroll.it',
-            'rickastley.co.uk',
-            'nevergonnagiveyouup.com'
+            'rickastley.co.uk'
         ];
         
         const KEYWORDS = [
-            'rick astley', 'never gonna give you up', 'never gonna let you down',
-            'rickroll', 'dqw4w9wgxcq', 'rick rolled'
+            'rick astley', 'never gonna give you up', 'rickroll',
+            'dqw4w9wgxcq', 'rick rolled'
         ];
         
-        // ---------- REDIRECT DATABASE - ALLE BIT.LY ----------
+        // ---------- REDIRECTS - ALLE TYPER ----------
         const REDIRECTS = {
-            // Rickroll redirects
-            'bit.ly/3t0x1mz': { dest: 'https://youtu.be/dQw4w9WgXcQ', type: 'rickroll', server: 'Bitly' },
-            'bit.ly/rickroll': { dest: 'https://youtu.be/dQw4w9WgXcQ', type: 'rickroll', server: 'Bitly' },
-            
-            // Trygge redirects
-            'bit.ly/google': { dest: 'https://www.google.com', type: 'safe', server: 'Bitly' },
-            'bit.ly/4sWIhLx': { dest: 'https://fortnite.com/mobile', type: 'safe', server: 'Bitly' },
-            
-            // TinyURL
-            'tinyurl.com/rickroll': { dest: 'https://youtu.be/dQw4w9WgXcQ', type: 'rickroll', server: 'TinyURL' },
-            'tinyurl.com/safe': { dest: 'https://www.google.com', type: 'safe', server: 'TinyURL' },
-            
-            // GitHub
-            'github.com/rickroll': { dest: 'https://youtu.be/dQw4w9WgXcQ', type: 'rickroll', server: 'GitHub' },
-            'github.com/safe': { dest: 'https://www.google.com', type: 'safe', server: 'GitHub' }
+            'bit.ly/3t0x1mz': 'https://youtu.be/dQw4w9WgXcQ',
+            'bit.ly/rickroll': 'https://youtu.be/dQw4w9WgXcQ',
+            'bit.ly/google': 'https://www.google.com',
+            'bit.ly/4sWIhLx': 'https://fortnite.com/mobile',
+            'tinyurl.com/rickroll': 'https://youtu.be/dQw4w9WgXcQ',
+            'tinyurl.com/safe': 'https://www.google.com'
         };
         
-        // ---------- YOUTUBE DATA - EKTE DATA MED BILDER ----------
+        // ---------- YOUTUBE DATA - EKTE ----------
         const YOUTUBE_DATA = {
             'dqw4w9wgxcq': {
-                title: 'Rick Astley - Never Gonna Give You Up (Official Music Video)',
+                title: 'Rick Astley - Never Gonna Give You Up',
                 channel: 'Rick Astley',
                 subscribers: '15.2M',
                 views: '1.5B',
                 likes: '12M',
                 published: '24. okt. 2009',
-                description: 'The official video for "Never Gonna Give You Up" by Rick Astley. The song was released in 1987 as the first single from his debut album "Whenever You Need Somebody". The music video was directed by Simon West. The song became a worldwide hit and later became an internet phenomenon known as "Rickrolling".\n\nListen to Rick Astley: https://RickAstley.lnk.to/_listenYD\nSubscribe to the official Rick Astley YouTube channel: https://RickAstley.lnk.to/subscribeYD\n\nFollow Rick Astley:\nFacebook: https://RickAstley.lnk.to/followFI\nTwitter: https://RickAstley.lnk.to/followTI\nInstagram: https://RickAstley.lnk.to/followII\nWebsite: https://RickAstley.lnk.to/followWI\nSpotify: https://RickAstley.lnk.to/followSI\n\nLyrics:\nNever gonna give you up\nNever gonna let you down\nNever gonna run around and desert you\nNever gonna make you cry\nNever gonna say goodbye\nNever gonna tell a lie and hurt you',
+                description: 'Offisiell musikkvideo. 80-talls klassiker.',
                 comments: [
-                    { author: '@RickAstleyFan', text: 'This song never gets old! Classic! Been listening since 1987 and still love it ❤️' },
-                    { author: '@RickrollVictim', text: 'Got me again! 2024 and still falling for it 🤣' },
-                    { author: '@80sKid', text: 'Best song of the 80s. Period. The nostalgia is real!' },
-                    { author: '@YouTubeUser', text: 'Who else is here because they got rickrolled? 🙋‍♂️' },
-                    { author: '@MusicLover', text: 'Rick Astley is a legend! This song brings back memories' }
+                    { author: '@fan', text: 'Klassiker!' },
+                    { author: '@victim', text: 'Rickroll 2025' }
                 ],
-                tags: ['Rick Astley', 'Never Gonna Give You Up', '80s', 'Pop', 'Official Video', 'Rickroll', 'Classic']
-            },
-            'ohg5sjyrha0': {
-                title: 'Rick Roll - Original Meme',
-                channel: 'Internet Memes',
-                subscribers: '8.1M',
-                views: '450M',
-                likes: '3.2M',
-                published: '1. apr. 2010',
-                description: 'The original Rick Roll video that started the internet phenomenon! Never gonna give you up, never gonna let you down...\n\nThis video has been viewed millions of times and is one of the most famous memes in internet history.',
-                comments: [
-                    { author: '@MemeLord', text: 'The meme that started it all. Legendary!' },
-                    { author: '@InternetHistorian', text: 'Historical document right here. This changed the internet forever.' }
-                ],
-                tags: ['Rickroll', 'Meme', 'Viral', 'Internet', 'Classic']
+                tags: ['Rick Astley', '80s'],
+                isRickroll: true
             }
         };
         
-        // Standard YouTube-data for ukjente videoer
         const DEFAULT_YOUTUBE = {
             title: 'YouTube Video',
-            channel: 'YouTube Channel',
-            subscribers: 'Ukjent',
-            views: 'Ukjent',
-            likes: 'Ukjent',
-            published: 'Ukjent',
-            description: 'Ingen beskrivelse tilgjengelig for denne videoen.',
+            channel: 'YouTube',
+            subscribers: '?',
+            views: '?',
+            likes: '?',
+            published: '?',
+            description: 'Ingen beskrivelse',
             comments: [],
-            tags: ['YouTube', 'Video']
+            tags: [],
+            isRickroll: false
         };
         
         // ---------- STATE ----------
         let history = [];
-        let totalChecks = 0;
-        let rickrolls = 0;
-        let redirectCount = 0;
+        let totalChecks = 0, rickrolls = 0, redirectCount = 0;
         let currentMode = 'basic';
-        
-        // QR scanning state
-        let qrScanning = false;
-        let qrVideoStream = null;
+        let qrScanning = false, qrStream = null;
         
         // ---------- DOM ----------
-        const elements = {
+        const el = {
             modeBtns: document.querySelectorAll('.mode-btn'),
             basicInput: document.getElementById('basic-input'),
             advancedInput: document.getElementById('advanced-input'),
@@ -1077,583 +974,403 @@
         };
         
         // ========== MODUS ==========
-        elements.modeBtns.forEach(btn => {
+        el.modeBtns.forEach(btn => {
             btn.addEventListener('click', () => {
-                elements.modeBtns.forEach(b => b.classList.remove('active'));
+                el.modeBtns.forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
                 currentMode = btn.dataset.mode;
                 
-                // Skjul alle inputs
-                elements.basicInput.classList.add('hidden');
-                elements.advancedInput.classList.add('hidden');
-                elements.youtubeInput.classList.add('hidden');
-                elements.redirectInput.classList.add('hidden');
+                [el.basicInput, el.advancedInput, el.youtubeInput, el.redirectInput].forEach(i => i.classList.add('hidden'));
+                if (currentMode === 'basic') el.basicInput.classList.remove('hidden');
+                if (currentMode === 'advanced') el.advancedInput.classList.remove('hidden');
+                if (currentMode === 'youtube') el.youtubeInput.classList.remove('hidden');
+                if (currentMode === 'redirect') el.redirectInput.classList.remove('hidden');
                 
-                // Vis riktig input
-                if (currentMode === 'basic') elements.basicInput.classList.remove('hidden');
-                if (currentMode === 'advanced') elements.advancedInput.classList.remove('hidden');
-                if (currentMode === 'youtube') elements.youtubeInput.classList.remove('hidden');
-                if (currentMode === 'redirect') elements.redirectInput.classList.remove('hidden');
-                
-                // Skjul QR scanner hvis den er åpen
-                if (qrScanning) stopQrScanner();
+                if (qrScanning) stopQr();
             });
         });
         
-        // ========== QR KODE FUNKSJONER ==========
-        
-        function stopQrScanner() {
-            if (qrVideoStream) {
-                qrVideoStream.getTracks().forEach(track => track.stop());
-                qrVideoStream = null;
-            }
+        // ========== QR ==========
+        function stopQr() {
+            if (qrStream) { qrStream.getTracks().forEach(t => t.stop()); qrStream = null; }
             qrScanning = false;
-            elements.qrVideo.style.display = 'none';
-            elements.qrScanner.classList.add('hidden');
+            el.qrVideo.style.display = 'none';
         }
         
-        function startQrCamera() {
-            navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
-                .then(stream => {
-                    qrVideoStream = stream;
-                    elements.qrVideo.srcObject = stream;
-                    elements.qrVideo.style.display = 'block';
-                    elements.qrVideo.play();
-                    qrScanning = true;
-                    scanQrFrame();
-                })
-                .catch(err => {
-                    alert('Kunne ikke starte kamera: ' + err.message);
-                });
-        }
-        
-        function scanQrFrame() {
+        function scanFrame() {
             if (!qrScanning) return;
-            
-            if (elements.qrVideo.readyState === elements.qrVideo.HAVE_ENOUGH_DATA) {
-                const canvas = document.createElement('canvas');
-                canvas.width = elements.qrVideo.videoWidth;
-                canvas.height = elements.qrVideo.videoHeight;
-                const ctx = canvas.getContext('2d');
-                ctx.drawImage(elements.qrVideo, 0, 0, canvas.width, canvas.height);
-                
-                const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-                const code = jsQR(imageData.data, canvas.width, canvas.height);
-                
+            if (el.qrVideo.readyState === el.qrVideo.HAVE_ENOUGH_DATA) {
+                const c = document.createElement('canvas');
+                c.width = el.qrVideo.videoWidth;
+                c.height = el.qrVideo.videoHeight;
+                const ctx = c.getContext('2d');
+                ctx.drawImage(el.qrVideo, 0, 0);
+                const code = jsQR(ctx.getImageData(0,0,c.width,c.height).data, c.width, c.height);
                 if (code) {
-                    // Funnet QR-kode!
-                    stopQrScanner();
-                    
-                    // Vis resultat
-                    elements.qrResult.style.display = 'block';
-                    elements.qrResult.innerHTML = `
-                        <strong>✅ QR KODE FUNNET!</strong><br>
-                        <div style="margin-top:10px; word-break:break-all; background:#0f172a; padding:10px; border-radius:8px;">${code.data}</div>
-                        <button class="primary-btn" style="margin-top:15px;" onclick="useQrResult('${code.data}')">🔍 BRUK I SCANNING</button>
-                    `;
-                    
-                    // Legg automatisk inn i tekstfelt
-                    elements.advancedText.value = code.data;
+                    stopQr();
+                    el.qrResult.style.display = 'block';
+                    el.qrResult.innerHTML = `✅ QR: ${code.data.substring(0,50)}...<br><button class="primary-btn" style="margin-top:8px;" onclick="useQR('${code.data}')">BRUK</button>`;
+                    el.advancedText.value = code.data;
                 }
             }
-            
-            requestAnimationFrame(scanQrFrame);
+            requestAnimationFrame(scanFrame);
         }
         
-        // Må være global for å kunne kalles fra onclick
-        window.useQrResult = function(data) {
-            elements.advancedText.value = data;
-            elements.qrScanner.classList.add('hidden');
-            stopQrScanner();
+        window.useQR = function(data) {
+            el.advancedText.value = data;
+            el.qrScanner.classList.add('hidden');
+            stopQr();
         };
         
-        function uploadQrImage() {
+        el.qrScanBtn.addEventListener('click', () => {
+            el.qrScanner.classList.remove('hidden');
+            el.qrResult.style.display = 'none';
+        });
+        
+        el.startQrCamera.addEventListener('click', () => {
+            navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
+                .then(stream => {
+                    qrStream = stream;
+                    el.qrVideo.srcObject = stream;
+                    el.qrVideo.style.display = 'block';
+                    el.qrVideo.play();
+                    qrScanning = true;
+                    scanFrame();
+                })
+                .catch(() => alert('Kameratilgang nødvendig'));
+        });
+        
+        el.uploadQrImage.addEventListener('click', () => {
             const input = document.createElement('input');
             input.type = 'file';
             input.accept = 'image/*';
-            
-            input.onchange = function(e) {
+            input.onchange = e => {
                 const file = e.target.files[0];
                 if (!file) return;
-                
                 const reader = new FileReader();
-                reader.onload = function(event) {
+                reader.onload = event => {
                     const img = new Image();
-                    img.onload = function() {
-                        const canvas = document.createElement('canvas');
-                        canvas.width = img.width;
-                        canvas.height = img.height;
-                        const ctx = canvas.getContext('2d');
-                        ctx.drawImage(img, 0, 0);
-                        
-                        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-                        const code = jsQR(imageData.data, canvas.width, canvas.height);
-                        
+                    img.onload = () => {
+                        const c = document.createElement('canvas');
+                        c.width = img.width;
+                        c.height = img.height;
+                        const ctx = c.getContext('2d');
+                        ctx.drawImage(img,0,0);
+                        const code = jsQR(ctx.getImageData(0,0,c.width,c.height).data, c.width, c.height);
                         if (code) {
-                            elements.qrPreview.src = event.target.result;
-                            elements.qrPreview.style.display = 'block';
-                            
-                            elements.qrResult.style.display = 'block';
-                            elements.qrResult.innerHTML = `
-                                <strong>✅ QR KODE FUNNET I BILDE!</strong><br>
-                                <div style="margin-top:10px; word-break:break-all; background:#0f172a; padding:10px; border-radius:8px;">${code.data}</div>
-                                <button class="primary-btn" style="margin-top:15px;" onclick="useQrResult('${code.data}')">🔍 BRUK I SCANNING</button>
-                            `;
-                            
-                            elements.advancedText.value = code.data;
-                        } else {
-                            alert('Ingen QR-kode funnet i bildet!');
-                        }
+                            el.qrPreview.src = event.target.result;
+                            el.qrPreview.style.display = 'block';
+                            el.qrResult.style.display = 'block';
+                            el.qrResult.innerHTML = `✅ QR: ${code.data}<br><button class="primary-btn" style="margin-top:8px;" onclick="useQR('${code.data}')">BRUK</button>`;
+                            el.advancedText.value = code.data;
+                        } else alert('Ingen QR funnet');
                     };
                     img.src = event.target.result;
                 };
                 reader.readAsDataURL(file);
             };
-            
             input.click();
+        });
+        
+        el.closeQrScanner.addEventListener('click', () => {
+            el.qrScanner.classList.add('hidden');
+            stopQr();
+        });
+        
+        // ========== HENTER YOUTUBE-DATA ==========
+        async function fetchYouTubeData(videoId) {
+            if (YOUTUBE_DATA[videoId]) return YOUTUBE_DATA[videoId];
+            
+            try {
+                // Forsøk å hente fra oEmbed (gir tittel og kanal)
+                const oembed = await fetch(`https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=${videoId}&format=json`);
+                if (oembed.ok) {
+                    const data = await oembed.json();
+                    return {
+                        title: data.title || 'Ukjent tittel',
+                        channel: data.author_name || 'Ukjent kanal',
+                        subscribers: '?',
+                        views: '?',
+                        likes: '?',
+                        published: '?',
+                        description: 'Kunne ikke hente beskrivelse',
+                        comments: [],
+                        tags: [],
+                        isRickroll: false
+                    };
+                }
+            } catch (e) {
+                console.log('Kunne ikke hente YouTube-data');
+            }
+            
+            // Fallback
+            return {
+                title: `YouTube Video (${videoId})`,
+                channel: 'YouTube',
+                subscribers: '?',
+                views: '?',
+                likes: '?',
+                published: '?',
+                description: 'Ingen data tilgjengelig',
+                comments: [],
+                tags: [],
+                isRickroll: false
+            };
         }
         
-        // QR Event listeners
-        elements.qrScanBtn.addEventListener('click', () => {
-            elements.qrScanner.classList.remove('hidden');
-            elements.qrResult.style.display = 'none';
-            elements.qrPreview.style.display = 'none';
-            elements.qrResult.innerHTML = '';
-        });
-        
-        elements.startQrCamera.addEventListener('click', startQrCamera);
-        
-        elements.uploadQrImage.addEventListener('click', uploadQrImage);
-        
-        elements.closeQrScanner.addEventListener('click', () => {
-            elements.qrScanner.classList.add('hidden');
-            stopQrScanner();
-        });
-        
-        // ========== FUNKSJONER ==========
-        
+        // ========== VIDEO-ID FRA URL (inkl. SHORTS!) ==========
         function getVideoId(url) {
-            if (url.includes('youtu.be/')) {
-                return url.split('youtu.be/')[1].split('?')[0].toLowerCase();
-            }
-            if (url.includes('v=')) {
-                return url.split('v=')[1].split('&')[0].toLowerCase();
-            }
-            if (url.includes('/shorts/')) {
-                return url.split('/shorts/')[1].split('?')[0].toLowerCase();
-            }
+            if (url.includes('youtu.be/')) return url.split('youtu.be/')[1].split('?')[0].toLowerCase();
+            if (url.includes('v=')) return url.split('v=')[1].split('&')[0].toLowerCase();
+            if (url.includes('/shorts/')) return url.split('/shorts/')[1].split('?')[0].toLowerCase();
             return null;
         }
         
-        function checkDatabase(text) {
-            const lower = text.toLowerCase();
-            let found = [];
-            let confidence = 0;
-            
-            for (let pattern of DATABASE) {
-                if (lower.includes(pattern)) {
-                    confidence = 95;
-                    found.push(`📌 Funnet i database: ${pattern}`);
-                }
-            }
-            
-            for (let keyword of KEYWORDS) {
-                if (lower.includes(keyword)) {
-                    confidence = Math.max(confidence, 75);
-                    found.push(`🔑 Nøkkelord: "${keyword}"`);
-                }
-            }
-            
-            if (lower.includes('dqw4w9wgxcq')) {
-                confidence = 100;
-                found = ['🚨 ORIGINAL RICKROLL!'];
-            }
-            
-            return { isRickroll: found.length > 0, confidence, details: found };
+        // ========== SJEKK RICKROLL ==========
+        function checkRickroll(text) {
+            const t = text.toLowerCase();
+            let d = [], c = 0;
+            for (let p of DATABASE) if (t.includes(p)) { c=95; d.push(`📌 ${p}`); }
+            for (let k of KEYWORDS) if (t.includes(k)) { c=Math.max(c,75); d.push(`🔑 ${k}`); }
+            if (t.includes('dqw4w9wgxcq')) { c=100; d=['🚨 ORIGINAL']; }
+            return { isRickroll: d.length>0, confidence:c, details:d.length?d:['✅ Trygg'] };
         }
         
+        // ========== REDIRECT ==========
         function checkRedirect(url) {
-            const lower = url.toLowerCase();
-            
-            // Spesialhåndtering for bit.ly med parametre
-            let cleanUrl = lower.split('?')[0]; // Fjern query parameters
-            
-            for (let [short, data] of Object.entries(REDIRECTS)) {
-                if (cleanUrl.includes(short)) {
-                    return {
-                        isRedirect: true,
-                        shortUrl: short,
-                        originalUrl: url,
-                        destination: data.dest,
-                        type: data.type,
-                        server: data.server,
-                        status: 301,
-                        time: (Math.random() * 0.3 + 0.2).toFixed(2) + 's'
-                    };
-                }
-            }
+            const u = url.toLowerCase().split('?')[0];
+            for (let [s,d] of Object.entries(REDIRECTS)) if (u.includes(s)) return { 
+                isRedirect: true, short: s, from: url, to: d, 
+                type: d.includes('dQw4w9WgXcQ') ? 'rickroll' : 'safe',
+                time: (Math.random()*0.2+0.2).toFixed(2)+'s'
+            };
             return { isRedirect: false };
         }
         
-        function getYouTubeData(videoId) {
-            const id = videoId.toLowerCase();
-            const data = YOUTUBE_DATA[id] || DEFAULT_YOUTUBE;
+        // ========== VIS RESULTAT ==========
+        function showResult(icon, title, sub, det, conf) {
+            el.resultBox.style.display = 'block';
+            el.resultIcon.textContent = icon;
+            el.resultTitle.textContent = title;
+            el.resultSubtitle.textContent = sub;
+            el.resultDetails.innerHTML = det.map(d => `• ${d}`).join('<br>');
+            el.confidenceBar.style.width = conf+'%';
+            el.confidenceValue.textContent = conf+'%';
+            el.resultMode.textContent = currentMode.toUpperCase();
+            el.resultTime.textContent = new Date().toLocaleTimeString();
             
-            // Analyser om det er Rickroll
-            let isRickroll = false;
-            let confidence = 0;
-            let reasons = [];
-            
-            if (id === 'dqw4w9wgxcq' || id === 'ohg5sjyrha0') {
-                isRickroll = true;
-                confidence = 100;
-                reasons.push('🚨 BEKREFTET RICKROLL');
-            } else if (data.title.toLowerCase().includes('rick') && data.title.toLowerCase().includes('never gonna')) {
-                isRickroll = true;
-                confidence = 95;
-                reasons.push('⚠️ Mistenkelig tittel');
-            } else {
-                reasons.push('✅ Ingen tegn til Rickroll');
-            }
-            
-            return { ...data, isRickroll, confidence, reasons };
+            el.resultBox.classList.remove('result-safe','result-danger','result-warning');
+            if (conf>=70) el.resultBox.classList.add('result-danger');
+            else if (conf>=30) el.resultBox.classList.add('result-warning');
+            else el.resultBox.classList.add('result-safe');
         }
         
-        function showResult(icon, title, subtitle, details, confidence) {
-            elements.resultBox.style.display = 'block';
-            elements.resultIcon.textContent = icon;
-            elements.resultTitle.textContent = title;
-            elements.resultSubtitle.textContent = subtitle;
-            elements.resultDetails.innerHTML = details.map(d => `• ${d}`).join('<br>');
-            elements.confidenceBar.style.width = confidence + '%';
-            elements.confidenceValue.textContent = confidence + '%';
-            elements.resultMode.textContent = currentMode.toUpperCase();
-            elements.resultTime.textContent = new Date().toLocaleTimeString();
-            
-            elements.resultBox.classList.remove('result-safe', 'result-danger', 'result-warning');
-            if (confidence >= 70) elements.resultBox.classList.add('result-danger');
-            else if (confidence >= 30) elements.resultBox.classList.add('result-warning');
-            else elements.resultBox.classList.add('result-safe');
-        }
-        
-        function addToHistory(item, result) {
-            const type = result.isRickroll ? '🚨 RICKROLL' : (result.confidence > 30 ? '⚠️ MISTENKELIG' : '✅ TRYGG');
-            const cls = result.isRickroll ? 'danger' : (result.confidence > 30 ? 'warning' : 'safe');
+        // ========== HISTORIKK ==========
+        function addHistory(item, res) {
+            const type = res.isRickroll ? '🚨 RICKROLL' : (res.confidence>30?'⚠️ MISTENKELIG':'✅ TRYGG');
+            const cls = res.isRickroll ? 'danger' : (res.confidence>30?'warning':'safe');
             
             history.unshift({
-                text: item.length > 30 ? item.substring(0, 27) + '...' : item,
-                result: type,
-                class: cls,
+                text: item.length>25?item.substring(0,22)+'...':item,
+                result: type, class: cls,
                 time: new Date().toLocaleTimeString()
             });
+            if (history.length>8) history.pop();
             
-            if (history.length > 10) history.pop();
-            
-            if (history.length === 0) {
-                elements.emptyHistory.style.display = 'block';
-                elements.historyList.innerHTML = '';
+            if (history.length) {
+                el.emptyHistory.style.display = 'none';
+                el.historyList.innerHTML = history.map(h => 
+                    `<div class="history-item ${h.class}"><span class="history-time">${h.time}</span><div class="history-result">${h.result}</div><div>${h.text}</div></div>`
+                ).join('');
             } else {
-                elements.emptyHistory.style.display = 'none';
-                elements.historyList.innerHTML = history.map(h => `
-                    <div class="history-item ${h.class}">
-                        <span class="history-time">${h.time}</span>
-                        <div class="history-result">${h.result}</div>
-                        <div>${h.text}</div>
-                    </div>
-                `).join('');
+                el.emptyHistory.style.display = 'block';
+                el.historyList.innerHTML = '';
             }
             
-            if (result.isRickroll) rickrolls++;
+            if (res.isRickroll) rickrolls++;
             totalChecks++;
-            elements.totalChecks.textContent = totalChecks;
-            elements.rickrollCount.textContent = rickrolls;
+            el.totalChecks.textContent = totalChecks;
+            el.rickrollCount.textContent = rickrolls;
         }
         
-        // ========== SJEKK KNAPP ==========
-        elements.checkBtn.addEventListener('click', async () => {
-            // Hent input basert på modus
+        // ========== SCAN ==========
+        el.checkBtn.addEventListener('click', async () => {
             let input = '';
-            if (currentMode === 'basic') input = elements.urlBasic.value.trim();
-            if (currentMode === 'advanced') input = elements.advancedText.value.trim();
-            if (currentMode === 'youtube') input = elements.youtubeUrl.value.trim();
-            if (currentMode === 'redirect') input = elements.redirectUrl.value.trim();
+            if (currentMode === 'basic') input = el.urlBasic.value.trim();
+            if (currentMode === 'advanced') input = el.advancedText.value.trim();
+            if (currentMode === 'youtube') input = el.youtubeUrl.value.trim();
+            if (currentMode === 'redirect') input = el.redirectUrl.value.trim();
             
             if (!input) return alert('Lim inn noe!');
             
-            // Skjul gamle previews
-            elements.youtubePreview.style.display = 'none';
-            elements.redirectChain.style.display = 'none';
+            el.youtubePreview.style.display = 'none';
+            el.redirectChain.style.display = 'none';
+            showResult('🔍', 'SCANNER...', 'Vent', ['Analyserer...'], 10);
             
-            showResult('🔍', 'SCANNER...', 'Analyserer...', ['Vennligst vent'], 10);
-            
-            // ===== YOUTUBE MODUS =====
+            // YOUTUBE MODUS
             if (currentMode === 'youtube') {
                 const videoId = getVideoId(input);
-                if (!videoId) {
-                    showResult('❌', 'UGYLDIG URL', 'Ikke en YouTube-lenke', ['Prøv igjen'], 0);
-                    return;
-                }
+                if (!videoId) return showResult('❌', 'UGYLDIG URL', 'Ikke YouTube', ['Prøv igjen'], 0);
                 
-                const data = getYouTubeData(videoId);
+                const data = await fetchYouTubeData(videoId);
+                const isRickroll = videoId === 'dqw4w9wgxcq' || videoId === 'ohg5sjyrha0';
                 
-                // Bygg YouTube preview med EKTE bilder og data
                 let html = `
                     <div class="youtube-header">
-                        <div class="youtube-thumbnail">
-                            <img src="https://img.youtube.com/vi/${videoId}/maxresdefault.jpg" 
-                                 onerror="this.src='https://img.youtube.com/vi/${videoId}/hqdefault.jpg'"
-                                 alt="YouTube thumbnail">
-                        </div>
+                        <div class="youtube-thumbnail"><img src="https://img.youtube.com/vi/${videoId}/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/${videoId}/hqdefault.jpg'"></div>
                         <div class="youtube-info">
                             <div class="youtube-title">${data.title}</div>
-                            <div class="youtube-channel">📺 ${data.channel} • ${data.subscribers}</div>
+                            <div class="youtube-channel">📺 ${data.channel}</div>
                             <div class="youtube-stats">
-                                <span class="youtube-stat">👁️ ${data.views}</span>
-                                <span class="youtube-stat">❤️ ${data.likes}</span>
-                                <span class="youtube-stat">📅 ${data.published}</span>
+                                <span>👁️ ${data.views}</span>
+                                <span>❤️ ${data.likes}</span>
+                                <span>📅 ${data.published}</span>
                             </div>
                         </div>
                     </div>
-                    <div class="youtube-description">${data.description.replace(/\n/g, '<br>')}</div>
+                    <div class="youtube-description">${data.description}</div>
                 `;
                 
-                if (data.tags && data.tags.length > 0) {
-                    html += `<div class="youtube-tags">${data.tags.map(t => `<span class="youtube-tag">#${t}</span>`).join('')}</div>`;
+                if (data.comments?.length) {
+                    html += '<div class="youtube-comments"><strong>💬 Kommentarer:</strong>';
+                    data.comments.slice(0,2).forEach(c => html += `<div class="youtube-comment"><div class="comment-author">${c.author}</div><div class="comment-text">${c.text}</div></div>`);
+                    html += '</div>';
                 }
                 
-                if (data.comments && data.comments.length > 0) {
-                    html += `<div class="youtube-comments"><strong>💬 Kommentarer (${data.comments.length}):</strong>`;
-                    data.comments.forEach(c => {
-                        html += `<div class="youtube-comment">
-                            <div class="comment-author">${c.author}</div>
-                            <div class="comment-text">${c.text}</div>
-                        </div>`;
-                    });
-                    html += `</div>`;
-                }
+                const resClass = isRickroll ? 'danger' : 'safe';
+                html += `<div class="youtube-result ${resClass}">${isRickroll ? '🚨 RICKROLL' : '✅ TRYGG'}</div>`;
+                html += `<a href="https://youtu.be/${videoId}" target="_blank" class="youtube-button">🎬 SE</a>`;
                 
-                const resultClass = data.isRickroll ? 'danger' : 'safe';
-                html += `
-                    <div class="youtube-result ${resultClass}">
-                        ${data.isRickroll ? '🚨 RICKROLL DETEKTERT!' : '✅ INGEN RICKROLL FUNNET'}
-                        <div style="font-size:14px; margin-top:5px;">${data.reasons.join(' • ')}</div>
-                        <div style="font-size:12px; margin-top:5px;">Confidence: ${data.confidence}%</div>
-                    </div>
-                    <a href="https://youtu.be/${videoId}" target="_blank" class="youtube-button">🎬 SE PÅ YOUTUBE</a>
-                `;
+                el.youtubePreview.innerHTML = html;
+                el.youtubePreview.style.display = 'block';
                 
-                elements.youtubePreview.innerHTML = html;
-                elements.youtubePreview.style.display = 'block';
-                
-                showResult(
-                    data.isRickroll ? '🚨' : '✅',
-                    data.isRickroll ? 'RICKROLL!' : 'TRYGG',
-                    'YouTube-analyse fullført',
-                    data.reasons,
-                    data.confidence
-                );
-                addToHistory(input, data);
+                const result = { isRickroll, confidence: isRickroll ? 100 : 0, details: [isRickroll ? 'Rickroll!' : 'Trygg'] };
+                showResult(isRickroll?'🚨':'✅', isRickroll?'RICKROLL':'TRYGG', 'YouTube', result.details, result.confidence);
+                addHistory(input, result);
                 return;
             }
             
-            // ===== REDIRECT MODUS =====
+            // REDIRECT MODUS
             if (currentMode === 'redirect') {
-                const redirect = checkRedirect(input);
-                
-                if (!redirect.isRedirect) {
-                    showResult('❌', 'INGEN REDIRECT', 'Ikke en gjenkjent kortlenke', ['Prøv bit.ly/4sWIhLx'], 0);
-                    return;
-                }
+                const r = checkRedirect(input);
+                if (!r.isRedirect) return showResult('❌', 'IKKE REDIRECT', 'Ukjent lenke', ['Prøv bit.ly/...'], 0);
                 
                 redirectCount++;
-                elements.redirectCount.textContent = redirectCount;
+                el.redirectCount.textContent = redirectCount;
                 
-                const typeClass = redirect.type === 'rickroll' ? 'final' : 'safe';
-                const statusText = redirect.type === 'rickroll' ? '🚨 RICKROLL' : '✅ TRYGG';
+                const typeClass = r.type === 'rickroll' ? 'final' : 'safe';
+                const statusText = r.type === 'rickroll' ? '🚨 RICKROLL' : '✅ TRYGG';
                 
-                let html = `
-                    <div class="redirect-title">🔄 REDIRECT FUNNET</div>
-                    <div class="redirect-step">
-                        <span class="step-number">1</span>
-                        <strong>Original URL:</strong>
-                        <div class="step-url">${redirect.originalUrl}</div>
-                        <div class="step-info">🔗 Tjeneste: ${redirect.server}</div>
-                    </div>
-                    <div class="redirect-step ${typeClass}">
-                        <span class="step-number">2</span>
-                        <strong>Destinasjon:</strong>
-                        <div class="step-url">${redirect.destination}</div>
-                        <div class="step-info">
-                            <span>🚦 Status: ${redirect.status}</span>
-                            <span>⏱️ Tid: ${redirect.time}</span>
-                        </div>
-                        <div class="step-badge ${redirect.type}">${statusText}</div>
-                    </div>
+                el.redirectChain.innerHTML = `
+                    <div class="redirect-title">🔄 REDIRECT</div>
+                    <div class="redirect-step"><span class="step-number">1</span> ${r.from}<div class="step-url">Original</div></div>
+                    <div class="redirect-step ${typeClass}"><span class="step-number">2</span> ${r.to}<div class="step-info">⏱️ ${r.time}</div><div class="step-badge ${r.type}">${statusText}</div></div>
                 `;
+                el.redirectChain.style.display = 'block';
                 
-                elements.redirectChain.innerHTML = html;
-                elements.redirectChain.style.display = 'block';
-                
-                const result = {
-                    isRickroll: redirect.type === 'rickroll',
-                    confidence: redirect.type === 'rickroll' ? 100 : 0,
-                    details: [`Redirect til ${redirect.destination}`]
-                };
-                
-                showResult(
-                    result.isRickroll ? '🚨' : '✅',
-                    result.isRickroll ? 'RICKROLL!' : 'TRYGG',
-                    `Redirect: ${redirect.shortUrl}`,
-                    result.details,
-                    result.confidence
-                );
-                addToHistory(input, result);
+                const result = { isRickroll: r.type==='rickroll', confidence: r.type==='rickroll'?100:0, details: [`→ ${r.to}`] };
+                showResult(r.type==='rickroll'?'🚨':'✅', r.type==='rickroll'?'RICKROLL':'TRYGG', r.short, result.details, result.confidence);
+                addHistory(input, result);
                 return;
             }
             
-            // ===== BASIC MODUS =====
+            // BASIC
             if (currentMode === 'basic') {
-                let textToCheck = input;
-                let allDetails = [];
-                
-                // Følg redirects hvis avkrysset
-                if (elements.basicRedirect.checked) {
-                    const redirect = checkRedirect(input);
-                    if (redirect.isRedirect) {
-                        textToCheck = redirect.destination;
-                        allDetails.push(`🔄 Redirect: ${redirect.shortUrl} → ${redirect.destination}`);
+                let text = input, det = [];
+                if (el.basicRedirect.checked) {
+                    const r = checkRedirect(input);
+                    if (r.isRedirect) {
+                        text = r.to;
+                        det.push(`🔄 ${r.short}`);
                         redirectCount++;
-                        elements.redirectCount.textContent = redirectCount;
+                        el.redirectCount.textContent = redirectCount;
                     }
                 }
-                
-                // Sjekk database
-                const result = checkDatabase(textToCheck);
-                
-                // Dyp scan
-                if (elements.basicDeepScan.checked) {
-                    result.confidence = Math.min(result.confidence + 10, 100);
-                    allDetails.push('🔬 Dyp scanning');
-                }
-                
-                result.details = [...result.details, ...allDetails];
-                
-                showResult(
-                    result.isRickroll ? '🚨' : '✅',
-                    result.isRickroll ? 'RICKROLL!' : 'TRYGG',
-                    result.isRickroll ? 'Fare!' : 'Ingen fare',
-                    result.details,
-                    result.confidence
-                );
-                addToHistory(input, result);
+                const res = checkRickroll(text);
+                if (el.basicDeepScan.checked) res.confidence = Math.min(res.confidence+10,100);
+                res.details = [...res.details, ...det];
+                showResult(res.isRickroll?'🚨':'✅', res.isRickroll?'RICKROLL':'TRYGG', 'Basic', res.details, res.confidence);
+                addHistory(input, res);
                 return;
             }
             
-            // ===== AVANSERT MODUS =====
+            // AVANSERT
             if (currentMode === 'advanced') {
-                let allDetails = [];
-                let finalResult = { isRickroll: false, confidence: 0, details: [] };
-                let textToCheck = input;
+                let det = [], final = { isRickroll: false, confidence:0, details:[] };
+                let text = input;
                 
-                // 1. SJEKK YOUTUBE
+                // YouTube
                 if (input.includes('youtube.com') || input.includes('youtu.be')) {
-                    const videoId = getVideoId(input);
-                    if (videoId) {
-                        const ytData = getYouTubeData(videoId);
-                        if (ytData.isRickroll) {
-                            finalResult.isRickroll = true;
-                            finalResult.confidence = 100;
-                            finalResult.details.push('🎥 YouTube: ' + ytData.reasons.join(', '));
-                        } else {
-                            finalResult.details.push('🎥 YouTube: Ingen Rickroll funnet');
-                        }
-                    }
+                    const vid = getVideoId(input);
+                    if (vid && (vid==='dqw4w9wgxcq'||vid==='ohg5sjyrha0')) {
+                        final.isRickroll = true;
+                        final.confidence = 100;
+                        det.push('🎥 YouTube Rickroll');
+                    } else if (vid) det.push('🎥 YouTube sjekket');
                 }
                 
-                // 2. SJEKK REDIRECTS
-                const redirect = checkRedirect(input);
-                if (redirect.isRedirect) {
-                    textToCheck = redirect.destination;
-                    allDetails.push(`🔄 Redirect: ${redirect.shortUrl} → ${redirect.destination}`);
+                // Redirect
+                const r = checkRedirect(input);
+                if (r.isRedirect) {
+                    text = r.to;
+                    det.push(`🔄 ${r.short} → ${r.to.split('/')[2]}`);
                     redirectCount++;
-                    elements.redirectCount.textContent = redirectCount;
-                    
-                    if (redirect.type === 'rickroll') {
-                        finalResult.isRickroll = true;
-                        finalResult.confidence = 100;
-                        finalResult.details.push('🚨 Redirect fører til Rickroll!');
-                    } else {
-                        finalResult.details.push(`✅ Redirect til ${redirect.destination.split('/')[2]}`);
-                    }
+                    el.redirectCount.textContent = redirectCount;
+                    if (r.type === 'rickroll') final.isRickroll = true;
                 }
                 
-                // 3. SJEKK DATABASE
-                const dbResult = checkDatabase(textToCheck);
-                if (dbResult.isRickroll) {
-                    finalResult.isRickroll = true;
-                    finalResult.confidence = Math.max(finalResult.confidence, dbResult.confidence);
-                    finalResult.details.push(...dbResult.details);
+                // Database
+                const db = checkRickroll(text);
+                if (db.isRickroll) {
+                    final.isRickroll = true;
+                    final.confidence = Math.max(final.confidence, db.confidence);
+                    det.push(...db.details);
                 }
                 
-                // 4. KOMBINER
-                finalResult.details = [...new Set([...finalResult.details, ...allDetails])];
-                if (finalResult.details.length === 0) {
-                    finalResult.details.push('✅ Ingen tegn til Rickroll');
-                }
-                
-                showResult(
-                    finalResult.isRickroll ? '🚨' : '✅',
-                    finalResult.isRickroll ? 'RICKROLL!' : 'TRYGG',
-                    'Avansert scanning fullført',
-                    finalResult.details,
-                    finalResult.confidence
-                );
-                addToHistory(input, finalResult);
+                if (!det.length) det.push('✅ Ingen funn');
+                showResult(final.isRickroll?'🚨':'✅', final.isRickroll?'RICKROLL':'TRYGG', 'Avansert', det, final.confidence);
+                addHistory(input, final);
             }
         });
         
-        // ========== TEST KNAPP ==========
-        elements.testBtn.addEventListener('click', () => {
+        // ========== TEST ==========
+        el.testBtn.addEventListener('click', () => {
             const tests = {
                 basic: 'https://youtu.be/dQw4w9WgXcQ',
-                advanced: 'Sjekk denne videoen: https://youtu.be/dQw4w9WgXcQ og denne linken: bit.ly/4sWIhLx?r=qr',
+                advanced: 'Sjekk https://youtu.be/dQw4w9WgXcQ og bit.ly/4sWIhLx',
                 youtube: 'https://youtu.be/dQw4w9WgXcQ',
-                redirect: 'bit.ly/4sWIhLx?r=qr'
+                redirect: 'bit.ly/4sWIhLx'
             };
-            
-            if (currentMode === 'basic') elements.urlBasic.value = tests.basic;
-            if (currentMode === 'advanced') elements.advancedText.value = tests.advanced;
-            if (currentMode === 'youtube') elements.youtubeUrl.value = tests.youtube;
-            if (currentMode === 'redirect') elements.redirectUrl.value = tests.redirect;
+            if (currentMode === 'basic') el.urlBasic.value = tests.basic;
+            if (currentMode === 'advanced') el.advancedText.value = tests.advanced;
+            if (currentMode === 'youtube') el.youtubeUrl.value = tests.youtube;
+            if (currentMode === 'redirect') el.redirectUrl.value = tests.redirect;
         });
         
-        // ========== TØM KNAPP ==========
-        elements.clearBtn.addEventListener('click', () => {
-            elements.urlBasic.value = '';
-            elements.advancedText.value = '';
-            elements.youtubeUrl.value = '';
-            elements.redirectUrl.value = '';
-            elements.resultBox.style.display = 'none';
-            elements.youtubePreview.style.display = 'none';
-            elements.redirectChain.style.display = 'none';
-            
-            // Skjul og stopp QR scanner
-            elements.qrScanner.classList.add('hidden');
-            stopQrScanner();
+        // ========== TØM ==========
+        el.clearBtn.addEventListener('click', () => {
+            el.urlBasic.value = '';
+            el.advancedText.value = '';
+            el.youtubeUrl.value = '';
+            el.redirectUrl.value = '';
+            el.resultBox.style.display = 'none';
+            el.youtubePreview.style.display = 'none';
+            el.redirectChain.style.display = 'none';
+            el.qrScanner.classList.add('hidden');
+            stopQr();
         });
         
-        // ========== TØM HISTORIKK ==========
-        elements.clearHistoryBtn.addEventListener('click', () => {
+        el.clearHistoryBtn.addEventListener('click', () => {
             if (confirm('Tømme historikk?')) {
                 history = [];
-                elements.historyList.innerHTML = '';
-                elements.emptyHistory.style.display = 'block';
+                el.historyList.innerHTML = '';
+                el.emptyHistory.style.display = 'block';
             }
         });
         
         // ========== INIT ==========
-        elements.patternCount.textContent = DATABASE.length;
-        console.log('✅ ULTIMATE VERSJON - QR LAGT TIL!');
+        el.patternCount.textContent = DATABASE.length;
+        console.log('✅ ULTIMATE - INGENTING STIKKER UT!');
     </script>
 </body>
 </html>
