@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>🎥 RICKROLL SHIELD - 5 STRATEGIER</title>
+    <title>🎥 RICKROLL SHIELD - 10💀 STRATEGIER + 3 BILDER</title>
     <style>
         /* ========== STIL ========== */
         * {
@@ -23,6 +23,7 @@
         .container {
             max-width: 800px;
             margin: 0 auto;
+            position: relative;
         }
         
         h1 {
@@ -37,6 +38,7 @@
             text-align: center;
             color: #888;
             margin-bottom: 20px;
+            font-size: 14px;
         }
         
         .input-section {
@@ -88,31 +90,29 @@
             border: 2px solid white;
         }
         
-        .strategy-indicator {
-            background: #0f172a;
-            border-radius: 15px;
-            padding: 10px;
-            margin: 10px 0;
-            text-align: center;
-            font-size: 12px;
-            color: #ff0000;
-            border: 1px solid #ff0000;
-        }
-        
-        .youtube-preview {
+        /* ========== 3 BILDER - ALLTID SYNLIGE ========== */
+        .thumbnail-section {
             background: #0f172a;
             border-radius: 20px;
             padding: 20px;
             margin: 15px 0;
             border: 3px solid #ff0000;
-            display: none;
+        }
+        
+        .thumbnail-title {
+            color: #ff0000;
+            font-size: 18px;
+            margin-bottom: 15px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
         
         .thumbnail-gallery {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            margin-bottom: 20px;
+            gap: 15px;
         }
         
         .thumbnail-item {
@@ -121,17 +121,28 @@
         
         .thumbnail-label {
             color: #ff0000;
-            font-size: 11px;
-            margin-bottom: 4px;
+            font-size: 12px;
+            margin-bottom: 8px;
+            font-weight: bold;
+            text-transform: uppercase;
         }
         
         .thumbnail-img {
             width: 100%;
             aspect-ratio: 16/9;
-            border-radius: 8px;
-            border: 2px solid #ff0000;
+            border-radius: 12px;
+            border: 3px solid #ff0000;
             object-fit: cover;
             background: #1e293b;
+            box-shadow: 0 5px 15px rgba(255,0,0,0.3);
+        }
+        
+        .video-info {
+            background: #0f172a;
+            border-radius: 20px;
+            padding: 20px;
+            margin: 15px 0;
+            border: 3px solid #ff0000;
         }
         
         .video-title {
@@ -141,81 +152,10 @@
             line-height: 1.3;
         }
         
-        .channel-info {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 10px;
-            flex-wrap: wrap;
-        }
-        
         .channel-name {
             color: #ff0000;
             font-size: 18px;
-            font-weight: bold;
-        }
-        
-        .video-stats {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-            margin: 15px 0;
-            background: #1e293b;
-            padding: 12px;
-            border-radius: 12px;
-        }
-        
-        .stat-item {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            font-size: 13px;
-        }
-        
-        .description-box {
-            background: #1e293b;
-            border-radius: 12px;
-            padding: 15px;
-            margin: 15px 0;
-            border-left: 4px solid #ff0000;
-            font-size: 14px;
-            line-height: 1.5;
-            max-height: 150px;
-            overflow-y: auto;
-            white-space: pre-wrap;
-        }
-        
-        .comments-section {
-            background: #1e293b;
-            border-radius: 12px;
-            padding: 15px;
-            margin: 15px 0;
-            max-height: 250px;
-            overflow-y: auto;
-        }
-        
-        .comments-title {
-            color: #ff0000;
-            font-size: 16px;
-            margin-bottom: 10px;
-        }
-        
-        .comment-item {
-            padding: 10px;
-            border-bottom: 1px solid #334155;
-        }
-        
-        .comment-author {
-            color: #ff0000;
-            font-weight: bold;
-            margin-bottom: 4px;
-            font-size: 13px;
-        }
-        
-        .comment-text {
-            color: #ddd;
-            font-size: 13px;
-            line-height: 1.4;
+            margin-bottom: 15px;
         }
         
         .safety-badge {
@@ -225,7 +165,7 @@
             font-size: 20px;
             font-weight: bold;
             margin: 15px 0;
-            border: 2px solid white;
+            border: 3px solid white;
         }
         
         .safety-badge.safe {
@@ -245,14 +185,90 @@
         .view-on-youtube {
             display: inline-block;
             width: 100%;
-            padding: 12px;
+            padding: 15px;
             background: #ff0000;
             color: white;
             text-decoration: none;
             border-radius: 40px;
             font-weight: bold;
+            font-size: 16px;
             text-align: center;
-            border: 2px solid white;
+            border: 3px solid white;
+        }
+        
+        /* ========== DISKRÉ MINIKNAPP ========== */
+        .mini-button-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            opacity: 0.3;
+            transition: opacity 0.3s;
+        }
+        
+        .mini-button-container:hover {
+            opacity: 1;
+        }
+        
+        .mini-button {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: #ff0000;
+            border: 3px solid white;
+            color: white;
+            font-size: 22px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 30px #ff0000;
+        }
+        
+        .mini-panel {
+            position: absolute;
+            bottom: 55px;
+            right: 0;
+            width: 280px;
+            background: #1e293b;
+            border: 3px solid #ff0000;
+            border-radius: 15px;
+            padding: 15px;
+            display: none;
+            color: white;
+            font-size: 12px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        
+        .mini-panel.show {
+            display: block;
+        }
+        
+        .mini-panel h4 {
+            color: #ff0000;
+            margin-bottom: 12px;
+            font-size: 14px;
+            border-bottom: 1px solid #ff0000;
+            padding-bottom: 5px;
+        }
+        
+        .mini-panel p {
+            margin: 5px 0;
+            padding: 8px;
+            background: #0f172a;
+            border-radius: 5px;
+            border-left: 4px solid #ff0000;
+            font-size: 11px;
+        }
+        
+        .mini-panel .success {
+            border-left-color: #10b981;
+        }
+        
+        .mini-panel .fail {
+            border-left-color: #ef4444;
         }
         
         .loading {
@@ -261,10 +277,10 @@
         }
         
         .spinner {
-            width: 40px;
-            height: 40px;
-            border: 4px solid #1e293b;
-            border-top: 4px solid #ff0000;
+            width: 50px;
+            height: 50px;
+            border: 5px solid #1e293b;
+            border-top: 5px solid #ff0000;
             border-radius: 50%;
             animation: spin 1s linear infinite;
             margin: 15px auto;
@@ -289,95 +305,117 @@
 <body>
     <div class="container">
         <h1>🎥 RICKROLL SHIELD</h1>
-        <div class="subtitle">5 FORSKJELLIGE STRATEGIER - KOMMENTARER INKLUDERT</div>
+        <div class="subtitle">10💀 STRATEGIER - 3 BILDER (FØRSTE, MIDTERSTE, SISTE)</div>
         
         <div class="input-section">
             <input type="text" id="youtubeUrl" placeholder="Lim inn YouTube-URL">
             <div class="button-group">
-                <button class="primary-btn" id="scanBtn">🔍 SCAN MED 5 STRATEGIER</button>
+                <button class="primary-btn" id="scanBtn">🔍 SCAN MED 10💀</button>
                 <button id="testBtn">🎲 TEST</button>
                 <button id="clearBtn">🗑️ TØM</button>
             </div>
-            <div id="strategyDisplay" class="strategy-indicator hidden">Prøver strategi 1/5...</div>
         </div>
         
         <div id="loading" class="loading hidden">
             <div class="spinner"></div>
-            <p id="loadingMessage">Forbereder...</p>
+            <p id="loadingMessage">Starter 10 strategier...</p>
             <div class="loading-status" id="loadingStatus"></div>
         </div>
         
-        <div class="youtube-preview" id="youtubePreview">
+        <!-- 3 BILDER - ALLTID SYNLIG NÅR SCANNET -->
+        <div class="thumbnail-section" id="thumbnailSection" style="display: none;">
+            <div class="thumbnail-title">📸 BILDER FRA VIDEOEN</div>
             <div class="thumbnail-gallery">
                 <div class="thumbnail-item">
-                    <div class="thumbnail-label">START</div>
-                    <img class="thumbnail-img" id="thumb0" src="">
+                    <div class="thumbnail-label">FØRSTE</div>
+                    <img class="thumbnail-img" id="thumbFirst" src="">
                 </div>
                 <div class="thumbnail-item">
-                    <div class="thumbnail-label">MIDTEN</div>
-                    <img class="thumbnail-img" id="thumb1" src="">
+                    <div class="thumbnail-label">MIDTERSTE</div>
+                    <img class="thumbnail-img" id="thumbMiddle" src="">
                 </div>
                 <div class="thumbnail-item">
-                    <div class="thumbnail-label">SLUTT</div>
-                    <img class="thumbnail-img" id="thumb2" src="">
+                    <div class="thumbnail-label">SISTE</div>
+                    <img class="thumbnail-img" id="thumbLast" src="">
                 </div>
             </div>
-            
+        </div>
+        
+        <!-- VIDEO INFO -->
+        <div class="video-info" id="videoInfo" style="display: none;">
             <div class="video-title" id="videoTitle"></div>
-            
-            <div class="channel-info">
-                <span class="channel-name" id="channelName"></span>
-                <span class="subscribers" id="subscribers">?</span>
-            </div>
-            
-            <div class="video-stats">
-                <span class="stat-item" id="views">👁️ ?</span>
-                <span class="stat-item" id="likes">❤️ ?</span>
-                <span class="stat-item" id="published">📅 ?</span>
-                <span class="stat-item" id="duration">⏱️ ?</span>
-            </div>
-            
-            <div class="description-box" id="description">Laster beskrivelse...</div>
-            
-            <div class="comments-section">
-                <div class="comments-title">💬 KOMMENTARER</div>
-                <div id="comments"></div>
-            </div>
+            <div class="channel-name" id="channelName"></div>
             
             <div class="safety-badge" id="safetyBadge">✅ TRYGG</div>
             <a class="view-on-youtube" id="youtubeLink" target="_blank">🎬 SE PÅ YOUTUBE</a>
         </div>
     </div>
+    
+    <!-- DISKRÉ MINIKNAPP -->
+    <div class="mini-button-container">
+        <div class="mini-button" id="miniButton">💀</div>
+        <div class="mini-panel" id="miniPanel">
+            <h4>📊 10💀 STRATEGIER</h4>
+            <div id="miniResults"></div>
+        </div>
+    </div>
 
     <script>
-        // ========== 5 FORSKJELLIGE STRATEGIER ==========
+        // ========== 10💀 STRATEGIER + 3 BILDER ==========
         
         const el = {
             youtubeUrl: document.getElementById('youtubeUrl'),
             scanBtn: document.getElementById('scanBtn'),
             testBtn: document.getElementById('testBtn'),
             clearBtn: document.getElementById('clearBtn'),
-            strategyDisplay: document.getElementById('strategyDisplay'),
             loading: document.getElementById('loading'),
             loadingMessage: document.getElementById('loadingMessage'),
             loadingStatus: document.getElementById('loadingStatus'),
-            youtubePreview: document.getElementById('youtubePreview'),
             
-            thumb0: document.getElementById('thumb0'),
-            thumb1: document.getElementById('thumb1'),
-            thumb2: document.getElementById('thumb2'),
+            thumbnailSection: document.getElementById('thumbnailSection'),
+            thumbFirst: document.getElementById('thumbFirst'),
+            thumbMiddle: document.getElementById('thumbMiddle'),
+            thumbLast: document.getElementById('thumbLast'),
+            
+            videoInfo: document.getElementById('videoInfo'),
             videoTitle: document.getElementById('videoTitle'),
             channelName: document.getElementById('channelName'),
-            subscribers: document.getElementById('subscribers'),
-            views: document.getElementById('views'),
-            likes: document.getElementById('likes'),
-            published: document.getElementById('published'),
-            duration: document.getElementById('duration'),
-            description: document.getElementById('description'),
-            comments: document.getElementById('comments'),
             safetyBadge: document.getElementById('safetyBadge'),
-            youtubeLink: document.getElementById('youtubeLink')
+            youtubeLink: document.getElementById('youtubeLink'),
+            
+            miniButton: document.getElementById('miniButton'),
+            miniPanel: document.getElementById('miniPanel'),
+            miniResults: document.getElementById('miniResults')
         };
+        
+        // Array for strategi-resultater
+        let strategyResults = [];
+        
+        // ========== MINIKNAPP ==========
+        el.miniButton.addEventListener('click', () => {
+            el.miniPanel.classList.toggle('show');
+        });
+        
+        document.addEventListener('click', (e) => {
+            if (!el.miniButton.contains(e.target) && !el.miniPanel.contains(e.target)) {
+                el.miniPanel.classList.remove('show');
+            }
+        });
+        
+        function updateMiniPanel() {
+            if (strategyResults.length === 0) {
+                el.miniResults.innerHTML = '<p style="color:#666;">Ingen resultater enda</p>';
+                return;
+            }
+            
+            let html = '';
+            strategyResults.forEach((result, index) => {
+                const statusClass = result.success ? 'success' : 'fail';
+                const statusIcon = result.success ? '✅' : '❌';
+                html += `<p class="${statusClass}"><strong>${index+1}.</strong> ${result.name}: ${statusIcon} ${result.message || ''}</p>`;
+            });
+            el.miniResults.innerHTML = html;
+        }
         
         // ========== HENT VIDEO-ID ==========
         function getVideoId(url) {
@@ -391,167 +429,31 @@
             if (url.includes('/shorts/')) {
                 return url.split('/shorts/')[1].split('?')[0].split('&')[0];
             }
-            if (url.includes('/embed/')) {
-                return url.split('/embed/')[1].split('?')[0];
-            }
             return null;
         }
         
-        // ========== FORMATER TALL ==========
-        function formatNumber(num) {
-            if (!num) return '?';
-            if (num >= 1000000) return (num/1000000).toFixed(1) + 'M';
-            if (num >= 1000) return (num/1000).toFixed(1) + 'K';
-            return num.toString();
-        }
-        
-        // ========== FORMATER TID ==========
-        function formatDuration(seconds) {
-            if (!seconds) return '?';
-            const mins = Math.floor(seconds / 60);
-            const secs = Math.floor(seconds % 60);
-            return `${mins}:${secs.toString().padStart(2, '0')}`;
-        }
-        
-        // ========== STRATEGI 1: oEmbed API ==========
-        async function strategy1(videoId) {
-            try {
-                const response = await fetch(`https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=${videoId}&format=json`);
-                if (response.ok) {
-                    const data = await response.json();
-                    return {
-                        success: true,
-                        title: data.title,
-                        channel: data.author_name,
-                        thumbnail: data.thumbnail_url
-                    };
-                }
-            } catch (e) {}
-            return { success: false };
-        }
-        
-        // ========== STRATEGI 2: Invidious API (flere instanser) ==========
-        async function strategy2(videoId) {
-            const instances = [
-                'https://invidious.projectsegfau.lt',
-                'https://yewtu.be',
-                'https://inv.riverside.rocks',
-                'https://invidious.snopyta.org',
-                'https://vid.puffyan.us'
-            ];
-            
-            for (let instance of instances) {
-                try {
-                    const response = await fetch(`${instance}/api/v1/videos/${videoId}`);
-                    if (response.ok) {
-                        const data = await response.json();
-                        return {
-                            success: true,
-                            title: data.title,
-                            channel: data.author,
-                            subscribers: data.authorSubscriberCount,
-                            views: data.viewCount,
-                            likes: data.likeCount,
-                            published: data.publishedText,
-                            duration: data.lengthSeconds,
-                            description: data.description
-                        };
-                    }
-                } catch (e) {}
-            }
-            return { success: false };
-        }
-        
-        // ========== STRATEGI 3: Piped API ==========
-        async function strategy3(videoId) {
-            try {
-                const response = await fetch(`https://pipedapi.kavin.rocks/streams/${videoId}`);
-                if (response.ok) {
-                    const data = await response.json();
-                    return {
-                        success: true,
-                        title: data.title,
-                        channel: data.uploader,
-                        subscribers: data.uploaderSubscriberCount,
-                        views: data.views,
-                        likes: data.likes,
-                        duration: data.duration,
-                        description: data.description
-                    };
-                }
-            } catch (e) {}
-            return { success: false };
-        }
-        
-        // ========== STRATEGI 4: YouTube Proxy ==========
-        async function strategy4(videoId) {
-            // Bruker YouTube's egen oembed med CORS proxy
-            const proxies = [
-                'https://api.allorigins.win/raw?url=',
-                'https://cors-anywhere.herokuapp.com/',
-                'https://youtube-proxy.example.com/'
-            ];
-            
-            for (let proxy of proxies) {
-                try {
-                    const url = `${proxy}https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=${videoId}&format=json`;
-                    const response = await fetch(url);
-                    if (response.ok) {
-                        const data = await response.json();
-                        return {
-                            success: true,
-                            title: data.title,
-                            channel: data.author_name
-                        };
-                    }
-                } catch (e) {}
-            }
-            return { success: false };
-        }
-        
-        // ========== STRATEGI 5: Hent kommentarer ==========
-        async function strategy5(videoId) {
-            const instances = [
-                'https://invidious.projectsegfau.lt',
-                'https://yewtu.be'
-            ];
-            
-            for (let instance of instances) {
-                try {
-                    const response = await fetch(`${instance}/api/v1/comments/${videoId}?hmac=true`);
-                    if (response.ok) {
-                        const data = await response.json();
-                        const comments = (data.comments || []).slice(0, 7).map(c => ({
-                            author: c.author || 'Ukjent',
-                            text: c.content?.text || 'Ingen tekst'
-                        }));
-                        return {
-                            success: true,
-                            comments: comments
-                        };
-                    }
-                } catch (e) {}
-            }
-            return { success: false, comments: [] };
-        }
-        
-        // ========== LAST INN THUMBNAILS ==========
-        function loadThumbnails(videoId) {
-            // Ulike størrelser = ULIKE bilder!
-            el.thumb0.src = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
-            el.thumb0.onerror = function() { 
-                this.src = `https://img.youtube.com/vi/${videoId}/0.jpg`;
-            };
-            
-            el.thumb1.src = `https://img.youtube.com/vi/${videoId}/sddefault.jpg`;
-            el.thumb1.onerror = function() { 
+        // ========== 3 BILDER - ALLTID FUNKER! ==========
+        function loadThreeThumbnails(videoId) {
+            // FØRSTE bilde - 0.jpg eller 1.jpg
+            el.thumbFirst.src = `https://img.youtube.com/vi/${videoId}/0.jpg`;
+            el.thumbFirst.onerror = function() { 
                 this.src = `https://img.youtube.com/vi/${videoId}/1.jpg`;
             };
             
-            el.thumb2.src = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
-            el.thumb2.onerror = function() { 
-                this.src = `https://img.youtube.com/vi/${videoId}/2.jpg`;
+            // MIDTERSTE bilde - 2.jpg eller 3.jpg
+            el.thumbMiddle.src = `https://img.youtube.com/vi/${videoId}/2.jpg`;
+            el.thumbMiddle.onerror = function() { 
+                this.src = `https://img.youtube.com/vi/${videoId}/3.jpg`;
             };
+            
+            // SISTE bilde - hqdefault.jpg eller maxresdefault.jpg
+            el.thumbLast.src = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+            el.thumbLast.onerror = function() { 
+                this.src = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+            };
+            
+            // Vis thumbnail-seksjonen
+            el.thumbnailSection.style.display = 'block';
         }
         
         // ========== SJEKK RICKROLL ==========
@@ -561,7 +463,7 @@
             const channelLower = (channel || '').toLowerCase();
             
             // Kjente Rickroll videoer
-            const rickrollIds = ['dqw4w9wgxcq', 'ohg5sjyrha0', 'ub82xb1c8os', 'dlzxrzfcyos'];
+            const rickrollIds = ['dqw4w9wgxcq', 'ohg5sjyrha0', 'ub82xb1c8os'];
             if (rickrollIds.includes(id)) {
                 return { isRickroll: true, reason: '🚨 ORIGINAL RICKROLL!' };
             }
@@ -579,107 +481,190 @@
                 return { isRickroll: true, reason: '📺 RICK ASTLEY KANAL!' };
             }
             
-            return { isRickroll: false, reason: '✅ INGEN RICKROLL FUNNET' };
+            return { isRickroll: false, reason: '✅ TRYGG' };
         }
         
-        // ========== HENT ALLE DATA ==========
-        async function fetchAllData(videoId) {
-            const result = {
-                title: 'YouTube Video',
-                channel: 'YouTube',
-                subscribers: null,
-                views: null,
-                likes: null,
-                published: null,
-                duration: null,
-                description: 'Ingen beskrivelse tilgjengelig',
-                comments: []
-            };
-            
-            // STRATEGI 1: oEmbed
-            el.loadingStatus.textContent = 'Strategi 1/5: oEmbed API...';
-            const s1 = await strategy1(videoId);
-            if (s1.success) {
-                result.title = s1.title;
-                result.channel = s1.channel;
-            }
-            
-            // STRATEGI 2: Invidious
-            el.loadingStatus.textContent = 'Strategi 2/5: Invidious API...';
-            const s2 = await strategy2(videoId);
-            if (s2.success) {
-                result.title = s2.title || result.title;
-                result.channel = s2.channel || result.channel;
-                result.subscribers = s2.subscribers;
-                result.views = s2.views;
-                result.likes = s2.likes;
-                result.published = s2.published;
-                result.duration = s2.duration;
-                result.description = s2.description || result.description;
-            }
-            
-            // STRATEGI 3: Piped
-            el.loadingStatus.textContent = 'Strategi 3/5: Piped API...';
-            const s3 = await strategy3(videoId);
-            if (s3.success && !s2.success) { // Bare bruk hvis strategi 2 feilet
-                result.title = s3.title || result.title;
-                result.channel = s3.channel || result.channel;
-                result.subscribers = s3.subscribers;
-                result.views = s3.views;
-                result.likes = s3.likes;
-                result.duration = s3.duration;
-                result.description = s3.description || result.description;
-            }
-            
-            // STRATEGI 4: Proxy
-            el.loadingStatus.textContent = 'Strategi 4/5: Proxy API...';
-            const s4 = await strategy4(videoId);
-            if (s4.success && !s2.success && !s3.success) {
-                result.title = s4.title || result.title;
-                result.channel = s4.channel || result.channel;
-            }
-            
-            // STRATEGI 5: Kommentarer
-            el.loadingStatus.textContent = 'Strategi 5/5: Henter kommentarer...';
-            const s5 = await strategy5(videoId);
-            if (s5.success) {
-                result.comments = s5.comments;
-            }
-            
-            return result;
+        // ========== 10💀 STRATEGIER ==========
+        
+        // Strategi 1: oEmbed
+        async function strategy1(videoId) {
+            try {
+                const response = await fetch(`https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=${videoId}&format=json`);
+                if (response.ok) {
+                    const data = await response.json();
+                    return { success: true, title: data.title, channel: data.author_name };
+                }
+            } catch (e) {}
+            return { success: false };
         }
         
-        // ========== OPPDATER UI ==========
-        function updateUI(data, videoId) {
-            el.videoTitle.textContent = data.title;
-            el.channelName.textContent = data.channel;
-            el.subscribers.textContent = data.subscribers ? `${formatNumber(data.subscribers)} abonnenter` : '?';
+        // Strategi 2: Invidious 1
+        async function strategy2(videoId) {
+            try {
+                const response = await fetch(`https://invidious.projectsegfau.lt/api/v1/videos/${videoId}`);
+                if (response.ok) {
+                    const data = await response.json();
+                    return { success: true, title: data.title, channel: data.author };
+                }
+            } catch (e) {}
+            return { success: false };
+        }
+        
+        // Strategi 3: Invidious 2
+        async function strategy3(videoId) {
+            try {
+                const response = await fetch(`https://yewtu.be/api/v1/videos/${videoId}`);
+                if (response.ok) {
+                    const data = await response.json();
+                    return { success: true, title: data.title, channel: data.author };
+                }
+            } catch (e) {}
+            return { success: false };
+        }
+        
+        // Strategi 4: Invidious 3
+        async function strategy4(videoId) {
+            try {
+                const response = await fetch(`https://inv.riverside.rocks/api/v1/videos/${videoId}`);
+                if (response.ok) {
+                    const data = await response.json();
+                    return { success: true, title: data.title, channel: data.author };
+                }
+            } catch (e) {}
+            return { success: false };
+        }
+        
+        // Strategi 5: Piped 1
+        async function strategy5(videoId) {
+            try {
+                const response = await fetch(`https://pipedapi.kavin.rocks/streams/${videoId}`);
+                if (response.ok) {
+                    const data = await response.json();
+                    return { success: true, title: data.title, channel: data.uploader };
+                }
+            } catch (e) {}
+            return { success: false };
+        }
+        
+        // Strategi 6: Piped 2
+        async function strategy6(videoId) {
+            try {
+                const response = await fetch(`https://pipedapi.tokhmi.xyz/streams/${videoId}`);
+                if (response.ok) {
+                    const data = await response.json();
+                    return { success: true, title: data.title, channel: data.uploader };
+                }
+            } catch (e) {}
+            return { success: false };
+        }
+        
+        // Strategi 7: Vid.puffyan
+        async function strategy7(videoId) {
+            try {
+                const response = await fetch(`https://vid.puffyan.us/api/v1/videos/${videoId}`);
+                if (response.ok) {
+                    const data = await response.json();
+                    return { success: true, title: data.title, channel: data.author };
+                }
+            } catch (e) {}
+            return { success: false };
+        }
+        
+        // Strategi 8: Proxy 1 (allorigins)
+        async function strategy8(videoId) {
+            try {
+                const response = await fetch(`https://api.allorigins.win/raw?url=https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=${videoId}&format=json`);
+                if (response.ok) {
+                    const data = await response.json();
+                    return { success: true, title: data.title, channel: data.author_name };
+                }
+            } catch (e) {}
+            return { success: false };
+        }
+        
+        // Strategi 9: Proxy 2 (corsproxy)
+        async function strategy9(videoId) {
+            try {
+                const response = await fetch(`https://corsproxy.io/?https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=${videoId}&format=json`);
+                if (response.ok) {
+                    const data = await response.json();
+                    return { success: true, title: data.title, channel: data.author_name };
+                }
+            } catch (e) {}
+            return { success: false };
+        }
+        
+        // Strategi 10: YouTube scraping via noembed
+        async function strategy10(videoId) {
+            try {
+                const response = await fetch(`https://noembed.com/embed?url=https://www.youtube.com/watch?v=${videoId}`);
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data.title && !data.error) {
+                        return { success: true, title: data.title, channel: data.author_name };
+                    }
+                }
+            } catch (e) {}
+            return { success: false };
+        }
+        
+        // ========== KJØR ALLE STRATEGIER ==========
+        async function runAllStrategies(videoId) {
+            strategyResults = [];
+            let finalTitle = 'YouTube Video';
+            let finalChannel = 'YouTube';
             
-            el.views.innerHTML = `👁️ ${data.views ? formatNumber(data.views) : '?'}`;
-            el.likes.innerHTML = `❤️ ${data.likes ? formatNumber(data.likes) : '?'}`;
-            el.published.innerHTML = `📅 ${data.published || '?'}`;
-            el.duration.innerHTML = `⏱️ ${data.duration ? formatDuration(data.duration) : '?'}`;
+            const strategies = [
+                { name: 'oEmbed API', func: strategy1 },
+                { name: 'Invidious #1', func: strategy2 },
+                { name: 'Invidious #2', func: strategy3 },
+                { name: 'Invidious #3', func: strategy4 },
+                { name: 'Piped #1', func: strategy5 },
+                { name: 'Piped #2', func: strategy6 },
+                { name: 'Vid.puffyan', func: strategy7 },
+                { name: 'Proxy #1', func: strategy8 },
+                { name: 'Proxy #2', func: strategy9 },
+                { name: 'Noembed', func: strategy10 }
+            ];
             
-            el.description.textContent = data.description || 'Ingen beskrivelse tilgjengelig';
-            
-            // Kommentarer
-            if (data.comments && data.comments.length > 0) {
-                el.comments.innerHTML = data.comments.map(c => `
-                    <div class="comment-item">
-                        <div class="comment-author">${c.author}</div>
-                        <div class="comment-text">${c.text}</div>
-                    </div>
-                `).join('');
-            } else {
-                el.comments.innerHTML = '<div style="color:#666; padding:15px; text-align:center;">Ingen kommentarer funnet</div>';
+            for (let i = 0; i < strategies.length; i++) {
+                const strategy = strategies[i];
+                el.loadingStatus.textContent = `Strategi ${i+1}/10: ${strategy.name}...`;
+                
+                try {
+                    const result = await strategy.func(videoId);
+                    
+                    if (result.success) {
+                        strategyResults.push({
+                            name: strategy.name,
+                            success: true,
+                            message: 'OK'
+                        });
+                        
+                        // Oppdater med første vellykkede resultat
+                        if (!finalTitle || finalTitle === 'YouTube Video') {
+                            finalTitle = result.title || finalTitle;
+                            finalChannel = result.channel || finalChannel;
+                        }
+                    } else {
+                        strategyResults.push({
+                            name: strategy.name,
+                            success: false,
+                            message: 'Feilet'
+                        });
+                    }
+                } catch (e) {
+                    strategyResults.push({
+                        name: strategy.name,
+                        success: false,
+                        message: 'Feilet'
+                    });
+                }
+                
+                updateMiniPanel();
             }
             
-            // Rickroll-sjekk
-            const rickroll = checkRickroll(videoId, data.title, data.channel);
-            el.safetyBadge.textContent = rickroll.isRickroll ? `🚨 ${rickroll.reason}` : '✅ TRYGG VIDEO';
-            el.safetyBadge.className = `safety-badge ${rickroll.isRickroll ? 'danger' : 'safe'}`;
-            
-            el.youtubeLink.href = `https://youtu.be/${videoId}`;
+            return { title: finalTitle, channel: finalChannel };
         }
         
         // ========== SCAN ==========
@@ -698,30 +683,36 @@
             
             // Vis loading
             el.loading.classList.remove('hidden');
-            el.strategyDisplay.classList.remove('hidden');
-            el.youtubePreview.style.display = 'none';
-            el.loadingMessage.textContent = 'Starter 5 strategier...';
+            el.thumbnailSection.style.display = 'none';
+            el.videoInfo.style.display = 'none';
+            strategyResults = [];
+            updateMiniPanel();
             
             try {
-                // Last inn thumbnails (ALLTID!)
-                loadThumbnails(videoId);
+                // LAST INN 3 BILDER - ALLTID! (FØRSTE, MIDTERSTE, SISTE)
+                loadThreeThumbnails(videoId);
                 
-                // Hent alle data
-                const data = await fetchAllData(videoId);
+                // Kjør alle 10 strategier
+                const { title, channel } = await runAllStrategies(videoId);
                 
                 // Oppdater UI
-                updateUI(data, videoId);
+                el.videoTitle.textContent = title;
+                el.channelName.textContent = channel;
+                el.youtubeLink.href = `https://youtu.be/${videoId}`;
                 
-                // Ferdig!
+                // Sjekk Rickroll
+                const rickroll = checkRickroll(videoId, title, channel);
+                el.safetyBadge.textContent = rickroll.isRickroll ? `🚨 ${rickroll.reason}` : '✅ TRYGG';
+                el.safetyBadge.className = `safety-badge ${rickroll.isRickroll ? 'danger' : 'safe'}`;
+                
+                // Vis alt
                 el.loading.classList.add('hidden');
-                el.strategyDisplay.classList.add('hidden');
-                el.youtubePreview.style.display = 'block';
+                el.videoInfo.style.display = 'block';
                 
             } catch (error) {
                 console.error('Feil:', error);
                 el.loading.classList.add('hidden');
-                el.strategyDisplay.classList.add('hidden');
-                alert('Kunne ikke hente video-data. Prøv igjen.');
+                alert('Kunne ikke hente video-data');
             }
         }
         
@@ -734,7 +725,10 @@
         // ========== TØM ==========
         function clearAll() {
             el.youtubeUrl.value = '';
-            el.youtubePreview.style.display = 'none';
+            el.thumbnailSection.style.display = 'none';
+            el.videoInfo.style.display = 'none';
+            strategyResults = [];
+            updateMiniPanel();
         }
         
         // ========== EVENT LISTENERS ==========
