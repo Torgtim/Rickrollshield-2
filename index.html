@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>🎥 RICKROLL SHIELD - EKTE BILDER</title>
+    <title>🎥 RICKROLL SHIELD - ULTIMATE BILDER</title>
     <style>
         /* ========== STIL ========== */
         * {
@@ -90,7 +90,28 @@
             border: 2px solid white;
         }
         
-        /* ========== 3 BILDER - START, MIDTEN, SLUTT ========== */
+        /* ========== VIDEO TYPE BADGE ========== */
+        .video-type-badge {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            border: 2px solid #ff0000;
+        }
+        
+        .video-type-badge.shorts {
+            background: #ff0000;
+            color: white;
+        }
+        
+        .video-type-badge.normal {
+            background: #0f172a;
+            color: #ff0000;
+        }
+        
+        /* ========== 3 BILDER - PERFEKTE POSISJONER ========== */
         .thumbnail-section {
             background: #0f172a;
             border-radius: 20px;
@@ -135,6 +156,18 @@
             object-fit: cover;
             background: #1e293b;
             box-shadow: 0 5px 15px rgba(255,0,0,0.3);
+        }
+        
+        /* ========== SHORTS SPESIFIK STYLING ========== */
+        .thumbnail-img.shorts-mode {
+            aspect-ratio: 9/16;
+            max-width: 180px;
+            margin: 0 auto;
+        }
+        
+        .thumbnail-gallery.shorts-gallery {
+            grid-template-columns: repeat(3, 1fr);
+            justify-items: center;
         }
         
         .video-info {
@@ -305,37 +338,41 @@
 <body>
     <div class="container">
         <h1>🎥 RICKROLL SHIELD</h1>
-        <div class="subtitle">EKTE BILDER - START, MIDTEN, SLUTT</div>
+        <div class="subtitle">PERFEKTE BILDER - NORMAL + SHORTS</div>
         
         <div class="input-section">
-            <input type="text" id="youtubeUrl" placeholder="Lim inn YouTube-URL">
+            <input type="text" id="youtubeUrl" placeholder="Lim inn YouTube-URL (normal eller shorts)">
             <div class="button-group">
-                <button class="primary-btn" id="scanBtn">🔍 HENT BILDER</button>
-                <button id="testBtn">🎲 TEST</button>
+                <button class="primary-btn" id="scanBtn">🔍 HENT PERFEKTE BILDER</button>
+                <button id="testNormalBtn">🎬 TEST NORMAL</button>
+                <button id="testShortsBtn">📱 TEST SHORTS</button>
                 <button id="clearBtn">🗑️ TØM</button>
             </div>
         </div>
         
         <div id="loading" class="loading hidden">
             <div class="spinner"></div>
-            <p id="loadingMessage">Henter bilder...</p>
+            <p id="loadingMessage">Analyserer video...</p>
             <div class="loading-status" id="loadingStatus"></div>
         </div>
         
-        <!-- 3 BILDER - START, MIDTEN, SLUTT -->
+        <!-- 3 PERFEKTE BILDER -->
         <div class="thumbnail-section" id="thumbnailSection" style="display: none;">
-            <div class="thumbnail-title">📸 BILDER FRA VIDEOEN</div>
-            <div class="thumbnail-gallery">
+            <div class="thumbnail-title">
+                <span>📸 BILDER FRA VIDEOEN</span>
+                <span class="video-type-badge" id="videoTypeBadge">NORMAL</span>
+            </div>
+            <div class="thumbnail-gallery" id="thumbnailGallery">
                 <div class="thumbnail-item">
-                    <div class="thumbnail-label">START</div>
+                    <div class="thumbnail-label">START (0%)</div>
                     <img class="thumbnail-img" id="thumbStart" src="">
                 </div>
                 <div class="thumbnail-item">
-                    <div class="thumbnail-label">MIDTEN</div>
+                    <div class="thumbnail-label">MIDTEN (50%)</div>
                     <img class="thumbnail-img" id="thumbMiddle" src="">
                 </div>
                 <div class="thumbnail-item">
-                    <div class="thumbnail-label">SLUTT</div>
+                    <div class="thumbnail-label">SLUTT (95%)</div>
                     <img class="thumbnail-img" id="thumbEnd" src="">
                 </div>
             </div>
@@ -361,18 +398,21 @@
     </div>
 
     <script>
-        // ========== RICKROLL SHIELD - EKTE BILDER ==========
+        // ========== RICKROLL SHIELD - PERFEKTE BILDER ==========
         
         const el = {
             youtubeUrl: document.getElementById('youtubeUrl'),
             scanBtn: document.getElementById('scanBtn'),
-            testBtn: document.getElementById('testBtn'),
+            testNormalBtn: document.getElementById('testNormalBtn'),
+            testShortsBtn: document.getElementById('testShortsBtn'),
             clearBtn: document.getElementById('clearBtn'),
             loading: document.getElementById('loading'),
             loadingMessage: document.getElementById('loadingMessage'),
             loadingStatus: document.getElementById('loadingStatus'),
             
             thumbnailSection: document.getElementById('thumbnailSection'),
+            thumbnailGallery: document.getElementById('thumbnailGallery'),
+            videoTypeBadge: document.getElementById('videoTypeBadge'),
             thumbStart: document.getElementById('thumbStart'),
             thumbMiddle: document.getElementById('thumbMiddle'),
             thumbEnd: document.getElementById('thumbEnd'),
@@ -417,40 +457,89 @@
             el.miniResults.innerHTML = html;
         }
         
-        // ========== HENT VIDEO-ID ==========
-        function getVideoId(url) {
-            if (!url) return null;
-            if (url.includes('youtu.be/')) {
-                return url.split('youtu.be/')[1].split('?')[0].split('&')[0];
-            }
-            if (url.includes('v=')) {
-                return url.split('v=')[1].split('&')[0];
-            }
+        // ========== HENT VIDEO-ID OG TYPE ==========
+        function getVideoInfo(url) {
+            if (!url) return { id: null, type: 'unknown' };
+            
+            // Sjekk om det er shorts
             if (url.includes('/shorts/')) {
-                return url.split('/shorts/')[1].split('?')[0].split('&')[0];
+                const id = url.split('/shorts/')[1].split('?')[0].split('&')[0];
+                return { id, type: 'shorts' };
             }
-            return null;
+            
+            // youtu.be/
+            if (url.includes('youtu.be/')) {
+                const id = url.split('youtu.be/')[1].split('?')[0].split('&')[0];
+                return { id, type: 'normal' };
+            }
+            
+            // youtube.com/watch?v=
+            if (url.includes('v=')) {
+                const id = url.split('v=')[1].split('&')[0];
+                return { id, type: 'normal' };
+            }
+            
+            return { id: null, type: 'unknown' };
         }
         
-        // ========== 3 BILDER - START, MIDTEN, SLUTT ==========
-        function loadThreeThumbnails(videoId) {
-            // START - 1.jpg eller maxresdefault.jpg
-            el.thumbStart.src = `https://img.youtube.com/vi/${videoId}/1.jpg`;
-            el.thumbStart.onerror = function() { 
-                this.src = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
-            };
+        // ========== LAST INN PERFEKTE BILDER ==========
+        function loadPerfectThumbnails(videoId, videoType) {
+            // Oppdater badge
+            el.videoTypeBadge.textContent = videoType === 'shorts' ? 'SHORTS' : 'NORMAL VIDEO';
+            el.videoTypeBadge.className = `video-type-badge ${videoType}`;
             
-            // MIDTEN - 2.jpg eller 3.jpg
-            el.thumbMiddle.src = `https://img.youtube.com/vi/${videoId}/2.jpg`;
-            el.thumbMiddle.onerror = function() { 
-                this.src = `https://img.youtube.com/vi/${videoId}/3.jpg`;
-            };
+            // FJERN gammel shorts-klasse
+            el.thumbStart.classList.remove('shorts-mode');
+            el.thumbMiddle.classList.remove('shorts-mode');
+            el.thumbEnd.classList.remove('shorts-mode');
+            el.thumbnailGallery.classList.remove('shorts-gallery');
             
-            // SLUTT - hqdefault.jpg eller 0.jpg
-            el.thumbEnd.src = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
-            el.thumbEnd.onerror = function() { 
-                this.src = `https://img.youtube.com/vi/${videoId}/0.jpg`;
-            };
+            if (videoType === 'shorts') {
+                // SHORTS - vertikale bilder (9:16)
+                el.thumbStart.classList.add('shorts-mode');
+                el.thumbMiddle.classList.add('shorts-mode');
+                el.thumbEnd.classList.add('shorts-mode');
+                el.thumbnailGallery.classList.add('shorts-gallery');
+                
+                // START (0%) - 1.jpg eller maxresdefault.jpg
+                el.thumbStart.src = `https://img.youtube.com/vi/${videoId}/1.jpg`;
+                el.thumbStart.onerror = function() { 
+                    this.src = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+                };
+                
+                // MIDTEN (50%) - 2.jpg eller 3.jpg
+                el.thumbMiddle.src = `https://img.youtube.com/vi/${videoId}/2.jpg`;
+                el.thumbMiddle.onerror = function() { 
+                    this.src = `https://img.youtube.com/vi/${videoId}/3.jpg`;
+                };
+                
+                // SLUTT (95%) - hqdefault.jpg eller 0.jpg (siste frame for shorts)
+                el.thumbEnd.src = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+                el.thumbEnd.onerror = function() { 
+                    this.src = `https://img.youtube.com/vi/${videoId}/0.jpg`;
+                };
+                
+            } else {
+                // NORMAL VIDEO - vanlige 16:9 bilder
+                
+                // START (0%) - 1.jpg eller maxresdefault.jpg
+                el.thumbStart.src = `https://img.youtube.com/vi/${videoId}/1.jpg`;
+                el.thumbStart.onerror = function() { 
+                    this.src = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+                };
+                
+                // MIDTEN (50%) - 2.jpg eller 3.jpg
+                el.thumbMiddle.src = `https://img.youtube.com/vi/${videoId}/2.jpg`;
+                el.thumbMiddle.onerror = function() { 
+                    this.src = `https://img.youtube.com/vi/${videoId}/3.jpg`;
+                };
+                
+                // SLUTT (95%) - hqdefault.jpg eller sddefault.jpg (mer nøyaktig slutt)
+                el.thumbEnd.src = `https://img.youtube.com/vi/${videoId}/sddefault.jpg`;
+                el.thumbEnd.onerror = function() { 
+                    this.src = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+                };
+            }
             
             // Vis thumbnail-seksjonen
             el.thumbnailSection.style.display = 'block';
@@ -675,7 +764,7 @@
                 return;
             }
             
-            const videoId = getVideoId(url);
+            const { id: videoId, type: videoType } = getVideoInfo(url);
             if (!videoId) {
                 alert('Ugyldig YouTube-URL!');
                 return;
@@ -689,8 +778,8 @@
             updateMiniPanel();
             
             try {
-                // 1. LAST INN 3 BILDER (ALLTID!)
-                loadThreeThumbnails(videoId);
+                // 1. LAST INN PERFEKTE BILDER (med shorts-støtte!)
+                loadPerfectThumbnails(videoId, videoType);
                 
                 // 2. KJØR 10 STRATEGIER (for tittel/kanal)
                 const { title, channel } = await runAllStrategies(videoId);
@@ -716,9 +805,15 @@
             }
         }
         
-        // ========== TEST ==========
-        function testVideo() {
+        // ========== TEST NORMAL ==========
+        function testNormal() {
             el.youtubeUrl.value = 'https://youtu.be/dQw4w9WgXcQ';
+            scanVideo();
+        }
+        
+        // ========== TEST SHORTS ==========
+        function testShorts() {
+            el.youtubeUrl.value = 'https://youtube.com/shorts/dQw4w9WgXcQ';
             scanVideo();
         }
         
@@ -733,7 +828,8 @@
         
         // ========== EVENT LISTENERS ==========
         el.scanBtn.addEventListener('click', scanVideo);
-        el.testBtn.addEventListener('click', testVideo);
+        el.testNormalBtn.addEventListener('click', testNormal);
+        el.testShortsBtn.addEventListener('click', testShorts);
         el.clearBtn.addEventListener('click', clearAll);
         
         el.youtubeUrl.addEventListener('keypress', (e) => {
