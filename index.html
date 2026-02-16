@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>🎥 RICKROLL SHIELD - ULTIMATE BILDER</title>
+    <title>🎥 RICKROLL SHIELD - PERFEKTE BILDER</title>
     <style>
         /* ========== STIL ========== */
         * {
@@ -23,7 +23,6 @@
         .container {
             max-width: 800px;
             margin: 0 auto;
-            position: relative;
         }
         
         h1 {
@@ -62,16 +61,15 @@
         
         .button-group {
             display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
+            gap: 10px;
         }
         
         button {
-            flex: 1 1 auto;
-            padding: 12px 20px;
+            flex: 1;
+            padding: 15px 20px;
             border: none;
             border-radius: 50px;
-            font-size: 14px;
+            font-size: 16px;
             font-weight: bold;
             cursor: pointer;
             background: #475569;
@@ -88,6 +86,11 @@
             background: linear-gradient(135deg, #ff0000, #aa0000);
             color: white;
             border: 2px solid white;
+        }
+        
+        .secondary-btn {
+            background: #334155;
+            color: white;
         }
         
         /* ========== VIDEO TYPE BADGE ========== */
@@ -111,7 +114,7 @@
             color: #ff0000;
         }
         
-        /* ========== 3 BILDER - PERFEKTE POSISJONER ========== */
+        /* ========== 4 BILDER ========== */
         .thumbnail-section {
             background: #0f172a;
             border-radius: 20px;
@@ -128,12 +131,13 @@
             display: flex;
             align-items: center;
             gap: 8px;
+            flex-wrap: wrap;
         }
         
         .thumbnail-gallery {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
         }
         
         .thumbnail-item {
@@ -142,7 +146,7 @@
         
         .thumbnail-label {
             color: #ff0000;
-            font-size: 14px;
+            font-size: 12px;
             margin-bottom: 8px;
             font-weight: bold;
             text-transform: uppercase;
@@ -151,8 +155,8 @@
         .thumbnail-img {
             width: 100%;
             aspect-ratio: 16/9;
-            border-radius: 12px;
-            border: 3px solid #ff0000;
+            border-radius: 10px;
+            border: 2px solid #ff0000;
             object-fit: cover;
             background: #1e293b;
             box-shadow: 0 5px 15px rgba(255,0,0,0.3);
@@ -161,12 +165,12 @@
         /* ========== SHORTS SPESIFIK STYLING ========== */
         .thumbnail-img.shorts-mode {
             aspect-ratio: 9/16;
-            max-width: 180px;
+            max-width: 140px;
             margin: 0 auto;
         }
         
         .thumbnail-gallery.shorts-gallery {
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(4, 1fr);
             justify-items: center;
         }
         
@@ -338,31 +342,33 @@
 <body>
     <div class="container">
         <h1>🎥 RICKROLL SHIELD</h1>
-        <div class="subtitle">PERFEKTE BILDER - NORMAL + SHORTS</div>
+        <div class="subtitle">4 PERFEKTE BILDER - THUMBNAIL + START + MIDTEN + SLUTT</div>
         
         <div class="input-section">
-            <input type="text" id="youtubeUrl" placeholder="Lim inn YouTube-URL (normal eller shorts)">
+            <input type="text" id="youtubeUrl" placeholder="Lim inn YouTube-URL">
             <div class="button-group">
-                <button class="primary-btn" id="scanBtn">🔍 HENT PERFEKTE BILDER</button>
-                <button id="testNormalBtn">🎬 TEST NORMAL</button>
-                <button id="testShortsBtn">📱 TEST SHORTS</button>
-                <button id="clearBtn">🗑️ TØM</button>
+                <button class="primary-btn" id="scanBtn">🔍 HENT BILDER</button>
+                <button class="secondary-btn" id="clearBtn">🗑️ TØM</button>
             </div>
         </div>
         
         <div id="loading" class="loading hidden">
             <div class="spinner"></div>
-            <p id="loadingMessage">Analyserer video...</p>
+            <p id="loadingMessage">Henter 4 perfekte bilder...</p>
             <div class="loading-status" id="loadingStatus"></div>
         </div>
         
-        <!-- 3 PERFEKTE BILDER -->
+        <!-- 4 BILDER -->
         <div class="thumbnail-section" id="thumbnailSection" style="display: none;">
             <div class="thumbnail-title">
                 <span>📸 BILDER FRA VIDEOEN</span>
                 <span class="video-type-badge" id="videoTypeBadge">NORMAL</span>
             </div>
             <div class="thumbnail-gallery" id="thumbnailGallery">
+                <div class="thumbnail-item">
+                    <div class="thumbnail-label">THUMBNAIL</div>
+                    <img class="thumbnail-img" id="thumbThumb" src="">
+                </div>
                 <div class="thumbnail-item">
                     <div class="thumbnail-label">START (0%)</div>
                     <img class="thumbnail-img" id="thumbStart" src="">
@@ -398,13 +404,11 @@
     </div>
 
     <script>
-        // ========== RICKROLL SHIELD - PERFEKTE BILDER ==========
+        // ========== RICKROLL SHIELD - 4 PERFEKTE BILDER ==========
         
         const el = {
             youtubeUrl: document.getElementById('youtubeUrl'),
             scanBtn: document.getElementById('scanBtn'),
-            testNormalBtn: document.getElementById('testNormalBtn'),
-            testShortsBtn: document.getElementById('testShortsBtn'),
             clearBtn: document.getElementById('clearBtn'),
             loading: document.getElementById('loading'),
             loadingMessage: document.getElementById('loadingMessage'),
@@ -413,6 +417,7 @@
             thumbnailSection: document.getElementById('thumbnailSection'),
             thumbnailGallery: document.getElementById('thumbnailGallery'),
             videoTypeBadge: document.getElementById('videoTypeBadge'),
+            thumbThumb: document.getElementById('thumbThumb'),
             thumbStart: document.getElementById('thumbStart'),
             thumbMiddle: document.getElementById('thumbMiddle'),
             thumbEnd: document.getElementById('thumbEnd'),
@@ -482,62 +487,71 @@
             return { id: null, type: 'unknown' };
         }
         
-        // ========== LAST INN PERFEKTE BILDER ==========
-        function loadPerfectThumbnails(videoId, videoType) {
+        // ========== LAST INN 4 PERFEKTE BILDER ==========
+        function loadFourThumbnails(videoId, videoType) {
             // Oppdater badge
             el.videoTypeBadge.textContent = videoType === 'shorts' ? 'SHORTS' : 'NORMAL VIDEO';
             el.videoTypeBadge.className = `video-type-badge ${videoType}`;
             
             // FJERN gammel shorts-klasse
-            el.thumbStart.classList.remove('shorts-mode');
-            el.thumbMiddle.classList.remove('shorts-mode');
-            el.thumbEnd.classList.remove('shorts-mode');
+            const allImgs = [el.thumbThumb, el.thumbStart, el.thumbMiddle, el.thumbEnd];
+            allImgs.forEach(img => img.classList.remove('shorts-mode'));
             el.thumbnailGallery.classList.remove('shorts-gallery');
             
             if (videoType === 'shorts') {
-                // SHORTS - vertikale bilder (9:16)
-                el.thumbStart.classList.add('shorts-mode');
-                el.thumbMiddle.classList.add('shorts-mode');
-                el.thumbEnd.classList.add('shorts-mode');
+                // SHORTS - vertikale bilder
+                allImgs.forEach(img => img.classList.add('shorts-mode'));
                 el.thumbnailGallery.classList.add('shorts-gallery');
                 
-                // START (0%) - 1.jpg eller maxresdefault.jpg
+                // THUMBNAIL - maxresdefault
+                el.thumbThumb.src = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+                el.thumbThumb.onerror = function() { 
+                    this.src = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+                };
+                
+                // START - 1.jpg
                 el.thumbStart.src = `https://img.youtube.com/vi/${videoId}/1.jpg`;
                 el.thumbStart.onerror = function() { 
-                    this.src = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
-                };
-                
-                // MIDTEN (50%) - 2.jpg eller 3.jpg
-                el.thumbMiddle.src = `https://img.youtube.com/vi/${videoId}/2.jpg`;
-                el.thumbMiddle.onerror = function() { 
-                    this.src = `https://img.youtube.com/vi/${videoId}/3.jpg`;
-                };
-                
-                // SLUTT (95%) - hqdefault.jpg eller 0.jpg (siste frame for shorts)
-                el.thumbEnd.src = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
-                el.thumbEnd.onerror = function() { 
                     this.src = `https://img.youtube.com/vi/${videoId}/0.jpg`;
                 };
                 
-            } else {
-                // NORMAL VIDEO - vanlige 16:9 bilder
-                
-                // START (0%) - 1.jpg eller maxresdefault.jpg
-                el.thumbStart.src = `https://img.youtube.com/vi/${videoId}/1.jpg`;
-                el.thumbStart.onerror = function() { 
-                    this.src = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
-                };
-                
-                // MIDTEN (50%) - 2.jpg eller 3.jpg
+                // MIDTEN - 2.jpg
                 el.thumbMiddle.src = `https://img.youtube.com/vi/${videoId}/2.jpg`;
                 el.thumbMiddle.onerror = function() { 
                     this.src = `https://img.youtube.com/vi/${videoId}/3.jpg`;
                 };
                 
-                // SLUTT (95%) - hqdefault.jpg eller sddefault.jpg (mer nøyaktig slutt)
+                // SLUTT - sddefault.jpg (IKKE hqdefault!)
                 el.thumbEnd.src = `https://img.youtube.com/vi/${videoId}/sddefault.jpg`;
                 el.thumbEnd.onerror = function() { 
                     this.src = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+                };
+                
+            } else {
+                // NORMAL VIDEO - 16:9 bilder
+                
+                // THUMBNAIL - maxresdefault
+                el.thumbThumb.src = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+                el.thumbThumb.onerror = function() { 
+                    this.src = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+                };
+                
+                // START - 1.jpg
+                el.thumbStart.src = `https://img.youtube.com/vi/${videoId}/1.jpg`;
+                el.thumbStart.onerror = function() { 
+                    this.src = `https://img.youtube.com/vi/${videoId}/0.jpg`;
+                };
+                
+                // MIDTEN - 2.jpg
+                el.thumbMiddle.src = `https://img.youtube.com/vi/${videoId}/2.jpg`;
+                el.thumbMiddle.onerror = function() { 
+                    this.src = `https://img.youtube.com/vi/${videoId}/3.jpg`;
+                };
+                
+                // SLUTT - 3.jpg (dette er ofte slutten!)
+                el.thumbEnd.src = `https://img.youtube.com/vi/${videoId}/3.jpg`;
+                el.thumbEnd.onerror = function() { 
+                    this.src = `https://img.youtube.com/vi/${videoId}/sddefault.jpg`;
                 };
             }
             
@@ -552,7 +566,7 @@
             const channelLower = (channel || '').toLowerCase();
             
             // Kjente Rickroll videoer
-            const rickrollIds = ['dqw4w9wgxcq', 'ohg5sjyrha0', 'ub82xb1c8os'];
+            const rickrollIds = ['dqw4w9wgxcq', 'ohg5sjyrha0', 'ub82xb1c8os', 'dlzxrzfcyos'];
             if (rickrollIds.includes(id)) {
                 return { isRickroll: true, reason: '🚨 ORIGINAL RICKROLL!' };
             }
@@ -778,8 +792,8 @@
             updateMiniPanel();
             
             try {
-                // 1. LAST INN PERFEKTE BILDER (med shorts-støtte!)
-                loadPerfectThumbnails(videoId, videoType);
+                // 1. LAST INN 4 PERFEKTE BILDER
+                loadFourThumbnails(videoId, videoType);
                 
                 // 2. KJØR 10 STRATEGIER (for tittel/kanal)
                 const { title, channel } = await runAllStrategies(videoId);
@@ -805,18 +819,6 @@
             }
         }
         
-        // ========== TEST NORMAL ==========
-        function testNormal() {
-            el.youtubeUrl.value = 'https://youtu.be/dQw4w9WgXcQ';
-            scanVideo();
-        }
-        
-        // ========== TEST SHORTS ==========
-        function testShorts() {
-            el.youtubeUrl.value = 'https://youtube.com/shorts/dQw4w9WgXcQ';
-            scanVideo();
-        }
-        
         // ========== TØM ==========
         function clearAll() {
             el.youtubeUrl.value = '';
@@ -828,8 +830,6 @@
         
         // ========== EVENT LISTENERS ==========
         el.scanBtn.addEventListener('click', scanVideo);
-        el.testNormalBtn.addEventListener('click', testNormal);
-        el.testShortsBtn.addEventListener('click', testShorts);
         el.clearBtn.addEventListener('click', clearAll);
         
         el.youtubeUrl.addEventListener('keypress', (e) => {
