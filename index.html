@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>🎥 RICKROLL SHIELD - 10💀 STRATEGIER + 3 BILDER</title>
+    <title>🎥 RICKROLL SHIELD - EKTE BILDER</title>
     <style>
         /* ========== STIL ========== */
         * {
@@ -90,7 +90,7 @@
             border: 2px solid white;
         }
         
-        /* ========== 3 BILDER - ALLTID SYNLIGE ========== */
+        /* ========== 3 BILDER - START, MIDTEN, SLUTT ========== */
         .thumbnail-section {
             background: #0f172a;
             border-radius: 20px;
@@ -121,7 +121,7 @@
         
         .thumbnail-label {
             color: #ff0000;
-            font-size: 12px;
+            font-size: 14px;
             margin-bottom: 8px;
             font-weight: bold;
             text-transform: uppercase;
@@ -305,12 +305,12 @@
 <body>
     <div class="container">
         <h1>🎥 RICKROLL SHIELD</h1>
-        <div class="subtitle">10💀 STRATEGIER - 3 BILDER (FØRSTE, MIDTERSTE, SISTE)</div>
+        <div class="subtitle">EKTE BILDER - START, MIDTEN, SLUTT</div>
         
         <div class="input-section">
             <input type="text" id="youtubeUrl" placeholder="Lim inn YouTube-URL">
             <div class="button-group">
-                <button class="primary-btn" id="scanBtn">🔍 SCAN MED 10💀</button>
+                <button class="primary-btn" id="scanBtn">🔍 HENT BILDER</button>
                 <button id="testBtn">🎲 TEST</button>
                 <button id="clearBtn">🗑️ TØM</button>
             </div>
@@ -318,25 +318,25 @@
         
         <div id="loading" class="loading hidden">
             <div class="spinner"></div>
-            <p id="loadingMessage">Starter 10 strategier...</p>
+            <p id="loadingMessage">Henter bilder...</p>
             <div class="loading-status" id="loadingStatus"></div>
         </div>
         
-        <!-- 3 BILDER - ALLTID SYNLIG NÅR SCANNET -->
+        <!-- 3 BILDER - START, MIDTEN, SLUTT -->
         <div class="thumbnail-section" id="thumbnailSection" style="display: none;">
             <div class="thumbnail-title">📸 BILDER FRA VIDEOEN</div>
             <div class="thumbnail-gallery">
                 <div class="thumbnail-item">
-                    <div class="thumbnail-label">FØRSTE</div>
-                    <img class="thumbnail-img" id="thumbFirst" src="">
+                    <div class="thumbnail-label">START</div>
+                    <img class="thumbnail-img" id="thumbStart" src="">
                 </div>
                 <div class="thumbnail-item">
-                    <div class="thumbnail-label">MIDTERSTE</div>
+                    <div class="thumbnail-label">MIDTEN</div>
                     <img class="thumbnail-img" id="thumbMiddle" src="">
                 </div>
                 <div class="thumbnail-item">
-                    <div class="thumbnail-label">SISTE</div>
-                    <img class="thumbnail-img" id="thumbLast" src="">
+                    <div class="thumbnail-label">SLUTT</div>
+                    <img class="thumbnail-img" id="thumbEnd" src="">
                 </div>
             </div>
         </div>
@@ -361,7 +361,7 @@
     </div>
 
     <script>
-        // ========== 10💀 STRATEGIER + 3 BILDER ==========
+        // ========== RICKROLL SHIELD - EKTE BILDER ==========
         
         const el = {
             youtubeUrl: document.getElementById('youtubeUrl'),
@@ -373,9 +373,9 @@
             loadingStatus: document.getElementById('loadingStatus'),
             
             thumbnailSection: document.getElementById('thumbnailSection'),
-            thumbFirst: document.getElementById('thumbFirst'),
+            thumbStart: document.getElementById('thumbStart'),
             thumbMiddle: document.getElementById('thumbMiddle'),
-            thumbLast: document.getElementById('thumbLast'),
+            thumbEnd: document.getElementById('thumbEnd'),
             
             videoInfo: document.getElementById('videoInfo'),
             videoTitle: document.getElementById('videoTitle'),
@@ -432,24 +432,24 @@
             return null;
         }
         
-        // ========== 3 BILDER - ALLTID FUNKER! ==========
+        // ========== 3 BILDER - START, MIDTEN, SLUTT ==========
         function loadThreeThumbnails(videoId) {
-            // FØRSTE bilde - 0.jpg eller 1.jpg
-            el.thumbFirst.src = `https://img.youtube.com/vi/${videoId}/0.jpg`;
-            el.thumbFirst.onerror = function() { 
-                this.src = `https://img.youtube.com/vi/${videoId}/1.jpg`;
+            // START - 1.jpg eller maxresdefault.jpg
+            el.thumbStart.src = `https://img.youtube.com/vi/${videoId}/1.jpg`;
+            el.thumbStart.onerror = function() { 
+                this.src = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
             };
             
-            // MIDTERSTE bilde - 2.jpg eller 3.jpg
+            // MIDTEN - 2.jpg eller 3.jpg
             el.thumbMiddle.src = `https://img.youtube.com/vi/${videoId}/2.jpg`;
             el.thumbMiddle.onerror = function() { 
                 this.src = `https://img.youtube.com/vi/${videoId}/3.jpg`;
             };
             
-            // SISTE bilde - hqdefault.jpg eller maxresdefault.jpg
-            el.thumbLast.src = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
-            el.thumbLast.onerror = function() { 
-                this.src = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+            // SLUTT - hqdefault.jpg eller 0.jpg
+            el.thumbEnd.src = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+            el.thumbEnd.onerror = function() { 
+                this.src = `https://img.youtube.com/vi/${videoId}/0.jpg`;
             };
             
             // Vis thumbnail-seksjonen
@@ -594,7 +594,7 @@
             return { success: false };
         }
         
-        // Strategi 10: YouTube scraping via noembed
+        // Strategi 10: Noembed
         async function strategy10(videoId) {
             try {
                 const response = await fetch(`https://noembed.com/embed?url=https://www.youtube.com/watch?v=${videoId}`);
@@ -689,23 +689,23 @@
             updateMiniPanel();
             
             try {
-                // LAST INN 3 BILDER - ALLTID! (FØRSTE, MIDTERSTE, SISTE)
+                // 1. LAST INN 3 BILDER (ALLTID!)
                 loadThreeThumbnails(videoId);
                 
-                // Kjør alle 10 strategier
+                // 2. KJØR 10 STRATEGIER (for tittel/kanal)
                 const { title, channel } = await runAllStrategies(videoId);
                 
-                // Oppdater UI
+                // 3. Oppdater UI
                 el.videoTitle.textContent = title;
                 el.channelName.textContent = channel;
                 el.youtubeLink.href = `https://youtu.be/${videoId}`;
                 
-                // Sjekk Rickroll
+                // 4. Sjekk Rickroll
                 const rickroll = checkRickroll(videoId, title, channel);
                 el.safetyBadge.textContent = rickroll.isRickroll ? `🚨 ${rickroll.reason}` : '✅ TRYGG';
                 el.safetyBadge.className = `safety-badge ${rickroll.isRickroll ? 'danger' : 'safe'}`;
                 
-                // Vis alt
+                // 5. Vis alt
                 el.loading.classList.add('hidden');
                 el.videoInfo.style.display = 'block';
                 
